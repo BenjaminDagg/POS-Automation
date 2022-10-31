@@ -18,9 +18,10 @@ namespace POS_Automation
         protected int DefaultWaitTimeoutSeconds = 7;
         private By ExitConfirmationWindow;
         private ByAccessibilityId CloseWindowButton;
-        private By ExitConfirmationConfirmButton;
-        private By ExitConfirmationCancelButton;
+        private By PromptConfirmButton;
+        private By PromptCancelButton;
         public NavTabs NavigationTabs;
+        public By LogoutButton;
 
         public BasePage(WindowsDriver<WindowsElement> _driver)
         {
@@ -31,8 +32,9 @@ namespace POS_Automation
 
             ExitConfirmationWindow = By.Name("Confirm Action");
             CloseWindowButton = new ByAccessibilityId("PART_CloseButton");
-            ExitConfirmationConfirmButton = By.XPath("//Window[@Name='Confirm Action']/Button[@Name='Yes']");
-            ExitConfirmationCancelButton = By.XPath("//Window[@Name='Confirm Action']/Button[@Name='No']");
+            PromptConfirmButton = By.XPath("//Window[@Name='Confirm Action']/Button[@Name='Yes']");
+            PromptCancelButton = By.XPath("//Window[@Name='Confirm Action']/Button[@Name='No']");
+            LogoutButton = By.Name("Logout");
 
             NavigationTabs = new NavTabs(driver);
         }
@@ -41,7 +43,7 @@ namespace POS_Automation
         public void CloseApplication()
         {
             driver.FindElement(CloseWindowButton).Click();
-            driver.FindElement(ExitConfirmationConfirmButton).Click();
+            driver.FindElement(PromptConfirmButton).Click();
         }
 
         protected WindowsElement waitForElement(By by, int time)

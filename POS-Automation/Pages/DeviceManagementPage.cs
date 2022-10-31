@@ -8,15 +8,24 @@ using System.Threading;
 using OpenQA.Selenium;
 using System.Collections;
 using OpenQA.Selenium.Interactions;
+using POS_Automation.Pages;
 
 //https://diamondgame.visualstudio.com/Diamond%20Game%20Portfolio/_git/AppDev_MOLite?path=/POS/POS/Modules/DeviceManagement/Views/DeviceManagementView.xaml&version=GBPOS_NewTheme&_a=contents
 
 namespace POS_Automation
 {
-    public class DeviceManagementPage : BasePage
+    public class DeviceManagementPage : DataGridPage
     {
 
-        private By DeviceDataGrid;
+        public By DeviceDataGrid
+        {
+            get
+            {
+                return DataGrid;
+            }
+
+            private set { DataGrid = value; }
+        }
 
         public DeviceManagementPage(WindowsDriver<WindowsElement> _driver) : base(_driver)
         {
@@ -37,7 +46,7 @@ namespace POS_Automation
             {
                 Console.WriteLine("============");
                 var icon = row.FindElement(By.XPath("(.//*[@ClassName='DataGridCell'])[1]"));
-                var res = driver.ExecuteScript("var items = {}; for (index = 0; index < arguments[0].attributes.length; ++index) { items[arguments[0].attributes[index].name] = arguments[0].attributes[index].value }; return items;", icon);
+                //var res = driver.ExecuteScript("var items = {}; for (index = 0; index < arguments[0].attributes.length; ++index) { items[arguments[0].attributes[index].name] = arguments[0].attributes[index].value }; return items;", icon);
                 
                 //Console.WriteLine(icon.GetProperty("Foreground"));
                 var machNo = row.FindElement(By.XPath("(.//*[@ClassName='DataGridCell'])[2]")).Text;

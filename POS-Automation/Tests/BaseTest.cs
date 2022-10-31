@@ -65,23 +65,25 @@ namespace POS_Automation
             //close alert window if open
             try
             {
-                driver.FindElementByAccessibilityId("PART_CloseButton").Click();
+                driver.FindElementByAccessibilityId("Yes").Click();
             }
             catch (Exception ex)
             {
 
             }
 
-            ConfirmCloseApplication();
+            CloseApplication();
 
             SessionManager.Close();
         }
 
 
         //Press Yes button on confirmation prompt asking to confirm close application
-        protected void ConfirmCloseApplication()
+        protected void CloseApplication()
         {
             string yesBtnXpath = "//Window[@ClassName=\"Window\"][@Name=\"Confirm Action\"]/Button[@Name=\"Yes\"]";
+
+            driver.FindElementByAccessibilityId("PART_CloseButton").Click();
             driver.FindElementByXPath("//Window[@Name='Confirm Action']/Button[@Name='Yes']").Click();
         }
     }

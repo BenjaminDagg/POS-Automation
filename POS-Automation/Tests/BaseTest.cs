@@ -6,6 +6,10 @@ using Appium;
 using OpenQA.Selenium.Appium;   //Appium Options
 using System.Threading;
 using OpenQA.Selenium;
+using Framework.Core.Logging;
+using Microsoft.Extensions.DependencyInjection;
+using EGMSimulator.Core.Settings;
+using POS_Automation.Model;
 
 namespace POS_Automation
 {
@@ -13,13 +17,26 @@ namespace POS_Automation
     {
         protected WindowsDriver<WindowsElement> driver;
         protected NavTabs NavigationTabs;
+        protected ILogService _logService;
+        protected ServiceProvider ServiceProvider;
+        protected DatabaseManager DatabaseManager;
 
         public BaseTest()
         {
 
         }
 
+        [OneTimeSetUp]
+        public void OneTimeSetup()
+        {
+            DatabaseManager = new DatabaseManager();
 
+            var services = new ServiceCollection();
+            services.AddSingleton<ISimulatorSettings, SimulatorSettings>();
+
+            ServiceProvider = services.BuildServiceProvider();
+            _logService = ServiceProvider.GetService<ILogService>();
+        }
 
         [SetUp]
         public void Setup()

@@ -20,6 +20,7 @@ namespace POS_Automation
         private ByAccessibilityId CloseWindowButton;
         private By ExitConfirmationConfirmButton;
         private By ExitConfirmationCancelButton;
+        public NavTabs NavigationTabs;
 
         public BasePage(WindowsDriver<WindowsElement> _driver)
         {
@@ -32,6 +33,8 @@ namespace POS_Automation
             CloseWindowButton = new ByAccessibilityId("PART_CloseButton");
             ExitConfirmationConfirmButton = By.XPath("//Window[@Name='Confirm Action']/Button[@Name='Yes']");
             ExitConfirmationCancelButton = By.XPath("//Window[@Name='Confirm Action']/Button[@Name='No']");
+
+            NavigationTabs = new NavTabs(driver);
         }
 
 
@@ -39,6 +42,35 @@ namespace POS_Automation
         {
             driver.FindElement(CloseWindowButton).Click();
             driver.FindElement(ExitConfirmationConfirmButton).Click();
+        }
+
+        protected WindowsElement waitForElement(By by, int time)
+        {
+            WindowsElement element = null;
+            int t = 0;
+            while (t < time)
+            {
+                Thread.Sleep(1000);
+
+                try
+                {
+                    element = driver.FindElement(by);
+
+                    if (element != null)
+                    {
+                        return element;
+                    }
+                }
+                catch (Exception e)
+                {
+
+                }
+
+
+                t++;
+            }
+
+            return element;
         }
     }
 }

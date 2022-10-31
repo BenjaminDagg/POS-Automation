@@ -12,6 +12,7 @@ namespace POS_Automation
     public abstract class BaseTest
     {
         protected WindowsDriver<WindowsElement> driver;
+        protected NavTabs NavigationTabs;
 
         public BaseTest()
         {
@@ -25,6 +26,8 @@ namespace POS_Automation
         {
             SessionManager.Init();
             driver = SessionManager.Driver;
+
+            NavigationTabs = new NavTabs(driver);
         }
 
 

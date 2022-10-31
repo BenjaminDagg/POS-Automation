@@ -19,10 +19,20 @@ namespace POS_Automation
         [Test]
         public void Test1()
         {
-
+            Thread.Sleep(5000);
             _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
+            //_loginPage.NavigationTabs.ClickDeviceTab();
+            Thread.Sleep(3000);
+        }
 
+        [Test]
+        public void Test2()
+        {
+            
+            _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
+            NavigationTabs.ClickSetingsTab();
             Thread.Sleep(1000);
+            
         }
     }
 }

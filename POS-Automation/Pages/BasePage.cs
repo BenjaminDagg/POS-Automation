@@ -6,6 +6,7 @@ using Appium;
 using OpenQA.Selenium.Appium;   //Appium Options
 using System.Threading;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace POS_Automation
 
@@ -13,7 +14,8 @@ namespace POS_Automation
     public abstract class BasePage
     {
         protected WindowsDriver<WindowsElement> driver;
-
+        protected DefaultWait<WindowsDriver<WindowsElement>> wait;
+        protected int DefaultWaitTimeoutSeconds = 7;
         private By ExitConfirmationWindow;
         private ByAccessibilityId CloseWindowButton;
         private By ExitConfirmationConfirmButton;
@@ -22,6 +24,9 @@ namespace POS_Automation
         public BasePage(WindowsDriver<WindowsElement> _driver)
         {
             driver = _driver;
+            wait = new DefaultWait<WindowsDriver<WindowsElement>>(driver);
+            wait.Timeout = TimeSpan.FromSeconds(DefaultWaitTimeoutSeconds);
+            wait.IgnoreExceptionTypes(typeof(WebDriverException), typeof(InvalidOperationException));
 
             ExitConfirmationWindow = By.Name("Confirm Action");
             CloseWindowButton = new ByAccessibilityId("PART_CloseButton");

@@ -31,14 +31,30 @@ namespace POS_Automation
         [TearDown]
         public void EndTest()
         {
-            //click exit button
-            //SessionManager.CloseDriver();
+            //close error window if open
+            try
+            {
+                Thread.Sleep(1000);
+                driver.FindElementByXPath("//Window[@ClassName='Window'][@Name='POS']/Window[@Name='Critical Error']/TitleBar[@AutomationId='TitleBar']/Button[@Name='Close']").Click();
+            }
+            catch (Exception ex)
+            {
 
-            //Click yes on confirmation
-            //ConfirmCloseApplication();
+            }
 
-            //set driver to null
-            //SessionManager.QuitDriver();
+            //close alert window if open
+            try
+            {
+                driver.FindElementByAccessibilityId("PART_CloseButton").Click();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            ConfirmCloseApplication();
+
+            SessionManager.Close();
         }
 
 

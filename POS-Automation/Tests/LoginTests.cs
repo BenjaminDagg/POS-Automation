@@ -20,13 +20,9 @@ namespace POS_Automation
         public void Test1()
         {
 
-            _loginPage.Login("user1", "Diamond1#");
+            _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
 
             Thread.Sleep(1000);
-
-            _deviceManagementPage.DisplayDeviceList();
-
-            Assert.Pass();
         }
     }
 }

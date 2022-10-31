@@ -79,7 +79,6 @@ namespace POS_Automation
 
         public static void Close()
         {
-            
 
             //Close driver (app)
             if (driver != null)
@@ -87,28 +86,6 @@ namespace POS_Automation
                 driver.Close();
                 driver.Quit();
 
-                
-            }
-
-            driver = null;
-        }
-
-
-        //Clicks Close (X) button on application
-        public static void CloseDriver()
-        {
-            if(driver != null)
-            {
-                driver.Close();
-            }
-        }
-
-
-        public static void QuitDriver()
-        {
-            if (driver != null)
-            {
-                driver.Quit();
             }
 
             driver = null;

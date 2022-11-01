@@ -54,7 +54,7 @@ namespace POS_Automation
             //close error window if open
             try
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
                 driver.FindElementByXPath("//Window[@ClassName='Window'][@Name='POS']/Window[@Name='Critical Error']/TitleBar[@AutomationId='TitleBar']/Button[@Name='Close']").Click();
             }
             catch (Exception ex)
@@ -65,11 +65,14 @@ namespace POS_Automation
             //close alert window if open
             try
             {
-                driver.FindElementByAccessibilityId("Yes").Click();
+                Thread.Sleep(1000);
+                WindowsElement btn = (WindowsElement)driver.FindElement(By.XPath("//Button[@AutomationId='Yes'] | //Window[@ClassName='Window'][@Name='POS']/Window[@ClassName='Window'][@Name='Error']/Button[@Name='Ok'][@AutomationId='Ok']"));
+                btn.Click();
+                btn.Click();
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
             }
 
             CloseApplication();

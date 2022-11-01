@@ -28,9 +28,8 @@ namespace POS_Automation
         public void SuccesfullLogin()
         {
             _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
-            NavigationTabs.ClickDeviceTab();
-            var devicePage = new DeviceManagementPage(driver);
-            devicePage.DisplayDeviceList();
+            NavigationTabs.ClickReportsTab();
+            
             //driver.FindElement(devicePage.LogoutButton).Click();
         }
 

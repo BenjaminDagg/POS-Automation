@@ -83,9 +83,8 @@ namespace POS_Automation
             //Close driver (app)
             if (driver != null)
             {
-                driver.Close();
+                //driver.Close();
                 driver.Quit();
-
             }
 
             driver = null;

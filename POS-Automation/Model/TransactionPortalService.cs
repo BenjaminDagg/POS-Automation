@@ -13,7 +13,7 @@ namespace POS_Automation.Model
 {
     public class TransactionPortalService
     {
-        private TransactionPortalClient tpClient;
+        public TransactionPortalClient tpClient;
         private int sequenceNumber;
         private BarcodeService BarcodeService;
 

@@ -15,7 +15,7 @@ namespace POS_Automation.Model
     public class GameSimulator
     {
         public GameplayParams gameplayParams;
-        private TransactionPortalService transactionPortalService;
+        public TransactionPortalService transactionPortalService;
         private SqlConnection LotteryRetailConnection;
         private SqlConnection DealDbConnection;
         private BarcodeService BarcodeService;

@@ -10,7 +10,7 @@ namespace POS_Automation.Model
 {
     public class TransactionPortalClient : IDisposable
     {
-        private TcpClient tcpClient;
+        public TcpClient tcpClient;
         private string hostname;
         private int port;
         private NetworkStream stream;
@@ -57,6 +57,7 @@ namespace POS_Automation.Model
         public void CLose()
         {
             Console.WriteLine("closing");
+            //tcpClient.GetStream().Close();
             tcpClient.Close();
 
             reader.Dispose();

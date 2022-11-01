@@ -74,5 +74,34 @@ namespace POS_Automation
 
             return element;
         }
+
+        public bool ErrorIsDisplayed(By elementSelector)
+        {
+            Thread.Sleep(1000);
+            try
+            {
+                WindowsElement element = (WindowsElement)wait.Until(d => driver.FindElement(elementSelector));
+                string helpText = element.GetAttribute("HelpText");
+
+                if (string.IsNullOrEmpty(helpText))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public virtual bool IsReadOnly(By element)
+        {
+            return driver.FindElement(element).Enabled == false;
+        }
     }
 }

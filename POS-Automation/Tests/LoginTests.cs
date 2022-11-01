@@ -30,7 +30,7 @@ namespace POS_Automation
             _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
             NavigationTabs.ClickReportsTab();
             
-            //driver.FindElement(devicePage.LogoutButton).Click();
+            
         }
 
         

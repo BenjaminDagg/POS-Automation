@@ -147,13 +147,14 @@ namespace POS_Automation.Model
                             "set " +
                             "REMOVED_FLAG = 0, " +
                             "ACTIVE_FLAG = 1, " +
+                            "PLAY_STATUS = 1, " +
                             "CASINO_MACH_NO = @LocationMachineNumber ," +
                             "MultiGameEnabled = 0, " +
                             "MACH_SERIAL_NO = @SerialNumber, " +
                             "IP_ADDRESS = @IPAddress, " +
                             "BANK_NO = @BankId, " +
                             "GAME_CODE = @GameCode ," +
-                            "Balance = 5.00" +
+                            "Balance = 0.00" +
                         "where MACH_NO = @MachNo";
 
             //Assign default game to machine if not already assigned

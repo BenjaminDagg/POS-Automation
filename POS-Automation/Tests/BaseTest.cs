@@ -72,7 +72,7 @@ namespace POS_Automation
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                
             }
 
             CloseApplication();

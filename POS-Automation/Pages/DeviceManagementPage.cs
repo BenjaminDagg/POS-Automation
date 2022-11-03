@@ -42,6 +42,7 @@ namespace POS_Automation
         public MultiChoiceAlertWindow Alert;
         private By ChangeStatusAlertWindowSelector;
         public MultiChoiceAlertWindow ChangeStatusAlert;
+        private ByAccessibilityId ReconnectButton;
 
         public DeviceManagementPage(WindowsDriver<WindowsElement> _driver) : base(_driver)
         {
@@ -55,6 +56,7 @@ namespace POS_Automation
             PollIntervalLabel = By.XPath("//*[contains(@Name,'Refresh')]");
             ConnectionStatusLabel = By.XPath("//*[contains(@Name,'Status:')]");
             MachCountLabel = By.XPath("//*[contains(@Name,'Machine Count:')]");
+            ReconnectButton = new ByAccessibilityId("ToggleConnectionBtn");
 
             //user for toggling promo
             AlertWindowSelector = By.Name("Please Confirm");
@@ -174,6 +176,9 @@ namespace POS_Automation
             if(btn.Text == "Turn Promo Ticket On")
             {
                 btn.Click();
+                Alert.Confirm();
+
+                Thread.Sleep(1000);
             }
         }
 
@@ -184,6 +189,58 @@ namespace POS_Automation
             if (btn.Text == "Turn Promo Ticket Off")
             {
                 btn.Click();
+                Alert.Confirm();
+
+                Thread.Sleep(1000);
+            }
+        }
+
+        public void ClickTogglePromoButton()
+        {
+            WindowsElement btn = wait.Until(d => d.FindElement(TogglePromoButton));
+
+            btn.Click();
+        }
+
+        public bool PromoToggleButtonIsVisible()
+        {
+            try
+            {
+                wait.Until(d => d.FindElement(TogglePromoButton));
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool PromoTicketsAreEnabled()
+        {
+            WindowsElement btn = wait.Until(d => d.FindElement(TogglePromoButton));
+
+            if (btn.Text == "Turn Promo Ticket Off")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public string PromoToggleButtonText()
+        {
+            try
+            {
+                WindowsElement btn = wait.Until(d => d.FindElement(TogglePromoButton));
+
+                return btn.Text;
+            }
+            catch (Exception ex)
+            {
+                return String.Empty;
             }
         }
 
@@ -314,6 +371,213 @@ namespace POS_Automation
 
                     }
                 }
+            }
+        }
+
+        public bool MachineStatus(string machNo)
+        {
+            wait.Until(d => driver.FindElements(By.ClassName("DataGridRow")).Count > 0);
+            var rows = driver.FindElements(By.ClassName("DataGridRow"));
+
+            var machine = new Machine();
+
+            foreach (var row in rows)
+            {
+                var currMachNo = row.FindElement(By.XPath("(.//*[@ClassName='DataGridCell'])[2]")).Text;
+
+                if (currMachNo == machNo)
+                {
+
+                    //check if set offline/online button is on the row. If it is then set status to whatever the button text is.
+                    //If not then machine is offline
+                    try
+                    {
+                        WindowsElement statusBtn = (WindowsElement)row.FindElement(By.XPath("(.//*[@ClassName='DataGridCell'])[8]/Button"));
+
+                        string statusText = statusBtn.Text;
+
+                        if (statusText == "Set Online")
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        public bool MachineStatus(int index)
+        {
+            wait.Until(d => driver.FindElements(By.ClassName("DataGridRow")).Count > 0);
+            var rows = driver.FindElements(By.ClassName("DataGridRow"));
+
+            var machine = new Machine();
+
+            int rowCount = 0;
+            foreach (var row in rows)
+            {
+                var currMachNo = row.FindElement(By.XPath("(.//*[@ClassName='DataGridCell'])[2]")).Text;
+
+                if (rowCount == index)
+                {
+
+                    //check if set offline/online button is on the row. If it is then set status to whatever the button text is.
+                    //If not then machine is offline
+                    try
+                    {
+                        WindowsElement statusBtn = (WindowsElement)row.FindElement(By.XPath("(.//*[@ClassName='DataGridCell'])[8]/Button"));
+
+                        string statusText = statusBtn.Text;
+
+                        if (statusText == "Set Online")
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        return false;
+                    }
+                }
+
+                rowCount++;
+            }
+
+            return false;
+        }
+
+        public string MachineStatusButtonText(string machNo)
+        {
+            wait.Until(d => driver.FindElements(By.ClassName("DataGridRow")).Count > 0);
+            var rows = driver.FindElements(By.ClassName("DataGridRow"));
+
+            var machine = new Machine();
+            string text = string.Empty;
+
+            foreach (var row in rows)
+            {
+                var currMachNo = row.FindElement(By.XPath("(.//*[@ClassName='DataGridCell'])[2]")).Text;
+
+                if (currMachNo == machNo)
+                {
+
+                    //check if set offline/online button is on the row. If it is then set status to whatever the button text is.
+                    //If not then machine is offline
+                    try
+                    {
+                        WindowsElement statusBtn = (WindowsElement)row.FindElement(By.XPath("(.//*[@ClassName='DataGridCell'])[8]/Button"));
+
+                        string statusText = statusBtn.Text;
+
+                        text = statusText;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        
+                    }
+                }
+            }
+
+            return text;
+        }
+
+        public void ClickMachineActionButton(string machNo)
+        {
+            wait.Until(d => driver.FindElements(By.ClassName("DataGridRow")).Count > 0);
+            var rows = driver.FindElements(By.ClassName("DataGridRow"));
+
+            var machine = new Machine();
+            string text = string.Empty;
+
+            foreach (var row in rows)
+            {
+                var currMachNo = row.FindElement(By.XPath("(.//*[@ClassName='DataGridCell'])[2]")).Text;
+
+                if (currMachNo == machNo)
+                {
+
+                    //check if set offline/online button is on the row. If it is then set status to whatever the button text is.
+                    //If not then machine is offline
+                    try
+                    {
+                        WindowsElement statusBtn = (WindowsElement)row.FindElement(By.XPath("(.//*[@ClassName='DataGridCell'])[8]/Button"));
+
+                        statusBtn.Click();
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
+            }
+        }
+
+        public string MachineStatusButtonText(int index)
+        {
+            wait.Until(d => driver.FindElements(By.ClassName("DataGridRow")).Count > 0);
+            var rows = driver.FindElements(By.ClassName("DataGridRow"));
+
+            var machine = new Machine();
+            string text = string.Empty;
+
+            int rowCount = 0;
+            foreach (var row in rows)
+            {
+                var currMachNo = row.FindElement(By.XPath("(.//*[@ClassName='DataGridCell'])[2]")).Text;
+
+                if (rowCount == index)
+                {
+
+                    //check if set offline/online button is on the row. If it is then set status to whatever the button text is.
+                    //If not then machine is offline
+                    try
+                    {
+                        WindowsElement statusBtn = (WindowsElement)row.FindElement(By.XPath("(.//*[@ClassName='DataGridCell'])[8]/Button"));
+
+                        string statusText = statusBtn.Text;
+
+                        text = statusText;
+
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
+
+                rowCount++;
+            }
+
+            return text;
+        }
+
+        public bool ReconnectBtnIsVisible()
+        {
+            try
+            {
+                wait.Until(d => d.FindElement(ReconnectButton));
+
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
             }
         }
 

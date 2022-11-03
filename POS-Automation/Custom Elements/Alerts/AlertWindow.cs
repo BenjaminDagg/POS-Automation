@@ -60,7 +60,7 @@ namespace POS_Automation.Custom_Elements.Alerts
             get
             {
 
-                return driver.FindElement(Window).FindElement(By.XPath(".//Text[2]")).Text;
+                return driver.FindElement(Window).FindElement(By.ClassName("TextBlock")).Text;
             }
         }
 

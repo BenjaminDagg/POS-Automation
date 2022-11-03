@@ -154,7 +154,7 @@ namespace POS_Automation.Model
                             "IP_ADDRESS = @IPAddress, " +
                             "BANK_NO = @BankId, " +
                             "GAME_CODE = @GameCode ," +
-                            "Balance = 0.00" +
+                            "Balance = 5.00" +
                         "where MACH_NO = @MachNo";
 
             //Assign default game to machine if not already assigned

@@ -40,7 +40,7 @@ namespace POS_Automation.Model
 
         public string Execute(string message)
         {
-
+            
             writer.WriteLine(message);
             writer.Flush();
 
@@ -52,7 +52,28 @@ namespace POS_Automation.Model
         }
 
 
+        public string Read()
+        {
+            if (tcpClient.GetStream().DataAvailable)
+            {
+                
+                Byte[] data = System.Text.Encoding.ASCII.GetBytes("test");
+                data = new Byte[256];
 
+                // String to store the response ASCII representation.
+                String responseData = String.Empty;
+
+                // Read the first batch of the TcpServer response bytes.
+                Int32 bytes = tcpClient.GetStream().Read(data, 0, data.Length); //(**This receives the data using the byte method**)
+                responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes); //(**This converts it to string**)
+
+                return responseData;
+                
+            }
+
+            return String.Empty;
+            
+        }
 
         public void CLose()
         {

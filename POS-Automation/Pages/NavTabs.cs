@@ -27,7 +27,7 @@ namespace POS_Automation
             wait.Timeout = TimeSpan.FromSeconds(DefaultWaitTimeoutSeconds);
             wait.IgnoreExceptionTypes(typeof(WebDriverException), typeof(InvalidOperationException));
             
-            PayoutTab = By.Name("//*[contains(@Name, 'POS.Modules.Payout.ViewModels.PayoutViewModel')]");
+            PayoutTab = By.XPath("//*[contains(@Name, 'POS.Modules.Payout.ViewModels.PayoutViewModel')]");
             DeviceManagementTab = By.XPath("//*[contains(@Name, 'POS.Modules.DeviceManagement.ViewModels.DeviceManagementViewMode')]");
             ReportsTab = By.XPath("//*[contains(@Name, 'POS.Modules.Reports.ViewModels.ReportsViewModel')]");
             SettingsTab = By.XPath("//*[contains(@Name, 'POS.Modules.Settings.ViewModels.SettingsViewModel')]");

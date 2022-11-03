@@ -147,6 +147,34 @@ namespace POS_Automation
             }
         }
 
+        public void ClickSetAllOnlineButton()
+        {
+            wait.Until(d => driver.FindElement(SetAllOnlineButton));
+
+            try
+            {
+                driver.FindElement(SetAllOnlineButton).Click();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        public void ClickSetAllOfflineButton()
+        {
+            wait.Until(d => driver.FindElement(SetAllOfflineButton));
+
+            try
+            {
+                driver.FindElement(SetAllOfflineButton).Click();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
         public void SetAllOnline()
         {
             wait.Until(d => d.FindElement(SetAllOnlineButton));

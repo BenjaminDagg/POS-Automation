@@ -16,13 +16,19 @@ namespace POS_Automation
         private DeviceManagementPage _devicePage;
         private SettingsPage _settingsPage;
         private GameSimulator GameSimulator;
+        private MachineRepository _machineRepository;
+        private AppSettings _appSettings;
 
         [SetUp]
         public void Setup()
         {
+            _appSettings = AppSettingsManager.Read();
+
             _loginPage = new LoginPage(driver);
             _devicePage = new DeviceManagementPage(driver);
             _settingsPage = new SettingsPage(driver);
+
+            _machineRepository = new MachineRepository();
 
             DatabaseManager.ResetTestMachine();
 
@@ -33,6 +39,8 @@ namespace POS_Automation
         [TearDown]
         public void TearDown()
         {
+            AppSettingsManager.Write(_appSettings);
+
             GameSimulator.ShutDown();
             DatabaseManager.ResetTestMachine();
         }
@@ -48,6 +56,27 @@ namespace POS_Automation
 
             Assert.True(_devicePage.IsReadOnly(_devicePage.SetAllOnlineButton));
             Assert.True(_devicePage.IsReadOnly(_devicePage.SetAllOfflineButton));
+        }
+
+        //set all offline/online buttons should be disabled if a connection cannot be made
+        [Test]
+        public async Task ServerDisconnectedButtonsReadonly()
+        {
+            _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
+            NavigationTabs.ClickSetingsTab();
+
+            _settingsPage.EnterIpAddress("1.1.1.1");
+            _settingsPage.SaveDeviceSettings();
+
+            NavigationTabs.ClickDeviceTab();
+            Thread.Sleep(TestData.PollingIntervalSec * 1000 * 2);
+
+            Assert.True(_devicePage.IsReadOnly(_devicePage.SetAllOnlineButton));
+            Assert.True(_devicePage.IsReadOnly(_devicePage.SetAllOfflineButton));
+
+            NavigationTabs.ClickSetingsTab();
+            _settingsPage.EnterIpAddress(TestData.TransactionPortalIpAddress);
+            _settingsPage.SaveDeviceSettings();
         }
 
         [Test]
@@ -216,6 +245,19 @@ namespace POS_Automation
             Assert.AreEqual("Trans Type", _devicePage.GetHeader(4));
             Assert.AreEqual("Description", _devicePage.GetHeader(5));
             Assert.AreEqual("Balance", _devicePage.GetHeader(6));
+        }
+
+        [Test]
+        public void LoadMachines()
+        {
+            var machines = _machineRepository.GetAllMachines();
+
+            _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
+            NavigationTabs.ClickDeviceTab();
+
+            int machCount = _devicePage.MachineCount;
+
+            Assert.AreEqual(machines.Count,machCount);
         }
 
         [Test]

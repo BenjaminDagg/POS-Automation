@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace POS_Automation.Model
@@ -16,6 +17,7 @@ namespace POS_Automation.Model
         private NetworkStream stream;
         private StreamWriter writer;
         private StreamReader reader;
+        private static SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
 
         public TransactionPortalClient(string ipAddress, int _port)
         {
@@ -33,7 +35,10 @@ namespace POS_Automation.Model
             reader = new StreamReader(stream);
 
             //Read connection message, advance the stream
-            string res = reader.ReadLine();
+            if (port == 4550)
+            {
+                string res = reader.ReadLine();
+            }
 
         }
 
@@ -45,9 +50,9 @@ namespace POS_Automation.Model
             writer.Flush();
 
             // String to store the response ASCII representation.
-
+         
             string res = reader.ReadLine();
-
+     
             return res;
         }
 
@@ -73,6 +78,38 @@ namespace POS_Automation.Model
 
             return String.Empty;
             
+        }
+
+        public async Task Listen()
+        {
+            Task.Run(() => ReceiveAsync(tcpClient));
+        }
+
+        public async Task ReceiveAsync(TcpClient client)
+        {
+            using(var ns = new NetworkStream(client.Client, false))
+            {
+                
+                StreamWriter sw = new StreamWriter(ns);
+                StreamReader sr = new StreamReader(ns);
+                sw.AutoFlush = true;
+
+                while (client.Connected)
+                {
+                    Console.WriteLine("in");
+                 
+                    string response = await reader.ReadLineAsync();
+                    Console.WriteLine(response);
+                }
+            }
+            
+        }
+
+        public async Task SendAsync(string message)
+        {
+            
+            await writer.WriteLineAsync(message);
+            await writer.FlushAsync();
         }
 
         public void CLose()

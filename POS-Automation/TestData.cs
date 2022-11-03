@@ -46,5 +46,7 @@ namespace POS_Automation
         public static int LocationId = int.Parse(ConfigurationManager.AppSettings["DefaultLocationId"]);
 
         public static int PollingIntervalSec = 5;
+
+        public static string ConfigFilePath = ConfigurationManager.AppSettings["ConfigFileJsonPath"];
     }
 }

@@ -16,7 +16,7 @@ namespace POS_Automation.Model
 {
     public class DatabaseManager
     {
-        private string ConnectionString;
+        protected string ConnectionString;
 
         public DatabaseManager()
         {

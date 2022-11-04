@@ -76,5 +76,44 @@ namespace POS_Automation
             Assert.AreEqual(0, enteredText.Length);
 
         }
+
+        [Test]
+        public void Clear()
+        {
+            _loginPage.Login("bdagg", "Diamond4!");
+            NavigationTabs.ClickPayoutTab();
+
+            _payoutPage.StartingBalancePrompt.EnterInput("100");
+            _payoutPage.StartingBalancePrompt.Confirm();
+            Thread.Sleep(2000);
+
+            _numPad.EnterBarcode("1234");
+
+            string enteredText = _numPad.GetBarcode();
+            Assert.AreEqual(4, enteredText.Length);
+
+            _numPad.Clear();
+
+            enteredText = _numPad.GetBarcode();
+            Assert.AreEqual(0, enteredText.Length);
+        }
+
+        [Test]
+        public void Enter()
+        {
+            _loginPage.Login("bdagg", "Diamond4!");
+            NavigationTabs.ClickPayoutTab();
+
+            _payoutPage.StartingBalancePrompt.EnterInput("100");
+            _payoutPage.StartingBalancePrompt.Confirm();
+            Thread.Sleep(2000);
+
+            _numPad.EnterBarcode("1234");
+
+            string enteredText = _numPad.GetBarcode();
+            Assert.AreEqual(4, enteredText.Length);
+
+            _numPad.PressEnter();
+        }
     }
 }

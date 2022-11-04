@@ -296,7 +296,7 @@ namespace POS_Automation.Model
         {
             string createVoucherResponse = transactionPortalService.VoucherCreate(gameplayParams.BalanceCredits, gameplayParams.BalanceCredits);
             string voucher = ParseVoucherBarcode(createVoucherResponse);
-
+            Console.WriteLine(voucher);
             string printVoucherResponse = transactionPortalService.VoucherPrint(voucher);
 
             gameplayParams.BalanceCredits = 0;

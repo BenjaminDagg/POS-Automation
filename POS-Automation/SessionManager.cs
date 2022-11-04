@@ -32,7 +32,7 @@ namespace POS_Automation
             if (driver == null)
             {
                 string DriverUrl = "http://127.0.0.1:4723";         //found by starting WinAppDriver.exe
-                string AppPath = @"C:\Program Files (x86)\Diamond Game Enterprises\MOL POS 20220225.1\POS.exe";
+                string AppPath = @"C:\Users\Ben\Music\20220325.5\POS.exe";
                 string appName = "POS";
                 string AppDriverPath = @"C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe";
 

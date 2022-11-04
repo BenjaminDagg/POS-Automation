@@ -33,14 +33,14 @@ namespace POS_Automation.Custom_Elements.Alerts
         }
 
 
-        public void Confirm()
+        public virtual void Confirm()
         {
             WindowsElement confirmBtn = (WindowsElement)wait.Until(d => driver.FindElement(ConfirmButton));
             confirmBtn.Click();
         }
 
 
-        public void Cancel()
+        public virtual void Cancel()
         {
             WindowsElement cancelBtn = (WindowsElement)wait.Until(d => driver.FindElement(CancelButton));
             cancelBtn.Click();

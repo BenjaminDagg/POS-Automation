@@ -19,6 +19,8 @@ namespace POS_Automation
         public static string CashierUsername = ConfigurationManager.AppSettings["CashierUsername"];
         public static string CashierPassword = ConfigurationManager.AppSettings["CashierPassword"];
 
+        //Payout Settings 
+        public static int CashDrawerMaxBalance = int.Parse(ConfigurationManager.AppSettings["CashdrawerMaxBalance"]);
 
         //Transaction Portal
         public static string TransactionPortalIpAddress = ConfigurationManager.AppSettings["TransactionPortalIpAddress"];

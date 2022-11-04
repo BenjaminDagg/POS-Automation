@@ -31,10 +31,19 @@ namespace POS_Automation.Pages
             get
             {
 
-                WindowsElement list = (WindowsElement)wait.Until(d => driver.FindElement(DataGrid));
-                var rows = list.FindElements(RowSelector);
+                try
+                {
+                    WindowsElement list = (WindowsElement)wait.Until(d => driver.FindElement(DataGrid));
+                    var rows = list.FindElements(RowSelector);
 
-                return rows.Count;
+                    return rows.Count;
+                }
+                catch (Exception ex)
+                {
+                    var rows = driver.FindElements(RowSelector);
+
+                    return rows.Count;
+                }
             }
         }
 

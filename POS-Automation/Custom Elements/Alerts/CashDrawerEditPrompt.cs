@@ -18,8 +18,8 @@ namespace POS_Automation.Custom_Elements.Alerts
     public class CashDrawerEditPrompt : MultiChoiceAlertWindow
     {
 
-        private ByAccessibilityId AmountTextbox;
-        private ByAccessibilityId PasswordTextbox;
+        public ByAccessibilityId AmountTextbox;
+        public ByAccessibilityId PasswordTextbox;
 
         public CashDrawerEditPrompt(WindowsDriver<WindowsElement> _driver, By windowSelector) : base(_driver, windowSelector)
         {
@@ -55,6 +55,12 @@ namespace POS_Automation.Custom_Elements.Alerts
         {
             wait.Until(d => driver.FindElement(PasswordTextbox));
             driver.FindElement(PasswordTextbox).SendKeys(text);
+        }
+
+        public override void Confirm()
+        {
+            base.Confirm();
+            Thread.Sleep(1000);
         }
 
     }

@@ -47,5 +47,11 @@ namespace POS_Automation.Custom_Elements.Alerts
 
             driver.FindElement(TextBoxSelector).SendKeys(text);
         }
+
+        public override void Confirm()
+        {
+            base.Confirm();
+            Thread.Sleep(1000);
+        }
     }
 }

@@ -14,6 +14,8 @@ using System.Text.RegularExpressions;
 using System.Globalization;
 using POS_Automation.Model;
 using POS_Automation.Custom_Elements.Alerts;
+using POS_Automation.Model.Payout;
+using System.Collections.Generic;
 
 namespace POS_Automation.Pages.Payout
 {
@@ -73,23 +75,50 @@ namespace POS_Automation.Pages.Payout
             }
         }
 
-        public void ReadTable()
+        public List<CashDrawerHistoryRecord> GetTransactions()
         {
+            List<CashDrawerHistoryRecord> records = new List<CashDrawerHistoryRecord>();
+
             if (!IsOpen)
             {
-                return;
+                return records;
             }
 
             var rows = driver.FindElement(HistoryTable).FindElements(RowSelector);
             foreach (var row in rows)
             {
-                var transType = row.FindElement(By.XPath("(.//*[@ClassName='DataGridCell'])[1]")).Text;
-                var amount = row.FindElement(By.XPath("(.//*[@ClassName='DataGridCell'])[2]")).Text;
-                var date = row.FindElement(By.XPath("(.//*[@ClassName='DataGridCell'])[3]")).Text;
+                var newRecord = new CashDrawerHistoryRecord();
 
-                Console.WriteLine("================");
-                Console.WriteLine($"Trans Type: {transType}, Amount: {amount}, Date: {date}");
+                var transType = row.FindElement(By.XPath("(.//*[@ClassName='DataGridCell'])[1]")).Text;
+                switch (transType)
+                {
+                    case "Starting Balance":
+                        newRecord.TransactionType = CashDrawerTransactionType.StartingBalance;
+                        break;
+                    case "Add":
+                        newRecord.TransactionType = CashDrawerTransactionType.CashAdded;
+                        break;
+                    case "Remove":
+                        newRecord.TransactionType = CashDrawerTransactionType.CashRemoved;
+                        break;
+                    default:
+                        newRecord.TransactionType = CashDrawerTransactionType.StartingBalance;
+                        break;
+                }
+
+                //remove parenthesis from amount text
+                var amountText = row.FindElement(By.XPath("(.//*[@ClassName='DataGridCell'])[2]")).Text;
+                amountText = amountText.Replace("(", "");
+                amountText = amountText.Replace(")", "");
+
+                newRecord.Amount = decimal.Parse(amountText,NumberStyles.Currency);
+                var date = row.FindElement(By.XPath("(.//*[@ClassName='DataGridCell'])[3]")).Text;
+                newRecord.TimeStamp = DateTime.ParseExact(date, "MM/dd/yyyy hh:mm tt", CultureInfo.InvariantCulture);
+
+                records.Add(newRecord);
             }
+
+            return records;
         }
 
         public void PrintHistory()

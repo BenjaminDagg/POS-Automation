@@ -79,10 +79,16 @@ namespace POS_Automation
 
         public static void Close()
         {
+            //Close POS app and any sub windows that are open
+            foreach(var process in Process.GetProcessesByName("POS"))
+            {
+                process.Kill();
+            }
 
             //Close driver (app)
             if (driver != null)
             {
+                
                 driver.Quit();
             }
 

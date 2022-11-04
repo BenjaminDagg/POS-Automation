@@ -24,14 +24,27 @@ namespace POS_Automation.Pages.Payout
         private By CashAddedLabel;
         private By CashRemovedLabel;
         private By TotalPayoutLabel;
+
         private ByAccessibilityId AddCashButton;
         private ByAccessibilityId RemoveCashButton;
+
         private By AddCashWindowSelector;
         public CashDrawerEditPrompt AddCashPrompt;
+
         private By RemoveCashWindowSelector;
         public CashDrawerEditPrompt RemoveCashPrompt;
+
         public By CashDrawerHistoryButton;
         public CashDrawerHistory CashDrawerHistory;
+
+        public By CashDrawerConnectedPromptSelector;
+        public MultiChoiceAlertWindow CashDrawerConnectedPrompt;
+        private By StartingBalanceWindowSelector;
+        public TextboxAlert StartingBalancePrompt;
+        private ByAccessibilityId StartingBalanceTextbox;
+
+        private By StartingBalanceNotSetPromptSelector;
+        public SingleChoiceAlertWindow StartingBalanceErrorAlert;
 
         public CashDrawer(WindowsDriver<WindowsElement> _driver) : base(_driver)
         {
@@ -45,6 +58,9 @@ namespace POS_Automation.Pages.Payout
             AddCashButton = new ByAccessibilityId("Add");
             RemoveCashButton = new ByAccessibilityId("Remove");
             CashDrawerHistoryButton = By.XPath("//*[@ClassName='GroupBox']/Button");
+            StartingBalanceTextbox = new ByAccessibilityId("StartingBalance");
+            StartingBalanceWindowSelector = By.Name("Cash Drawer Starting Balance");
+            StartingBalancePrompt = new TextboxAlert(driver, StartingBalanceWindowSelector, StartingBalanceTextbox);
 
             AddCashWindowSelector = By.Name("Add Cash");
             AddCashPrompt = new CashDrawerEditPrompt(driver, AddCashWindowSelector);
@@ -53,6 +69,12 @@ namespace POS_Automation.Pages.Payout
             RemoveCashPrompt = new CashDrawerEditPrompt(driver, RemoveCashWindowSelector);
 
             CashDrawerHistory = new CashDrawerHistory(driver);
+
+            CashDrawerConnectedPromptSelector = By.XPath("//Window[@Name='Cash Drawer']");
+            CashDrawerConnectedPrompt = new MultiChoiceAlertWindow(driver, CashDrawerConnectedPromptSelector);
+
+            StartingBalanceNotSetPromptSelector = By.Name("Unable to initialize for Payout.");
+            StartingBalanceErrorAlert = new SingleChoiceAlertWindow(driver,StartingBalanceNotSetPromptSelector);
         }
 
         public decimal CurrentBalance
@@ -96,6 +118,8 @@ namespace POS_Automation.Pages.Payout
             get
             {
                 string text = driver.FindElement(CashRemovedLabel).Text;
+                text = text.Replace("(", "");
+                text = text.Replace(")", "");
                 int colonIndex = text.IndexOf(':');
                 string amountString = text.Substring(colonIndex + 1).Trim();
 
@@ -108,6 +132,9 @@ namespace POS_Automation.Pages.Payout
             get
             {
                 string text = driver.FindElement(TotalPayoutLabel).Text;
+                text = text.Replace("(", "");
+                text = text.Replace(")", "");
+
                 int colonIndex = text.IndexOf(':');
                 string amountString = text.Substring(colonIndex + 1).Trim();
 
@@ -115,19 +142,54 @@ namespace POS_Automation.Pages.Payout
             }
         }
 
+        public bool IsHidden
+        {
+            get
+            {
+                try
+                {
+                    wait.Until(d => driver.FindElement(AddCashButton));
+
+                    return false;
+                }
+                catch(Exception ex)
+                {
+                    return true;
+                }
+            }
+        }
+
         public void ClickAddCash()
         {
+            wait.Until(d => driver.FindElement(AddCashButton));
             driver.FindElement(AddCashButton).Click();
         }
 
         public void ClickRemoveCash()
         {
+            wait.Until(d => driver.FindElement(RemoveCashButton));
             driver.FindElement(RemoveCashButton).Click();
         }
 
         public void ClickCashDrawerHistory()
         {
             driver.FindElement(CashDrawerHistoryButton).Click();
+        }
+
+        public void AddCash(string amount, string password)
+        {
+            ClickAddCash();
+            AddCashPrompt.EnterAmount(amount);
+            AddCashPrompt.EnterPassword(password);
+            AddCashPrompt.Confirm();
+        }
+
+        public void RemoveCash(string amount, string password)
+        {
+            ClickRemoveCash();
+            RemoveCashPrompt.EnterAmount(amount);
+            RemoveCashPrompt.EnterPassword(password);
+            RemoveCashPrompt.Confirm();
         }
     }
 }

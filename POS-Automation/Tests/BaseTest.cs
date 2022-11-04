@@ -75,7 +75,7 @@ namespace POS_Automation
                 
             }
 
-            CloseApplication();
+            //CloseApplication();
 
             SessionManager.Close();
         }

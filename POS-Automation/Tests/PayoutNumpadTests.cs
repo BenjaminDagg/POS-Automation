@@ -42,8 +42,8 @@ namespace POS_Automation
             _loginPage.Login("bdagg", "Diamond4!");
             NavigationTabs.ClickPayoutTab();
 
-            _payoutPage.StartingBalancePrompt.EnterInput("100");
-            _payoutPage.StartingBalancePrompt.Confirm();
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput("100");
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
             Thread.Sleep(2000);
 
             _numPad.PressNumKey(numToType);
@@ -61,8 +61,8 @@ namespace POS_Automation
             _loginPage.Login("bdagg", "Diamond4!");
             NavigationTabs.ClickPayoutTab();
 
-            _payoutPage.StartingBalancePrompt.EnterInput("100");
-            _payoutPage.StartingBalancePrompt.Confirm();
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput("100");
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
             Thread.Sleep(2000);
 
             _numPad.PressNumKey(1);
@@ -83,8 +83,8 @@ namespace POS_Automation
             _loginPage.Login("bdagg", "Diamond4!");
             NavigationTabs.ClickPayoutTab();
 
-            _payoutPage.StartingBalancePrompt.EnterInput("100");
-            _payoutPage.StartingBalancePrompt.Confirm();
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput("100");
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
             Thread.Sleep(2000);
 
             _numPad.EnterBarcode("1234");
@@ -104,8 +104,8 @@ namespace POS_Automation
             _loginPage.Login("bdagg", "Diamond4!");
             NavigationTabs.ClickPayoutTab();
 
-            _payoutPage.StartingBalancePrompt.EnterInput("100");
-            _payoutPage.StartingBalancePrompt.Confirm();
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput("100");
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
             Thread.Sleep(2000);
 
             _numPad.EnterBarcode("1234");

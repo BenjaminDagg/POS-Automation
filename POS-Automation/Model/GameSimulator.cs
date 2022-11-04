@@ -294,10 +294,12 @@ namespace POS_Automation.Model
 
         public string CashOut()
         {
+            int transAmount = gameplayParams.BalanceCredits;
+
             string createVoucherResponse = transactionPortalService.VoucherCreate(gameplayParams.BalanceCredits, gameplayParams.BalanceCredits);
             string voucher = ParseVoucherBarcode(createVoucherResponse);
             Console.WriteLine(voucher);
-            string printVoucherResponse = transactionPortalService.VoucherPrint(voucher);
+            string printVoucherResponse = transactionPortalService.VoucherPrint(voucher,0,transAmount);
 
             gameplayParams.BalanceCredits = 0;
 

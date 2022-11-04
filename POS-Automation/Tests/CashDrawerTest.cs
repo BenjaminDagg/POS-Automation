@@ -13,6 +13,10 @@ namespace POS_Automation
         private VoucherNumPad _numPad;
         private PayoutPage _payoutPage;
         private CashDrawer _cashDrawer;
+        private TransactionPortalService TpService;
+        private DatabaseManager _databaseManager;
+        private decimal StartingAmountDollar = 1000.00m;
+        private int StartingAmountCredits = 100000;
 
         [SetUp]
         public void Setup()
@@ -21,12 +25,44 @@ namespace POS_Automation
             _numPad = new VoucherNumPad(driver);
             _payoutPage = new PayoutPage(driver);
             _cashDrawer = new CashDrawer(driver);
+
+            _databaseManager = new DatabaseManager();
+            _databaseManager.ResetTestMachine(StartingAmountDollar);
+
+            TpService = new TransactionPortalService(_logService);
+            TpService.Connect();
         }
 
         [TearDown]
         public void TearDown()
         {
+            TpService.Disconnect();
+        }
 
+        private string ParseVoucherBarcode(string voucherText)
+        {
+            int startIndex = -1;
+            int count = 0;
+            for (int i = 0; i < voucherText.Length; i++)
+            {
+                if (voucherText[i] == '|')
+                {
+                    count++;
+                    if (count == 3)
+                    {
+                        startIndex = i;
+                    }
+                }
+            }
+
+            if (startIndex != -1)
+            {
+                string vouhcer = voucherText.Substring(startIndex + 1, 24);
+                vouhcer = vouhcer.Replace("-", "");
+                return vouhcer;
+            }
+
+            return string.Empty;
         }
 
         [Test]
@@ -91,6 +127,18 @@ namespace POS_Automation
 
             var val = _cashDrawer.CashRemoved;
             Assert.AreEqual(1, val);
+        }
+
+        [Test]
+        public void CreateVoucher()
+        {
+            var barcode1 = TpService.GetVoucher(StartingAmountCredits, 500);
+            Console.WriteLine(barcode1);
+
+            StartingAmountCredits -= 500;
+
+            var barcode2 = TpService.GetVoucher(StartingAmountCredits, 500);
+            Console.WriteLine(barcode2);
         }
 
         [Test]

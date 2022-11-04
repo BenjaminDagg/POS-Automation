@@ -154,7 +154,7 @@ namespace POS_Automation.Model
                             "IP_ADDRESS = @IPAddress, " +
                             "BANK_NO = @BankId, " +
                             "GAME_CODE = @GameCode ," +
-                            "Balance = 5.00" +
+                            "Balance = 1000.00" +
                         "where MACH_NO = @MachNo";
 
             //Assign default game to machine if not already assigned
@@ -188,6 +188,77 @@ namespace POS_Automation.Model
                     cmd.Parameters.Add("@BankId", System.Data.SqlDbType.VarChar).Value = TestData.TestBankNumber;
                     cmd.Parameters.Add("@GameCode", System.Data.SqlDbType.VarChar).Value = TestData.TestGameCode;
                     cmd.Parameters.Add("@LocationId", System.Data.SqlDbType.VarChar).Value = TestData.LocationId;
+
+                    cmd.ExecuteNonQuery();
+
+                    cmd.CommandText = removeGamesQuery;
+                    var result = cmd.ExecuteNonQuery();
+
+                    cmd.CommandText = assignDefaultGameQuery;
+                    result = cmd.ExecuteNonQuery();
+
+                    cmd.CommandText = setGamesEnabledQuery;
+                    result = cmd.ExecuteNonQuery();
+                }
+            }
+
+            UpdateMachineLastPlay(TestData.DefaultMachineNumber);
+        }
+
+        public void ResetTestMachine(decimal startBalance)
+        {
+            AddTestMachine();
+
+            //delete games other than default from MACH_SETUP_GAMES
+            var removeGamesQuery = "delete from MACH_SETUP_GAMES where (MACH_NO = @MachNo and GAME_CODE <> @GameCode) or (MACH_NO = @MachNo and BANK_NO <> @BankId)";
+
+            //set MACH_SETUP fields back to default
+            var restMachineQuery = "update MACH_SETUP " +
+                            "set " +
+                            "REMOVED_FLAG = 0, " +
+                            "ACTIVE_FLAG = 1, " +
+                            "PLAY_STATUS = 1, " +
+                            "CASINO_MACH_NO = @LocationMachineNumber ," +
+                            "MultiGameEnabled = 0, " +
+                            "MACH_SERIAL_NO = @SerialNumber, " +
+                            "IP_ADDRESS = @IPAddress, " +
+                            "BANK_NO = @BankId, " +
+                            "GAME_CODE = @GameCode ," +
+                            "Balance = @Balance " +
+                        "where MACH_NO = @MachNo";
+
+            //Assign default game to machine if not already assigned
+            var assignDefaultGameQuery = "begin " +
+                                            "if not exists " +
+                                                "(select * from MACH_SETUP_GAMES " +
+                                                "where GAME_CODE = @GameCode " +
+                                                "and BANK_NO = @BankId " +
+                                                "and MACH_NO = @MachNo) " +
+                                            "begin " +
+                                                "insert into MACH_SETUP_GAMES " +
+                                                "([MACH_NO],[LOCATION_ID],[GAME_CODE],[BANK_NO],[TYPE_ID]," +
+                                                "[GAME_RELEASE],[MATH_DLL_VERSION],[MATH_LIB_VERSION],[IsEnabled]) " +
+                                                "values" +
+                                                "(@MachNo,@LocationId,@GameCode,@BankId,'S',NULL,NULL,NULL,1) " +
+                                            "end " +
+                                         "end";
+
+            var setGamesEnabledQuery = "update MACH_SETUP_GAMES set IsEnabled = 1 where MACH_NO = @MachNo";
+
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(restMachineQuery, conn))
+                {
+                    cmd.Parameters.Add("@MachNo", System.Data.SqlDbType.VarChar).Value = TestData.DefaultMachineNumber;
+                    cmd.Parameters.Add("@LocationMachineNumber", System.Data.SqlDbType.VarChar).Value = TestData.DefaultLocationMachineNumber;
+                    cmd.Parameters.Add("@SerialNumber", System.Data.SqlDbType.VarChar).Value = TestData.DefaultSerialNumber;
+                    cmd.Parameters.Add("@IPAddress", System.Data.SqlDbType.VarChar).Value = TestData.DefaultIPAddress;
+                    cmd.Parameters.Add("@BankId", System.Data.SqlDbType.VarChar).Value = TestData.TestBankNumber;
+                    cmd.Parameters.Add("@GameCode", System.Data.SqlDbType.VarChar).Value = TestData.TestGameCode;
+                    cmd.Parameters.Add("@LocationId", System.Data.SqlDbType.VarChar).Value = TestData.LocationId;
+                    cmd.Parameters.Add("@Balance", System.Data.SqlDbType.Money).Value = startBalance;
 
                     cmd.ExecuteNonQuery();
 

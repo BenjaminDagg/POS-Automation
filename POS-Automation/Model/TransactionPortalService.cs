@@ -17,6 +17,7 @@ namespace POS_Automation.Model
         private int sequenceNumber;
         private BarcodeService BarcodeService;
 
+
         public TransactionPortalService(ILogService logService)
         {
             tpClient = new TransactionPortalClient(TestData.TransactionPortalIpAddress, TestData.TpPort);
@@ -45,6 +46,32 @@ namespace POS_Automation.Model
         {
             tpClient.CLose();
 
+        }
+
+        private string ParseVoucherBarcode(string voucherText)
+        {
+            int startIndex = -1;
+            int count = 0;
+            for (int i = 0; i < voucherText.Length; i++)
+            {
+                if (voucherText[i] == '|')
+                {
+                    count++;
+                    if (count == 3)
+                    {
+                        startIndex = i;
+                    }
+                }
+            }
+
+            if (startIndex != -1)
+            {
+                string vouhcer = voucherText.Substring(startIndex + 1, 24);
+                vouhcer = vouhcer.Replace("-", "");
+                return vouhcer;
+            }
+
+            return string.Empty;
         }
 
 
@@ -103,10 +130,10 @@ namespace POS_Automation.Model
         }
 
 
-        public string VoucherPrint(string voucherBarcode)
+        public string VoucherPrint(string voucherBarcode,int newBalance, int transAmount)
         {
 
-            var voucherCreateTrans = $"{SequenceNumber},VoucherPrinted,{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")},{0},,{voucherBarcode},500";
+            var voucherCreateTrans = $"{SequenceNumber},VoucherPrinted,{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")},{newBalance},,{voucherBarcode},{transAmount}";
             var response = tpClient.Execute(voucherCreateTrans);
 
             sequenceNumber++;
@@ -135,6 +162,17 @@ namespace POS_Automation.Model
             SequenceNumber++;
 
             return response;
+        }
+
+        public string GetVoucher(int currentBalanceCredits, int voucherAmountCredits)
+        {
+            var newBalance = currentBalanceCredits - voucherAmountCredits;
+            
+            var response = VoucherCreate(currentBalanceCredits, voucherAmountCredits);
+            var barcode = ParseVoucherBarcode(response);
+            VoucherPrint(barcode,newBalance,voucherAmountCredits);
+
+            return barcode;
         }
 
     }

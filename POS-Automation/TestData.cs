@@ -12,6 +12,13 @@ namespace POS_Automation
         //User login
         public static string AdminUsername = ConfigurationManager.AppSettings["AdminUsername"];
         public static string AdminPassword = ConfigurationManager.AppSettings["AdminPassword"];
+        public static string SuperUserUsername = ConfigurationManager.AppSettings["SuperUserUsername"];
+        public static string SuperUserPassword = ConfigurationManager.AppSettings["SuperUserPassword"];
+        public static string SupervisorUsername = ConfigurationManager.AppSettings["SupervisorUsername"];
+        public static string SupervisorPassword = ConfigurationManager.AppSettings["SupervisorPassword"];
+        public static string CashierUsername = ConfigurationManager.AppSettings["CashierUsername"];
+        public static string CashierPassword = ConfigurationManager.AppSettings["CashierPassword"];
+
 
         //Transaction Portal
         public static string TransactionPortalIpAddress = ConfigurationManager.AppSettings["TransactionPortalIpAddress"];

@@ -116,9 +116,9 @@ namespace POS_Automation.Model
 
 
 
-        public string VoucherCreate(int currentBalance, int transAmount)
+        public string VoucherCreate(int currentBalance, int transAmount,bool jackpot = false)
         {
-            int jackpotFlag = 0;
+            int jackpotFlag = jackpot ? 1 : 0;
             int sessionAmount = 0;
 
             var voucherCreateTrans = $"{SequenceNumber},VoucherCreate,{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")},{currentBalance},,{transAmount},{jackpotFlag},{sessionAmount}";
@@ -164,11 +164,11 @@ namespace POS_Automation.Model
             return response;
         }
 
-        public string GetVoucher(int currentBalanceCredits, int voucherAmountCredits)
+        public string GetVoucher(int currentBalanceCredits, int voucherAmountCredits,bool jackpotFlag = false)
         {
             var newBalance = currentBalanceCredits - voucherAmountCredits;
             
-            var response = VoucherCreate(currentBalanceCredits, voucherAmountCredits);
+            var response = VoucherCreate(currentBalanceCredits, voucherAmountCredits,jackpotFlag);
             var barcode = ParseVoucherBarcode(response);
             VoucherPrint(barcode,newBalance,voucherAmountCredits);
 

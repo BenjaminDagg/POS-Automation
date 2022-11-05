@@ -839,5 +839,7 @@ namespace POS_Automation
 
             Assert.AreEqual(800, currentBalance);
         }
+
+        
     }
 }

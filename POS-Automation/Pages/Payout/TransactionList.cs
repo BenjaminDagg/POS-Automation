@@ -29,7 +29,7 @@ namespace POS_Automation.Pages
         private By RemoveVoucherWindowSelector;
         public MultiChoiceAlertWindow RemoveVoucherPrompt;
         public LastReceiptWindow LastReceiptWindow;
-        private ByAccessibilityId LastReceiptButton;
+        public ByAccessibilityId LastReceiptButton;
 
         public TransactionList(WindowsDriver<WindowsElement> _driver) : base(_driver)
         {
@@ -124,6 +124,11 @@ namespace POS_Automation.Pages
         {
             var vouchers = new List<VoucherListRecord>();
 
+            if (RowCount == 0)
+            {
+                return vouchers;
+            }
+
             var rows = driver.FindElement(DataGrid).FindElements(RowSelector);
             foreach (var row in rows)
             {
@@ -197,6 +202,7 @@ namespace POS_Automation.Pages
                     {
                         var removeBtn = row.FindElement(By.XPath("(.//*[@ClassName='DataGridCell'])[7]/Button"));
                         removeBtn.Click();
+                        removeBtn.Click();
                     }
                     catch (Exception ex)
                     {
@@ -209,6 +215,20 @@ namespace POS_Automation.Pages
         public void ClickLastReceiptButton()
         {
             driver.FindElement(LastReceiptButton).Click();
+        }
+
+        public bool ReprintIsEnabled()
+        {
+
+            try
+            {
+                driver.FindElement(LastReceiptButton);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
     }
 }

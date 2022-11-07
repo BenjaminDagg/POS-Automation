@@ -18,9 +18,13 @@ namespace POS_Automation
         public static string SupervisorPassword = ConfigurationManager.AppSettings["SupervisorPassword"];
         public static string CashierUsername = ConfigurationManager.AppSettings["CashierUsername"];
         public static string CashierPassword = ConfigurationManager.AppSettings["CashierPassword"];
+        public static string CashierUsername2 = ConfigurationManager.AppSettings["CashierUsername2"];
+        public static string CashierPassword2 = ConfigurationManager.AppSettings["CashierPassword2"];
 
         //Payout Settings 
         public static int CashDrawerMaxBalance = int.Parse(ConfigurationManager.AppSettings["CashdrawerMaxBalance"]);
+        public static int VoucherExpirationDays = int.Parse(ConfigurationManager.AppSettings["VoucherExpirationDays"]);
+        public static int VoucherLockupAmount = int.Parse(ConfigurationManager.AppSettings["VoucherMaxAmount"]);
 
         //Transaction Portal
         public static string TransactionPortalIpAddress = ConfigurationManager.AppSettings["TransactionPortalIpAddress"];

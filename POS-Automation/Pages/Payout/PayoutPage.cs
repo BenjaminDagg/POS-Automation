@@ -33,6 +33,9 @@ namespace POS_Automation.Pages.Payout
         public VoucherNumPad NumPad;
         public TransactionList CurrentTransactionList;
 
+        private By SupervisorApprovalWindowSelector;
+        public SupervisorApprovalPrompt SupervisorApprovalPrompt;
+
         public PayoutPage(WindowsDriver<WindowsElement> _driver) : base(_driver)
         {
             driver = _driver;
@@ -52,6 +55,9 @@ namespace POS_Automation.Pages.Payout
 
             PayoutErrorWindowSelector = By.Name("Error");
             PayoutError = new SingleChoiceAlertWindow(driver, PayoutErrorWindowSelector);
+
+            SupervisorApprovalWindowSelector = By.Name("Supervisor Approval");
+            SupervisorApprovalPrompt = new SupervisorApprovalPrompt(driver, SupervisorApprovalWindowSelector);
         }
 
         public void CancelTransaction()
@@ -59,6 +65,12 @@ namespace POS_Automation.Pages.Payout
             driver.FindElement(CancelTransactionButton).Click();
             driver.FindElement(CancelTransactionButton).Click();
             CancelTransactionPrompt.Confirm();
+        }
+
+        public void ClickCancelTransaction()
+        {
+            driver.FindElement(CancelTransactionButton).Click();
+            driver.FindElement(CancelTransactionButton).Click();
         }
 
         public void Payout()
@@ -69,6 +81,8 @@ namespace POS_Automation.Pages.Payout
             driver.FindElement(PayoutButton).Click();
             driver.FindElement(PayoutButton).Click();
             PayoutConfirmationAlert.Confirm();
+
+            Thread.Sleep(1000);
         }
 
         public void ClickPayout()

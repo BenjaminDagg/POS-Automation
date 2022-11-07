@@ -106,6 +106,33 @@ namespace POS_Automation
             Assert.AreEqual(1, voucherCount);
         }
 
+        [Test]
+        public void VoucherList_RemoveVoucher_Prompt()
+        {
+            //create a voucher for $100
+            var barcode = TpService.GetVoucher(StartingAmountCredits, 500);
+
+            _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
+            NavigationTabs.ClickPayoutTab();
+
+            int startingBalance = 1000;
+
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            _payoutPage.NumPad.EnterBarcode(barcode);
+            Thread.Sleep(2000);
+
+            _payoutPage.CurrentTransactionList.ClickRemoveVoucherByBarcode(barcode);
+
+            Assert.True(_payoutPage.CurrentTransactionList.RemoveVoucherPrompt.IsOpen);
+
+            string text = _payoutPage.CurrentTransactionList.RemoveVoucherPrompt.AlertText;
+            string expectedText = $"Are you sure you want to remove voucher {barcode}, with amount $5.00 from the transaction?";
+
+            Assert.AreEqual(expectedText,text);
+        }
+
         //verify when the transaction is payed out the list is cleared
         [Test]
         public void VoucherList_ListCount_Payout()
@@ -405,6 +432,42 @@ namespace POS_Automation
             var expectedBalance = startingBalance - 30;
 
             Assert.AreEqual(expectedBalance, balanceAfter);
+        }
+
+        [Test]
+        public void VoucherList_RemoveVoucher()
+        {
+            //create a voucher for $100
+            var barcode1 = TpService.GetVoucher(StartingAmountCredits, 500);
+            StartingAmountCredits -= 500;
+            var barcode2 = TpService.GetVoucher(StartingAmountCredits, 1000);
+            StartingAmountCredits -= 1000;
+            var barcode3 = TpService.GetVoucher(StartingAmountCredits, 1500);
+
+            var vouchers = new List<string>() { barcode1, barcode2, barcode3 };
+
+            _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
+            NavigationTabs.ClickPayoutTab();
+
+            int startingBalance = 1000;
+
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+
+            for (int i = 0; i < vouchers.Count; i++)
+            {
+                _payoutPage.NumPad.EnterBarcode(vouchers[i]);
+            }
+
+            int countBefore = _payoutPage.CurrentTransactionList.VoucherCount;
+            Assert.AreEqual(3, countBefore);
+
+            _payoutPage.CurrentTransactionList.RemoveVoucherByBarcode(vouchers[2]);
+
+            int countAfter = _payoutPage.CurrentTransactionList.VoucherCount;
+
+            Assert.AreEqual(2,countAfter);
         }
 
         //verify if a voucher is removed from the transaction its amount is not deducted from the cash drawer balance

@@ -57,5 +57,57 @@ namespace POS_Automation
             wait.Until(d => driver.FindElement(SettingsTab));
             driver.FindElement(SettingsTab).Click();
         }
+
+        public bool PayoutIsVisible()
+        {
+            try
+            {
+                wait.Until(d => driver.FindElement(PayoutTab));
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool SettingsIsVisible()
+        {
+            try
+            {
+                wait.Until(d => driver.FindElement(SettingsTab));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool ReportIsVisible()
+        {
+            try
+            {
+                wait.Until(d => driver.FindElement(ReportsTab));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool DeviceManagementIsVisible()
+        {
+            try
+            {
+                wait.Until(d => driver.FindElement(DeviceManagementTab));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

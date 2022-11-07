@@ -12,6 +12,10 @@ namespace POS_Automation
         private LoginPage _loginPage;
         private VoucherNumPad _numPad;
         private PayoutPage _payoutPage;
+        private TransactionPortalService TpService;
+        private DatabaseManager _databaseManager;
+        private decimal StartingAmountDollar = 1000.00m;
+        private int StartingAmountCredits = 100000;
 
         [SetUp]
         public void Setup()
@@ -19,12 +23,21 @@ namespace POS_Automation
             _loginPage = new LoginPage(driver);
             _numPad = new VoucherNumPad(driver);
             _payoutPage = new PayoutPage(driver);
+
+            _databaseManager = new DatabaseManager();
+            _databaseManager.ResetTestMachine(StartingAmountDollar);
+
+            TpService = new TransactionPortalService(_logService);
+            TpService.Connect();
         }
 
         [TearDown]
         public void TearDown()
         {
+            TpService.Disconnect();
 
+            StartingAmountDollar = 1000.00m;
+            StartingAmountCredits = 100000;
         }
 
         [TestCase(0)]
@@ -114,6 +127,68 @@ namespace POS_Automation
             Assert.AreEqual(4, enteredText.Length);
 
             _numPad.PressEnter();
+        }
+
+        //Verify input accepts only numeric values
+        [Test]
+        public void NonNumeric()
+        {
+            _loginPage.Login("bdagg", "Diamond4!");
+            NavigationTabs.ClickPayoutTab();
+
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput("100");
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+            Thread.Sleep(2000);
+
+            _numPad.EnterBarcode("abc!@#<>");
+
+            var value = _numPad.GetBarcode();
+            Assert.True(string.IsNullOrEmpty(value));
+        }
+
+        //Verify keypad doesn't accept dashes
+        [Test]
+        public void Dashes()
+        {
+            _loginPage.Login("bdagg", "Diamond4!");
+            NavigationTabs.ClickPayoutTab();
+
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput("100");
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+            Thread.Sleep(2000);
+
+            _numPad.EnterBarcode("123-456");
+
+            var value = _numPad.GetBarcode();
+            Assert.AreEqual("123456",value);
+        }
+
+        //Verify the barcode input clears when barcode has been added to the tranaction
+        [Test]
+        public void InputClearOnValidation()
+        {
+            var barcode = TpService.GetVoucher(StartingAmountCredits, 500);
+
+            _loginPage.Login("bdagg", "Diamond4!");
+            NavigationTabs.ClickPayoutTab();
+
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput("100");
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+            Thread.Sleep(2000);
+
+            int barcodeLength = barcode.Length;
+            string barcodeSubstr = barcode.Substring(0, barcodeLength - 1);
+
+            _numPad.EnterBarcode(barcodeSubstr);
+
+            var value = _numPad.GetBarcode();
+            Assert.AreEqual(barcodeLength - 1,value.Length);
+            
+            _numPad.EnterBarcode(barcode);
+            Thread.Sleep(1000);
+            value = _numPad.GetBarcode();
+
+            Assert.AreEqual(0, value.Length);
         }
     }
 }

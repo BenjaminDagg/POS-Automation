@@ -33,5 +33,68 @@ namespace POS_Automation.Model
                 }
             }
         }
+
+        public void SetVoucherExpired(string barcode)
+        {
+
+            var expireDate = DateTime.Now.AddDays((TestData.VoucherExpirationDays + 1) * -1);
+
+            var query = "update VOUCHER set CREATE_DATE = @Date where BARCODE = @Barcode";
+
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@Date", System.Data.SqlDbType.DateTime).Value = expireDate;
+                    cmd.Parameters.Add("@Barcode", System.Data.SqlDbType.VarChar).Value = barcode;
+
+                    cmd.ExecuteNonQuery();
+
+                }
+            }
+        }
+
+        public void SetVoucherRedeemedState(string barcode, bool isRedeemed)
+        {
+
+            var expireDate = DateTime.Now.AddDays((TestData.VoucherExpirationDays + 1) * -1);
+
+            var query = "update VOUCHER set REDEEMED_STATE = @IsRedeemed where BARCODE = @Barcode";
+
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@IsRedeemed", System.Data.SqlDbType.Bit).Value = isRedeemed;
+                    cmd.Parameters.Add("@Barcode", System.Data.SqlDbType.VarChar).Value = barcode;
+
+                    cmd.ExecuteNonQuery();
+
+                }
+            }
+        }
+
+        public void SetReceiptReprintEnabled(bool isEnabled)
+        {
+
+            var query = "update CASINO_SYSTEM_PARAMETERS set VALUE1 = @Value where PAR_NAME = 'ALLOW_RECEIPT_REPRINT'";
+
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@Value", System.Data.SqlDbType.Bit).Value = isEnabled;
+
+                    cmd.ExecuteNonQuery();
+
+                }
+            }
+        }
     }
 }

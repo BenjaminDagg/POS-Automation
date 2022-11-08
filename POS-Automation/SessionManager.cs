@@ -27,12 +27,27 @@ namespace POS_Automation
             }
         }
 
+        private static WindowsDriver<WindowsElement> desktopDriver;
+
+        public static WindowsDriver<WindowsElement> DesktopDriver
+        {
+            get
+            {
+                if (driver == null)
+                {
+                    throw new NullReferenceException("Driver has not been initialized. Call Init before referencing Driver.");
+                }
+
+                return driver;
+            }
+        }
+
         public static void Init()
         {
             if (driver == null)
             {
                 string DriverUrl = "http://127.0.0.1:4723";         //found by starting WinAppDriver.exe
-                string AppPath = @"C:\Program Files (x86)\Diamond Game Enterprises\MOL POS 20220225.1\POS.exe";
+                string AppPath = @"C:\Users\Ben\Music\20220325.5\POS.exe";
                 string appName = "POS";
                 string AppDriverPath = @"C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe";
 
@@ -58,10 +73,10 @@ namespace POS_Automation
                 desktopCapabilities.AddAdditionalCapability("platformName", "Windows");
                 desktopCapabilities.AddAdditionalCapability("app", "Root");
                 desktopCapabilities.AddAdditionalCapability("deviceName", "WindowsPC");
-                var desktopSessions = new WindowsDriver<WindowsElement>(new Uri(DriverUrl), desktopCapabilities);
+                desktopDriver = new WindowsDriver<WindowsElement>(new Uri(DriverUrl), desktopCapabilities);
 
                 //find window of application to test and click the window into focus
-                var appWindow = desktopSessions.FindElementByName(appName);
+                var appWindow = desktopDriver.FindElementByName(appName);
                 appWindow.Click();
                 var appHandle = appWindow.GetAttribute("NativeWindowHandle");
                 appHandle = (int.Parse(appHandle)).ToString("x");
@@ -92,7 +107,13 @@ namespace POS_Automation
                 driver.Quit();
             }
 
+            if(desktopDriver != null)
+            {
+                desktopDriver.Quit();
+            }
+
             driver = null;
+            desktopDriver = null;
         }
     }
 }

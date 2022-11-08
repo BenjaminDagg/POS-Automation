@@ -12,12 +12,14 @@ namespace POS_Automation
     {
         private LoginPage _loginPage;
         private ReportListPage _reportList;
+        private ReportPage _reportPage;
 
         [SetUp]
         public void Setup()
         {
             _loginPage = new LoginPage(driver);
             _reportList = new ReportListPage(driver);
+            _reportPage = new ReportPage(driver);
         }
 
         [TearDown]
@@ -56,18 +58,25 @@ namespace POS_Automation
             _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
             NavigationTabs.ClickReportsTab();
 
-           
+            string filename = DateTime.Now.ToString("yyyyMMddhhmmss");
+
             _reportList.ClickReportByReportName("Daily Cashier Activity");
             Thread.Sleep(10000);
+            _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
+            Thread.Sleep(3000);
+            _reportPage.SaveFileWindow.EnterFilepath(@"C:\Users\Ben\Downloads");
+            Thread.Sleep(3000);
+            _reportPage.SaveFileWindow.EnterFileName(filename);
+            _reportPage.SaveFileWindow.Save();
 
-            var table = driver.FindElement(By.ClassName("ReportingTablixControl"));
-            var rows = table.FindElements(By.XPath("//*"))[0].FindElements(By.XPath("//*"));
-            Console.WriteLine("found " + rows.Count + " rows");
-            Console.WriteLine("class = " + rows[0].GetAttribute("ClassName"));
-            foreach(var row in rows)
-            {
-                
-            }
+            Thread.Sleep(3000);
+            string fullPath = @"C:\Users\Ben\Downloads\" + filename;
+            ExcelReader reader = new ExcelReader();
+            
+            reader.Open(fullPath);
+            reader.Read();
+            reader.FindTotal();
+            reader.Close();
         }
     }
 }

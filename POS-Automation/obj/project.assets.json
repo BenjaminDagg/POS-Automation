@@ -458,6 +458,15 @@
           "lib/netstandard1.0/_._": {}
         }
       },
+      "Microsoft.Office.Excel/14.0.4760.1000": {
+        "type": "package",
+        "compile": {
+          "lib/net20/Office.dll": {}
+        },
+        "runtime": {
+          "lib/net20/Office.dll": {}
+        }
+      },
       "Microsoft.TestPlatform.ObjectModel/16.11.0": {
         "type": "package",
         "dependencies": {
@@ -2499,6 +2508,18 @@
         "microsoft.netcore.targets.1.1.0.nupkg.sha512",
         "microsoft.netcore.targets.nuspec",
         "runtime.json"
+      ]
+    },
+    "Microsoft.Office.Excel/14.0.4760.1000": {
+      "sha512": "A6pxGABJUyirV9w9uqMQfkZFTREIltkqAI+KWG8e5JOZI6kjUTUz+861Yh0mrEW/ZrVzuwBhXdKd4V7rsfC9fg==",
+      "type": "package",
+      "path": "microsoft.office.excel/14.0.4760.1000",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net20/Office.dll",
+        "microsoft.office.excel.14.0.4760.1000.nupkg.sha512",
+        "microsoft.office.excel.nuspec"
       ]
     },
     "Microsoft.TestPlatform.ObjectModel/16.11.0": {
@@ -6189,6 +6210,7 @@
       "Appium.WebDriver >= 4.3.2",
       "Egm.Core >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 16.11.0",
+      "Microsoft.Office.Excel >= 14.0.4760.1000",
       "NUnit >= 3.13.2",
       "NUnit3TestAdapter >= 4.0.0",
       "Newtonsoft.Json >= 13.0.1",
@@ -6198,23 +6220,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\bdagg\\.nuget\\packages\\": {},
+    "C:\\Users\\Ben\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bdagg\\Documents\\POS Automation\\POS-Automation\\POS-Automation.csproj",
+      "projectUniqueName": "C:\\Users\\Ben\\Documents\\POS-Automation\\POS-Automation\\POS-Automation.csproj",
       "projectName": "POS-Automation",
-      "projectPath": "C:\\Users\\bdagg\\Documents\\POS Automation\\POS-Automation\\POS-Automation.csproj",
-      "packagesPath": "C:\\Users\\bdagg\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bdagg\\Documents\\POS Automation\\POS-Automation\\obj\\",
+      "projectPath": "C:\\Users\\Ben\\Documents\\POS-Automation\\POS-Automation\\POS-Automation.csproj",
+      "packagesPath": "C:\\Users\\Ben\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Ben\\Documents\\POS-Automation\\POS-Automation\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\bdagg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Ben\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -6229,8 +6251,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\bdagg\\Documents\\EGM\\EGM\\EGMSimulator.Core\\EGMSimulator.Core.csproj": {
-              "projectPath": "C:\\Users\\bdagg\\Documents\\EGM\\EGM\\EGMSimulator.Core\\EGMSimulator.Core.csproj"
+            "C:\\Users\\Ben\\Documents\\EGM\\EGM\\EGMSimulator.Core\\EGMSimulator.Core.csproj": {
+              "projectPath": "C:\\Users\\Ben\\Documents\\EGM\\EGM\\EGMSimulator.Core\\EGMSimulator.Core.csproj"
             }
           }
         }
@@ -6252,6 +6274,10 @@
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",
             "version": "[16.11.0, )"
+          },
+          "Microsoft.Office.Excel": {
+            "target": "Package",
+            "version": "[14.0.4760.1000, )"
           },
           "NUnit": {
             "target": "Package",
@@ -6293,8 +6319,20 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.Office.Excel 14.0.4760.1000' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.Office.Excel",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

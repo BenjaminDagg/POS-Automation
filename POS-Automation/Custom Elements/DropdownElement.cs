@@ -13,9 +13,9 @@ namespace POS_Automation.Custom_Elements
 {
     public class DropdownElement
     {
-        private WindowsDriver<WindowsElement> driver;
-        private WebDriverWait wait;
-        public By DropdownButton;
+        protected WindowsDriver<WindowsElement> driver;
+        protected WebDriverWait wait;
+        protected By DropdownButton;
 
         public DropdownElement(By dropdownElement, WindowsDriver<WindowsElement> _driver)
         {
@@ -98,7 +98,7 @@ namespace POS_Automation.Custom_Elements
         }
 
 
-        public void SelectByIndex(int index)
+        public virtual void SelectByIndex(int index)
         {
             Click();
 
@@ -117,7 +117,7 @@ namespace POS_Automation.Custom_Elements
         }
 
 
-        public void SelectByName(string name)
+        public virtual void SelectByName(string name)
         {
             WindowsElement dropDownBtn = (WindowsElement)wait.Until(d => d.FindElement(DropdownButton));
             dropDownBtn.Click();
@@ -141,7 +141,7 @@ namespace POS_Automation.Custom_Elements
         }
 
 
-        public void SelectByName(string name, bool exactMatch)
+        public virtual void SelectByName(string name, bool exactMatch)
         {
             WindowsElement dropDownBtn = (WindowsElement)wait.Until(d => d.FindElement(DropdownButton));
             dropDownBtn.Click();

@@ -38,7 +38,7 @@ namespace POS_Automation.Custom_Elements
         {
             Thread.Sleep(2000);
             WindowsElement zeroBtn = driver.FindElement(FilepathEdit);
-            driver.Mouse.MouseMove(zeroBtn.Coordinates, 200, 20);
+            driver.Mouse.MouseMove(zeroBtn.Coordinates, 300, 20);
             driver.Mouse.Click(null);
             driver.Keyboard.SendKeys(filepath);
             driver.Keyboard.SendKeys(Keys.Enter);

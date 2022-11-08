@@ -62,21 +62,26 @@ namespace POS_Automation
 
             _reportList.ClickReportByReportName("Daily Cashier Activity");
             Thread.Sleep(10000);
+            _reportPage.ReportMenu.EnterStartDate("11/5/2022");
+            _reportPage.ReportMenu.EnterEndDate("11/8/2022");
+            _reportPage.ReportMenu.RunReport();
             _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
             Thread.Sleep(3000);
-            _reportPage.SaveFileWindow.EnterFilepath(@"C:\Users\Ben\Downloads");
+            
+            _reportPage.SaveFileWindow.EnterFilepath(@"C:\Users\bdagg\Documents");
             Thread.Sleep(3000);
             _reportPage.SaveFileWindow.EnterFileName(filename);
             _reportPage.SaveFileWindow.Save();
 
             Thread.Sleep(3000);
-            string fullPath = @"C:\Users\Ben\Downloads\" + filename;
+            string fullPath = @"C:\Users\bdagg\Documents\" + filename;
             ExcelReader reader = new ExcelReader();
             
             reader.Open(fullPath);
             reader.Read();
             reader.FindTotal();
             reader.Close();
+            
         }
     }
 }

@@ -25,6 +25,7 @@ namespace POS_Automation.Pages.Reports
     {
         public ReportMenu ReportMenu;
         public SaveFileModule SaveFileWindow;
+        
 
         public ReportPage(WindowsDriver<WindowsElement> _driver) : base(_driver)
         {

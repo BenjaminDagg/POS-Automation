@@ -141,12 +141,12 @@ namespace POS_Automation
             _reportPage.ReportMenu.EnterStartDate("1/1/2022");
             _reportPage.ReportMenu.EnterEndDate("11/9/2022");
             _reportPage.ReportMenu.RunReport();
-            /*
+            
             _reportPage.ReportMenu.RunReport();
             _reportPage.ReportMenu.ClickNextPage();
 
             Assert.AreEqual(2, _reportPage.ReportMenu.GetCurrentPage());
-            */
+            
         }
 
         [Test]

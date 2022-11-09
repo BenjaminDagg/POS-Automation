@@ -60,41 +60,226 @@ namespace POS_Automation.Model
             }
         }
 
-        public List<DailyCashierActivityReportRecord> ParseCashierActivityReport()
+        public DailyCashierActivityReport<DailyCashierActivityReportRecord> ParseCashierActivityReport()
         {
+            var report = new DailyCashierActivityReport<DailyCashierActivityReportRecord>();
             var records = new List<DailyCashierActivityReportRecord>();
 
             string prevSession = string.Empty;
             string prevUser = string.Empty;
             int startRow = RowNum("Created By");
-        
-            for(int i = startRow + 1; i < xlRange.Rows.Count - 2; i++)
+
+            var title = ReadCell(Report<DailyCashierActivityReportRecord>.TitleCell.Row, Report<DailyCashierActivityReportRecord>.TitleCell.Col);
+            report.Title = title;
+
+            var date = ReadCell(Report<DailyCashierActivityReportRecord>.RuntimeCell.Row, Report<DailyCashierActivityReportRecord>.RuntimeCell.Col);
+            date = date.Replace("\n", "");
+            date = date.Replace("Run Date/Time", "");
+            report.RunDate = DateTime.Parse(date);
+
+            var period = ReadCell(Report<DailyCashierActivityReportRecord>.PeriodCell.Row, Report<DailyCashierActivityReportRecord>.PeriodCell.Col);
+            report.ReportPeriod = period;
+
+            for (int i = startRow + 1; i < xlRange.Rows.Count - 2; i++)
             {
 
                 DailyCashierActivityReportRecord record = new DailyCashierActivityReportRecord();
 
-                if (ReadCell(i, 1) != String.Empty)
-                {
-                    prevUser = ReadCell(i, 1);
-                }
-                record.CreatedBy = prevUser;
+                //Created by reached a new user
+                var user = ReadCell(i, 1);
+                record.CreatedBy = user;
+                var sessionUser = ReadCell(i, 2);
+                var activities = new List<CashierActivityRecord>();
 
-                if (ReadCell(i,2) != String.Empty)
-                {
-                    prevSession = ReadCell(i,2);
-                }
-                record.SessionId = prevSession;
-                record.Station = ReadCell(i, 3);
-                record.VoucherNumber = ReadCell(i, 4);
-                record.PayoutAmount = decimal.Parse(ReadCell(i, 5));
-                record.ReceiptNumber = int.Parse(ReadCell(i, 6));
-                string dateString = ReadCell(i, 7);
-                record.Date = DateTime.ParseExact(dateString,"M/d/yyyy h:mm:ss tt",CultureInfo.InvariantCulture);
+                int j = i;
 
+                //loop through rows until the 2nd row displays 'Total'
+                //Thats how I know a new user it about to be reached
+                while(ReadCell(j,2) != "Total")
+                {
+                    var activity = new CashierActivityRecord();
+
+                    activity.CreatedBy = user;
+                    if(ReadCell(j,2) == string.Empty)
+                    {
+                        activity.SessionId = sessionUser;
+                    }
+                    else
+                    {
+                        sessionUser = ReadCell(j,2);
+                        activity.SessionId = sessionUser;
+                    }
+ 
+                    activity.Station = ReadCell(j,3);
+                    activity.VoucherNumber = ReadCell(j,4);
+                    activity.PayoutAmount = decimal.Parse(ReadCell(j,5));
+                    activity.ReceiptNumber = int.Parse(ReadCell(j,6));
+                    activity.Date = DateTime.Parse(ReadCell(j,7));
+
+                    activities.Add(activity);
+
+                    j++;
+                }
+                string totalVouchers = ReadCell(j, 4);
+                
+                totalVouchers = totalVouchers.Substring(totalVouchers.IndexOf(':') + 1);
+                record.TotalVouchers = int.Parse(totalVouchers);
+
+                record.TotalAmount = decimal.Parse(ReadCell(j, 5).Replace("\n", ""),NumberStyles.Currency);
+
+                string totalTransactions = ReadCell(j, 6);
+                totalTransactions = totalTransactions.Substring(totalTransactions.IndexOf(':') + 1);
+                record.TotalTransactions = int.Parse(totalTransactions);
+
+                record.Activities = activities;
                 records.Add(record);
+                i = j;
             }
 
-            return records;
+            report.Data = records;
+            return report;
+        }
+
+        public DailyCashierActivityReport<DailyCashierActivityReportRecord> ParseCashBankActivityReport()
+        {
+            var report = new DailyCashierActivityReport<DailyCashierActivityReportRecord>();
+            var records = new List<DailyCashierActivityReportRecord>();
+
+            string prevSession = string.Empty;
+            string prevUser = string.Empty;
+            int startRow = RowNum("Created By");
+
+
+
+            var period = ReadCell(Report<DailyCashierActivityReportRecord>.PeriodCell.Row, Report<DailyCashierActivityReportRecord>.PeriodCell.Col);
+            report.ReportPeriod = period;
+
+            string fUser = string.Empty;
+            string fSession = string.Empty;
+
+            var allSessions = new List<CashBankActivitySession>();
+            var users = new List<CashBankActivityReportUser>();
+
+            for (int i = startRow + 1; i < xlRange.Rows.Count - 1; i++)
+            {
+
+                var s = ReadCell(i,4);
+                Console.WriteLine(s);
+                if(s != fSession && s != String.Empty)
+                {
+                    //Console.WriteLine("Starting new session: " + s);
+                    fSession = s;
+                    var newSession = new CashBankActivitySession();
+                    newSession.SessionId = s;
+
+                    int j = i;
+
+                    while(ReadCell(j,5) != "Totals:")
+                    {
+                        var trans = new CashBankActivityTransaction();
+                        trans.SessionId = fSession;
+                        trans.TransType = ReadCell(j, 9);
+                        //Console.WriteLine("Transaction: " + trans.TransType);
+
+                        newSession.Transactions.Add(trans);
+                     
+                        j++;
+                    }
+
+                    var totalMoney = decimal.Parse(ReadCell(j, 11));
+                    var totalPayout = decimal.Parse(ReadCell(j, 13));
+                    //Console.WriteLine("Session totals: " + totalMoney + ": " + totalPayout);
+
+                    allSessions.Add(newSession);
+
+                    i = j;
+                }
+
+            }
+
+            /*
+            fUser = string.Empty;
+            fSession = string.Empty;
+
+            for (int i = startRow + 1; i < xlRange.Rows.Count; i++)
+            {
+
+                var user = ReadCell(i, 1);
+                Console.WriteLine(user);
+                if(user != fUser && user != String.Empty)
+                {
+                    Console.WriteLine("Starting new user");
+                    fUser = user;
+
+                    var userCB = new CashBankActivityReportUser();
+                    userCB.CreatedBy = user;
+
+                    int j = i;
+
+                    while(ReadCell(j, 1) == String.Empty || ReadCell(j,1) == fUser)
+                    {
+                        var sessionId = ReadCell(j, 4);
+                        if(sessionId != fSession && sessionId != String.Empty)
+                        {
+                            Console.WriteLine("Adding new session");
+                            fSession = sessionId;
+
+                            var  sessions = allSessions.Where(s => s.SessionId == sessionId).ToList();
+                            userCB.Sessions.AddRange(sessions);
+                        }
+
+                        j++;
+                    }
+
+                    
+
+                    users.Add(userCB);
+                }
+                else
+                {
+                    continue;
+                }
+
+            }
+            */
+
+            fUser = string.Empty;
+            fSession = string.Empty;
+
+            for (int i = startRow + 1; i < xlRange.Rows.Count; i++)
+            {
+
+                var user = ReadCell(i, 1);
+                if (user != fUser && user != String.Empty)
+                {
+                    fUser = user;
+
+                    users.Add(new CashBankActivityReportUser() { CreatedBy = user });
+                }
+
+                var sessionId = ReadCell(i, 4);
+                if (sessionId != fSession && sessionId != String.Empty)
+                {
+                    fSession = sessionId;
+
+                    var sessions = allSessions.Where(s => s.SessionId == sessionId).ToList();
+
+                    foreach(var u in users)
+                    {
+                        if(u.CreatedBy == fUser)
+                        {
+                            u.Sessions.AddRange(sessions);
+                        }
+                    }
+                }
+            }
+
+            Console.WriteLine("Users: " + users.Count);
+            Console.WriteLine("user 1 1st session = " + users[0].Sessions[0].SessionId);
+            Console.WriteLine("user 2 1st session = " + users[1].Sessions[0].SessionId);
+
+            report.Data = records;
+            return report;
         }
 
         public void FindTotal()
@@ -125,6 +310,8 @@ namespace POS_Automation.Model
 
             return -1;
         }
+
+
 
         public void Close()
         {

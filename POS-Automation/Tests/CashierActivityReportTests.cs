@@ -104,13 +104,53 @@ namespace POS_Automation
 
                     foreach(var trans in session.Transactions)
                     {
-                        Console.WriteLine("  " + trans.TransType);
+                        Console.WriteLine("  " + $"{trans.Station},{trans.VoucherNumber},{trans.ReferenceNumber},{trans.TransType},{trans.Money},{trans.Payout},{trans.Date}");
                     }
 
                     Console.WriteLine(" Total: " + session.TotalMoney + ", " + session.TotalPayout);
                 }
 
                 Console.WriteLine("User Totals: " + cashier.TotalMoney + ", " + cashier.TotalPayout);
+            }
+        }
+
+        [Test]
+        public void TestOpenReport()
+        {
+            _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
+            NavigationTabs.ClickReportsTab();
+
+            _reportList.ClickReportByReportName("Daily Cashier Activity");
+            _reportPage.ReportMenu.EnterStartDate("11/1/2022");
+            _reportPage.ReportMenu.EnterEndDate("11/9/2022");
+            _reportPage.ReportMenu.RunReport();
+
+            _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
+            _reportPage.SaveFileWindow.EnterFilepath(@"C:\Users\bdagg\Downloads");
+
+            string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
+            string filepath = @"C:\Users\bdagg\Downloads\" + filename;
+            _reportPage.SaveFileWindow.EnterFileName(filename);
+            _reportPage.SaveFileWindow.Save();
+
+            Assert.True(_reportPage.SaveFileWindow.FileDownloaded(filepath));
+
+            var reader = new ExcelReader();
+            //reader.Open(@"C:\Users\Ben\Downloads\20221107083023.xlsx");
+            reader.Open(@"C:\Users\bdagg\Downloads\" + filename);
+            var report = reader.ParseCashierActivityReport();
+            Console.WriteLine("title = " + report.Title);
+            Console.WriteLine("ran at " + report.RunDate);
+            Console.WriteLine("period = " + report.ReportPeriod);
+
+            foreach (var record in report.Data)
+            {
+                Console.WriteLine(record.CreatedBy);
+                foreach (var activity in record.Activities)
+                {
+                    Console.WriteLine($"{activity.CreatedBy},{activity.SessionId},{activity.Station},{activity.VoucherNumber},{activity.PayoutAmount},{activity.ReceiptNumber},{activity.Date}");
+                }
+                Console.WriteLine($"vouchers:{record.TotalVouchers}, amount:{record.TotalAmount},trans:{record.TotalTransactions}");
             }
         }
     }

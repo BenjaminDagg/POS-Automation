@@ -8,6 +8,7 @@ using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System.Collections.Generic;
+using System.IO;
 
 namespace POS_Automation.Custom_Elements
 {
@@ -55,6 +56,33 @@ namespace POS_Automation.Custom_Elements
         public void Save()
         {
             driver.FindElement(WindowSelector).FindElement(SaveButton).Click();
+        }
+
+
+        private bool WaitForDownload(string filepath)
+        {
+            bool exists = File.Exists(filepath);
+            int timer = 5;
+
+            while(timer > 0)
+            {
+                Thread.Sleep(1000);
+                exists = File.Exists(filepath);
+
+                if (exists)
+                {
+                    return true;
+                }
+
+                timer--;
+            }
+
+            return false;
+        }
+
+        public bool FileDownloaded(string filepath)
+        {
+            return WaitForDownload(filepath);
         }
     }
 }

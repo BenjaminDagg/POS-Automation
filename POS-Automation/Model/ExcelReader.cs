@@ -202,8 +202,29 @@ namespace POS_Automation.Model
                     {
                         //each row in a session is a new transaction add it to session transactions
                         var trans = new CashBankActivityTransaction();
+
                         trans.SessionId = fSession;
                         trans.TransType = ReadCell(j, 9);
+                        trans.Station = ReadCell(j, 5);
+                        trans.VoucherNumber = ReadCell(j, 7);
+                        if(ReadCell(j, 8) != string.Empty)
+                        {
+                            trans.ReferenceNumber = int.Parse(ReadCell(j, 8));
+                        }
+                        else
+                        {
+                            trans.ReferenceNumber = 0;
+                        }
+                        trans.Money = decimal.Parse(ReadCell(j, 11));
+                        trans.Payout = decimal.Parse(ReadCell(j, 13));
+                        if(ReadCell(j, 17) != string.Empty)
+                        {
+                            trans.Date = DateTime.ParseExact(ReadCell(j, 17), "M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
+                        }
+                        else
+                        {
+                            trans.Date = DateTime.Now;
+                        }
                         
                         newSession.Transactions.Add(trans);
                      

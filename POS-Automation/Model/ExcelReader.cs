@@ -65,8 +65,6 @@ namespace POS_Automation.Model
             var report = new DailyCashierActivityReport<DailyCashierActivityReportRecord>();
             var records = new List<DailyCashierActivityReportRecord>();
 
-            string prevSession = string.Empty;
-            string prevUser = string.Empty;
             int startRow = RowNum("Created By");
 
             var title = ReadCell(Report<DailyCashierActivityReportRecord>.TitleCell.Row, Report<DailyCashierActivityReportRecord>.TitleCell.Col);
@@ -76,6 +74,17 @@ namespace POS_Automation.Model
             date = date.Replace("\n", "");
             date = date.Replace("Run Date/Time", "");
             report.RunDate = DateTime.Parse(date);
+
+            string totalVouchersString = ReadCell(xlRange.Rows.Count - 1, 4);
+            totalVouchersString = totalVouchersString.Substring(totalVouchersString.IndexOf(':') + 1);
+            report.TotalVouchers = int.Parse(totalVouchersString);
+
+            decimal totalPayout = decimal.Parse(ReadCell(xlRange.Rows.Count - 1, 5));
+            report.TotalAmount = totalPayout;
+
+            string totalTransaction = ReadCell(xlRange.Rows.Count - 1, 6);
+            totalTransaction = totalTransaction.Substring(totalTransaction.IndexOf(':') + 1);
+            report.TotalTransactions = int.Parse(totalTransaction);
 
             var period = ReadCell(Report<DailyCashierActivityReportRecord>.PeriodCell.Row, Report<DailyCashierActivityReportRecord>.PeriodCell.Col);
             report.ReportPeriod = period;

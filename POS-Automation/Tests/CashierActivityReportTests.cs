@@ -63,7 +63,7 @@ namespace POS_Automation
 
             var reader = new ExcelReader();
             //reader.Open(@"C:\Users\Ben\Downloads\20221107083023.xlsx");
-            reader.Open(@"C:\Users\Ben\Downloads\Daily Cashier Activity12432.xlsx");
+            reader.Open(@"C:\Users\bdagg\Downloads\Daily Cashier Activityall.xlsx");
             var report = reader.ParseCashierActivityReport();
             Console.WriteLine("title = " + report.Title);
             Console.WriteLine("ran at " + report.RunDate);

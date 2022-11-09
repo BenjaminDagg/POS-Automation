@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using POS_Automation.Model.Reports;
 using Excel = Microsoft.Office.Interop.Excel;
+using POS_Automation.Model.Reports;
 
 namespace POS_Automation.Model
 {
@@ -149,106 +150,81 @@ namespace POS_Automation.Model
             return report;
         }
 
-        public DailyCashierActivityReport<DailyCashierActivityReportRecord> ParseCashBankActivityReport()
+        public CashBankActivityReport<CashBankActivityReportRecord> ParseCashBankActivityReport()
         {
-            var report = new DailyCashierActivityReport<DailyCashierActivityReportRecord>();
-            var records = new List<DailyCashierActivityReportRecord>();
+            var report = new CashBankActivityReport<CashBankActivityReportRecord>();
+            var records = new List<CashBankActivityReportRecord>();
 
-            string prevSession = string.Empty;
-            string prevUser = string.Empty;
-            int startRow = RowNum("Created By");
+            //record header info and totals
+            decimal totalReportAmount = decimal.Parse(ReadCell(xlRange.Rows.Count - 3, 11));
+            report.TotalMoney = totalReportAmount;
 
-            var period = ReadCell(Report<DailyCashierActivityReportRecord>.PeriodCell.Row, Report<DailyCashierActivityReportRecord>.PeriodCell.Col);
+            decimal totalReportPayout = decimal.Parse(ReadCell(xlRange.Rows.Count - 3, 13));
+            report.TotalPayout = totalReportPayout;
+
+            var title = ReadCell(Report<DailyCashierActivityReportRecord>.TitleCell.Row, Report<DailyCashierActivityReportRecord>.TitleCell.Col);
+            report.Title = title;
+
+            var date = ReadCell(2, 12);
+            date = date.Replace("\n", "");
+            date = date.Replace("Run Date/Time", "");
+            report.RunDate = DateTime.Parse(date);
+
+            var period = ReadCell(6, 6);
             report.ReportPeriod = period;
-
+            
+            //stores last user and last session while iterating throgugh file
             string fUser = string.Empty;
             string fSession = string.Empty;
 
-            var allSessions = new List<CashBankActivitySession>();
-            var users = new List<CashBankActivityReportUser>();
+            var allSessions = new List<CashBankActivitySession>(); //parses all sessions in the list
+            var users = new List<CashBankActivityReportRecord>(); //stores each unique cashier username and all of their sessions
+            
+            int startRow = RowNum("Created By");    //find row number that has "Created By" to start
 
             for (int i = startRow + 1; i < xlRange.Rows.Count - 1; i++)
             {
 
                 var s = ReadCell(i,4);
-                Console.WriteLine(s);
+                
+                //new session started
                 if(s != fSession && s != String.Empty)
                 {
-                    //Console.WriteLine("Starting new session: " + s);
+                    
                     fSession = s;
                     var newSession = new CashBankActivitySession();
                     newSession.SessionId = s;
 
                     int j = i;
 
+                    //go down list until reach total to begin new session
                     while(ReadCell(j,5) != "Totals:")
                     {
+                        //each row in a session is a new transaction add it to session transactions
                         var trans = new CashBankActivityTransaction();
                         trans.SessionId = fSession;
                         trans.TransType = ReadCell(j, 9);
-                        //Console.WriteLine("Transaction: " + trans.TransType);
-
+                        
                         newSession.Transactions.Add(trans);
                      
                         j++;
                     }
 
+                    //record this sessions totals
                     var totalMoney = decimal.Parse(ReadCell(j, 11));
                     var totalPayout = decimal.Parse(ReadCell(j, 13));
-                    //Console.WriteLine("Session totals: " + totalMoney + ": " + totalPayout);
+                    newSession.TotalMoney = totalMoney;
+                    newSession.TotalPayout = totalPayout;
 
                     allSessions.Add(newSession);
 
+                    //move down to start of next session;
                     i = j;
                 }
 
             }
 
-            /*
-            fUser = string.Empty;
-            fSession = string.Empty;
-
-            for (int i = startRow + 1; i < xlRange.Rows.Count; i++)
-            {
-
-                var user = ReadCell(i, 1);
-                Console.WriteLine(user);
-                if(user != fUser && user != String.Empty)
-                {
-                    Console.WriteLine("Starting new user");
-                    fUser = user;
-
-                    var userCB = new CashBankActivityReportUser();
-                    userCB.CreatedBy = user;
-
-                    int j = i;
-
-                    while(ReadCell(j, 1) == String.Empty || ReadCell(j,1) == fUser)
-                    {
-                        var sessionId = ReadCell(j, 4);
-                        if(sessionId != fSession && sessionId != String.Empty)
-                        {
-                            Console.WriteLine("Adding new session");
-                            fSession = sessionId;
-
-                            var  sessions = allSessions.Where(s => s.SessionId == sessionId).ToList();
-                            userCB.Sessions.AddRange(sessions);
-                        }
-
-                        j++;
-                    }
-
-                    
-
-                    users.Add(userCB);
-                }
-                else
-                {
-                    continue;
-                }
-
-            }
-            */
+            //loop over spreadhseet again. Look for neq users then add the matching sessions to the user
 
             fUser = string.Empty;
             fSession = string.Empty;
@@ -278,7 +254,7 @@ namespace POS_Automation.Model
                     
                     fUser = user;
 
-                    users.Add(new CashBankActivityReportUser() { CreatedBy = user });
+                    users.Add(new CashBankActivityReportRecord() { CreatedBy = user });
                 }
 
                
@@ -299,15 +275,7 @@ namespace POS_Automation.Model
                 }
             }
 
-            Console.WriteLine("Users: " + users.Count);
-            Console.WriteLine("user 1 1st session = " + users[0].Sessions[0].SessionId);
-            Console.WriteLine("user 1 last session = " + users[0].Sessions[users[0].Sessions.Count - 1].SessionId);
-            Console.WriteLine($"User 1 totals: {users[0].TotalMoney}, {users[0].TotalPayout}");
-            Console.WriteLine("user 2 1st session = " + users[1].Sessions[0].SessionId);
-            Console.WriteLine("user 2 last session = " + users[1].Sessions[users[1].Sessions.Count - 1].SessionId);
-            Console.WriteLine($"User 2 totals: {users[1].TotalMoney}, {users[1].TotalPayout}");
-
-            report.Data = records;
+            report.Data = users;
             return report;
         }
 

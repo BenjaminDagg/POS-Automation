@@ -86,9 +86,32 @@ namespace POS_Automation
 
             var reader = new ExcelReader();
             //reader.Open(@"C:\Users\Ben\Downloads\20221107083023.xlsx");
-            reader.Open(@"C:\Users\bdagg\Downloads\Cash Bank Activity2users.xlsx");
+            reader.Open(@"C:\Users\bdagg\Downloads\Cash Bank Activityold.xlsx");
             var report = reader.ParseCashBankActivityReport();
-            
+
+            Console.WriteLine("Title: " + report.Title);
+            Console.WriteLine("Run Time: " + report.RunDate);
+            Console.WriteLine("Period: " + report.ReportPeriod);
+
+            foreach(var cashier in report.Data)
+            {
+                Console.WriteLine("===================");
+                Console.WriteLine(cashier.CreatedBy);
+
+                foreach(var session in cashier.Sessions)
+                {
+                    Console.WriteLine(" " + session.SessionId);
+
+                    foreach(var trans in session.Transactions)
+                    {
+                        Console.WriteLine("  " + trans.TransType);
+                    }
+
+                    Console.WriteLine(" Total: " + session.TotalMoney + ", " + session.TotalPayout);
+                }
+
+                Console.WriteLine("User Totals: " + cashier.TotalMoney + ", " + cashier.TotalPayout);
+            }
         }
     }
 }

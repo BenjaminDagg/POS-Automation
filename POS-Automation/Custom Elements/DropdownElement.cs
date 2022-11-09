@@ -14,22 +14,25 @@ namespace POS_Automation.Custom_Elements
     public class DropdownElement
     {
         protected WindowsDriver<WindowsElement> driver;
-        protected WebDriverWait wait;
+        protected DefaultWait<WindowsDriver<WindowsElement>> wait;
         protected By DropdownButton;
 
         public DropdownElement(By dropdownElement, WindowsDriver<WindowsElement> _driver)
         {
-            this.driver = _driver;
-            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            driver = _driver;
+            wait = new DefaultWait<WindowsDriver<WindowsElement>>(driver);
+            wait.Timeout = TimeSpan.FromSeconds(5);
+            wait.IgnoreExceptionTypes(typeof(WebDriverException), typeof(InvalidOperationException));
 
             DropdownButton = dropdownElement;
         }
 
 
-        public List<string> Options
+        public virtual List<string> Options
         {
             get
             {
+                Thread.Sleep(1000);
                 WindowsElement dropDownBtn = (WindowsElement)wait.Until(d => d.FindElement(DropdownButton));
                 dropDownBtn.Click();
 
@@ -52,7 +55,7 @@ namespace POS_Automation.Custom_Elements
         }
 
 
-        public string? SelectedOption
+        public virtual string? SelectedOption
         {
             get
             {
@@ -93,8 +96,9 @@ namespace POS_Automation.Custom_Elements
 
         public void Click()
         {
-            WindowsElement dropdownBtn = (WindowsElement)wait.Until(d => d.FindElement(DropdownButton));
-            dropdownBtn.Click();
+            Thread.Sleep(1000);
+            wait.Until(d => driver.FindElement(DropdownButton));
+            driver.FindElement(DropdownButton).Click();
         }
 
 

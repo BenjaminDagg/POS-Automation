@@ -30,6 +30,18 @@ namespace POS_Automation.Pages.Reports
         private By EndDateField;
         private By EndDateDropdown;
         private ByAccessibilityId ViewReportButton;
+        private ByAccessibilityId BackButton;
+        private ByAccessibilityId PrintButton;
+        private ByAccessibilityId ZoomDropdownSelect;
+        public ReportDropdownElement ZoomDropdown;
+        private ByAccessibilityId ToggleParametersButton;
+
+        //page select buttons
+        private ByAccessibilityId FirstPageButton;
+        private ByAccessibilityId PrevPageButton;
+        private ByAccessibilityId CurrentPageTextBox;
+        private ByAccessibilityId NextPageButton;
+        private ByAccessibilityId LastPageButton;
 
         public ReportMenu(WindowsDriver<WindowsElement> _driver) : base(_driver)
         {
@@ -40,10 +52,38 @@ namespace POS_Automation.Pages.Reports
             EndDateField = By.XPath("(//*[@ClassName='DateTimeEdit'])[2]");
             EndDateDropdown = By.XPath("(//*[@Name='Show Calendar'])[2]");
             ViewReportButton = new ByAccessibilityId("PART_btnViewReport");
+            BackButton = new ByAccessibilityId("Back");
+            PrintButton = new ByAccessibilityId("PART_buttonPrint");
+            ZoomDropdownSelect = new ByAccessibilityId("PART_comboBoxPageZoom");
+            ZoomDropdown = new ReportDropdownElement(ZoomDropdownSelect, driver);
+            ToggleParametersButton = new ByAccessibilityId("PART_buttonParameters");
+
+            FirstPageButton = new ByAccessibilityId("PART_buttonFirst");
+            PrevPageButton = new ByAccessibilityId("PART_buttonPrevious");
+            CurrentPageTextBox = new ByAccessibilityId("PART_textBoxCurrentPage");
+            NextPageButton = new ByAccessibilityId("PART_buttonNext");
+            LastPageButton = new ByAccessibilityId("PART_buttonLast");
+        }
+
+        public bool ParametersAreHidden
+        {
+            get
+            {
+                try
+                {
+                    wait.Until(d => driver.FindElement(StartDateDropdown));
+                    return false;
+                }
+                catch (Exception ex)
+                {
+                    return true;
+                }
+            }
         }
 
         public void EnterStartDate(string date)
         {
+            /*
             int monthStartSlash = date.IndexOf('/');
             int monthEndSlash = date.LastIndexOf('/');
 
@@ -66,10 +106,47 @@ namespace POS_Automation.Pages.Reports
             {
 
             }
+            */
+
+            driver.FindElement(StartDateField).Click();
+
+            //month
+            int month = int.Parse(date.Substring(0, date.IndexOf('/')));
+            Console.WriteLine("month = " + month);
+            driver.FindElement(StartDateField).SendKeys(month.ToString());
+            if (month < 10)
+            {
+                driver.FindElement(StartDateField).SendKeys(Keys.ArrowRight);
+            }
+
+            //day
+            int monthStartSlash = date.IndexOf('/');
+            int monthEndSlash = date.LastIndexOf('/');
+
+            if (monthStartSlash == -1 || monthEndSlash == -1)
+            {
+                return;
+            }
+
+            int length = (monthEndSlash - monthStartSlash) - 1;
+            int dayVal = int.Parse(date.Substring(monthStartSlash + 1, length));
+            Console.WriteLine("day = " + dayVal);
+            driver.FindElement(StartDateField).SendKeys(dayVal.ToString());
+            if (dayVal < 10)
+            {
+                driver.FindElement(StartDateField).SendKeys(Keys.ArrowRight);
+            }
+
+            //year
+            int year = int.Parse(date.Substring(monthEndSlash + 1, 4));
+            Console.WriteLine("year = " + year);
+            driver.FindElement(StartDateField).SendKeys(year.ToString());
+            driver.FindElement(StartDateField).SendKeys(Keys.ArrowRight);
         }
 
         public void EnterEndDate(string date)
         {
+            /*
             int monthStartSlash = date.IndexOf('/');
             int monthEndSlash = date.LastIndexOf('/');
 
@@ -92,12 +169,115 @@ namespace POS_Automation.Pages.Reports
             {
 
             }
+            */
+
+            
+            driver.FindElement(EndDateField).Click();
+
+            //month
+            int month = int.Parse(date.Substring(0,date.IndexOf('/')));
+            Console.WriteLine("month = " + month);
+            driver.FindElement(EndDateDropdown).SendKeys(month.ToString());
+            if(month < 10)
+            {
+                driver.FindElement(EndDateDropdown).SendKeys(Keys.ArrowRight);
+            }
+
+            //day
+            int monthStartSlash = date.IndexOf('/');
+            int monthEndSlash = date.LastIndexOf('/');
+            
+            if (monthStartSlash == -1 || monthEndSlash == -1)
+            {
+                return;
+            }
+
+            int length = (monthEndSlash - monthStartSlash) - 1;
+            int dayVal = int.Parse(date.Substring(monthStartSlash + 1, length));
+            Console.WriteLine("day = " + dayVal);
+            driver.FindElement(EndDateDropdown).SendKeys(dayVal.ToString());
+            if (dayVal < 10)
+            {
+                driver.FindElement(EndDateDropdown).SendKeys(Keys.ArrowRight);
+            }
+
+            //year
+            int year = int.Parse(date.Substring(monthEndSlash + 1, 4));
+            Console.WriteLine("year = " + year);
+            driver.FindElement(EndDateDropdown).SendKeys(year.ToString());
+            driver.FindElement(EndDateDropdown).SendKeys(Keys.ArrowRight);
+
         }
 
         public void RunReport()
         {
             wait.Until(d => driver.FindElement(ViewReportButton));
             driver.FindElement(ViewReportButton).Click();
+            Thread.Sleep(3000);
+        }
+
+        public void Back()
+        {
+            wait.Until(d => driver.FindElement(BackButton));
+            driver.FindElement(BackButton).Click();
+        }
+
+        public void ClickPrint()
+        {
+            wait.Until(d => driver.FindElement(PrintButton));
+            driver.FindElement(PrintButton).Click();
+        }
+
+        public void ClickFirstPage()
+        {
+            wait.Until(d => driver.FindElement(FirstPageButton));
+            driver.FindElement(FirstPageButton).Click();
+        }
+
+        public void ClickPrevPage()
+        {
+            wait.Until(d => driver.FindElement(PrevPageButton));
+            driver.FindElement(PrevPageButton).Click();
+        }
+
+        public void EnterCurrentPage(int pageNum)
+        {
+            wait.Until(d => driver.FindElement(CurrentPageTextBox));
+            driver.FindElement(CurrentPageTextBox).SendKeys(pageNum.ToString());
+        }
+
+        public int GetCurrentPage()
+        {
+            wait.Until(d => driver.FindElement(CurrentPageTextBox));
+            return int.Parse(driver.FindElement(CurrentPageTextBox).Text);
+        }
+
+        public void ClickNextPage()
+        {
+            wait.Until(d => driver.FindElement(NextPageButton));
+            driver.FindElement(NextPageButton).Click();
+        }
+
+        public void ClickLastPage()
+        {
+            wait.Until(d => driver.FindElement(LastPageButton));
+            driver.FindElement(LastPageButton).Click();
+        }
+
+        public void ShowParameters()
+        {
+            if (ParametersAreHidden)
+            {
+                driver.FindElement(ToggleParametersButton).Click();
+            }
+        }
+
+        public void HideParameters()
+        {
+            if (!ParametersAreHidden)
+            {
+                driver.FindElement(ToggleParametersButton).Click();
+            }
         }
     }
 }

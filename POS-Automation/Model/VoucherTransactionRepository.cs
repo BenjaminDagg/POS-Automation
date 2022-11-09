@@ -96,5 +96,32 @@ namespace POS_Automation.Model
                 }
             }
         }
+
+        public string GetCurrentUserSession(string username)
+        {
+
+            var query = "select top(1) SESSION_ID from CASHIER_TRANS  where CREATED_BY = @UserName order by CASHIER_TRANS_ID desc";
+            string sessionId = string.Empty;
+
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@UserName", System.Data.SqlDbType.VarChar).Value = username;
+
+                    var reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        sessionId = reader.GetString(0);
+                    }
+
+                }
+            }
+
+            return sessionId;
+        }
     }
 }

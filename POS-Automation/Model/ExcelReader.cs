@@ -158,8 +158,6 @@ namespace POS_Automation.Model
             string prevUser = string.Empty;
             int startRow = RowNum("Created By");
 
-
-
             var period = ReadCell(Report<DailyCashierActivityReportRecord>.PeriodCell.Row, Report<DailyCashierActivityReportRecord>.PeriodCell.Col);
             report.ReportPeriod = period;
 
@@ -257,15 +255,33 @@ namespace POS_Automation.Model
 
             for (int i = startRow + 1; i < xlRange.Rows.Count; i++)
             {
+                //If two rows in a row have total then a new user is about to begin so record the users totals
+                if (ReadCell(i, 5) == "Totals:" && ReadCell(i + 1, 5) == "Totals:" && ReadCell(i + 2, 5) != String.Empty)
+                {
+                    decimal totalMoney = decimal.Parse(ReadCell(i + 1, 11));
+                    decimal totalPayout = decimal.Parse(ReadCell(i + 1, 13));
+
+                    foreach (var u in users)
+                    {
+                        if (u.CreatedBy == fUser)
+                        {
+                            u.TotalPayout = totalPayout;
+                            u.TotalMoney = totalMoney;
+                        }
+                            
+                    }
+                }
 
                 var user = ReadCell(i, 1);
                 if (user != fUser && user != String.Empty)
                 {
+                    
                     fUser = user;
 
                     users.Add(new CashBankActivityReportUser() { CreatedBy = user });
                 }
 
+               
                 var sessionId = ReadCell(i, 4);
                 if (sessionId != fSession && sessionId != String.Empty)
                 {
@@ -285,7 +301,11 @@ namespace POS_Automation.Model
 
             Console.WriteLine("Users: " + users.Count);
             Console.WriteLine("user 1 1st session = " + users[0].Sessions[0].SessionId);
+            Console.WriteLine("user 1 last session = " + users[0].Sessions[users[0].Sessions.Count - 1].SessionId);
+            Console.WriteLine($"User 1 totals: {users[0].TotalMoney}, {users[0].TotalPayout}");
             Console.WriteLine("user 2 1st session = " + users[1].Sessions[0].SessionId);
+            Console.WriteLine("user 2 last session = " + users[1].Sessions[users[1].Sessions.Count - 1].SessionId);
+            Console.WriteLine($"User 2 totals: {users[1].TotalMoney}, {users[1].TotalPayout}");
 
             report.Data = records;
             return report;

@@ -126,10 +126,10 @@ namespace POS_Automation
             _reportPage.ReportMenu.RunReport();
 
             _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
-            _reportPage.SaveFileWindow.EnterFilepath(@"C:\Users\bdagg\Downloads");
+            _reportPage.SaveFileWindow.EnterFilepath(TestData.DownloadPath);
 
             string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
-            string filepath = @"C:\Users\bdagg\Downloads\" + filename;
+            string filepath = TestData.DownloadPath + @"\" + filename;
             _reportPage.SaveFileWindow.EnterFileName(filename);
             _reportPage.SaveFileWindow.Save();
 
@@ -137,7 +137,7 @@ namespace POS_Automation
 
             var reader = new ExcelReader();
             //reader.Open(@"C:\Users\Ben\Downloads\20221107083023.xlsx");
-            reader.Open(@"C:\Users\bdagg\Downloads\" + filename);
+            reader.Open(TestData.DownloadPath + @"\" + filename);
             var report = reader.ParseCashierActivityReport();
             Console.WriteLine("title = " + report.Title);
             Console.WriteLine("ran at " + report.RunDate);
@@ -182,7 +182,7 @@ namespace POS_Automation
             _reportPage.ReportMenu.RunReport();
 
             string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
-            string filepath = @"C:\Users\bdagg\Downloads";
+            string filepath = TestData.DownloadPath;
             string fullPath = filepath + @"\" + filename;
 
             _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
@@ -247,7 +247,7 @@ namespace POS_Automation
             _reportPage.ReportMenu.RunReport();
 
             string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
-            string filepath = @"C:\Users\bdagg\Downloads";
+            string filepath = TestData.DownloadPath;
             string fullPath = filepath + @"\" + filename;
 
             _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
@@ -301,7 +301,7 @@ namespace POS_Automation
             _reportPage.ReportMenu.RunReport();
 
             string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
-            string filepath = @"C:\Users\bdagg\Downloads";
+            string filepath = TestData.DownloadPath;
             string fullPath = filepath + @"\" + filename;
 
             _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
@@ -347,7 +347,7 @@ namespace POS_Automation
             _reportPage.ReportMenu.RunReport();
 
             string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
-            string filepath = @"C:\Users\bdagg\Downloads";
+            string filepath = TestData.DownloadPath;
             string fullPath = filepath + @"\" + filename;
 
             _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
@@ -399,7 +399,7 @@ namespace POS_Automation
             _reportPage.ReportMenu.RunReport();
 
             string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
-            string filepath = @"C:\Users\bdagg\Downloads";
+            string filepath = TestData.DownloadPath;
             string fullPath = filepath + @"\" + filename;
 
             _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
@@ -454,7 +454,7 @@ namespace POS_Automation
             _reportPage.ReportMenu.RunReport();
 
             string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
-            string filepath = @"C:\Users\bdagg\Downloads";
+            string filepath = TestData.DownloadPath;
             string fullPath = filepath + @"\" + filename;
 
             _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
@@ -533,7 +533,7 @@ namespace POS_Automation
             _reportPage.ReportMenu.RunReport();
 
             string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
-            string filepath = @"C:\Users\bdagg\Downloads";
+            string filepath = TestData.DownloadPath;
             string fullPath = filepath + @"\" + filename;
 
             _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
@@ -609,7 +609,7 @@ namespace POS_Automation
             _reportPage.ReportMenu.RunReport();
 
             string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
-            string filepath = @"C:\Users\bdagg\Downloads";
+            string filepath = TestData.DownloadPath;
             string fullPath = filepath + @"\" + filename;
 
             _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
@@ -680,10 +680,10 @@ namespace POS_Automation
             _reportPage.ReportMenu.RunReport();
 
             _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
-            _reportPage.SaveFileWindow.EnterFilepath(@"C:\Users\bdagg\Downloads");
+            _reportPage.SaveFileWindow.EnterFilepath(TestData.DownloadPath);
 
             string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
-            string filepath = @"C:\Users\bdagg\Downloads\" + filename;
+            string filepath = TestData.DownloadPath = @"\" + filename;
             _reportPage.SaveFileWindow.EnterFileName(filename);
             _reportPage.SaveFileWindow.Save();
 
@@ -691,7 +691,7 @@ namespace POS_Automation
 
             var reader = new ExcelReader();
             //reader.Open(@"C:\Users\Ben\Downloads\20221107083023.xlsx");
-            reader.Open(@"C:\Users\bdagg\Downloads\" + filename);
+            reader.Open(TestData.DownloadPath + @"\" + filename);
             var report = reader.ParseCashierActivityReport();
 
             string title = report.Title;

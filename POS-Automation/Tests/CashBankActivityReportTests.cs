@@ -195,10 +195,11 @@ namespace POS_Automation
             NavigationTabs.ClickPayoutTab();
 
             int startingBalance = 1000;
-            var sessionId = _transRepo.GetCurrentUserSession(TestData.CashierUsername);
-
+            
             _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
             _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            var sessionId = _transRepo.GetCurrentUserSession(TestData.CashierUsername);
 
             _payoutPage.NumPad.EnterBarcode(barcode);
             _payoutPage.Payout();
@@ -351,10 +352,12 @@ namespace POS_Automation
             NavigationTabs.ClickPayoutTab();
 
             int startingBalance = 1000;
-            var sessionId = _transRepo.GetCurrentUserSession(TestData.CashierUsername);
+            
 
             _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
             _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            var sessionId = _transRepo.GetCurrentUserSession(TestData.CashierUsername);
 
             _payoutPage.CashDrawer.AddCash("100", TestData.CashierPassword);
             _payoutPage.NavigationTabs.ClickDeviceTab();
@@ -578,10 +581,11 @@ namespace POS_Automation
             NavigationTabs.ClickPayoutTab();
 
             int startingBalance = 1000;
-            var sessionId = _transRepo.GetCurrentUserSession(TestData.CashierUsername);
 
             _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
             _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            var sessionId = _transRepo.GetCurrentUserSession(TestData.CashierUsername);
 
             _payoutPage.NumPad.EnterBarcode(barcode);
             _payoutPage.Payout();

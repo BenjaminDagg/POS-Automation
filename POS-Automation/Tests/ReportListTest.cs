@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using POS_Automation.Pages.Reports;
 using OpenQA.Selenium;
 using System.Linq;
+using POS_Automation.Model.Reports;
+using System.IO;
 
 namespace POS_Automation
 {
@@ -88,7 +90,7 @@ namespace POS_Automation
             {
                 Console.WriteLine(option);
             }
-            Console.WriteLine("got " + exportOptions.Count + " options in test");
+            
             Assert.True(exportOptions.Any(e => e == "PDF"));
             Assert.True(exportOptions.Any(e => e == "Excel"));
         }
@@ -133,13 +135,12 @@ namespace POS_Automation
             _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
             NavigationTabs.ClickReportsTab();
 
-            var today = DateTime.Now;
-            var firstDayDate = new DateTime(today.Year, today.Month, 1);
-            var lastDayDate = firstDayDate.AddDays(14);
+            var startDate = DateTime.Now.AddDays(-30).ToString("M/d/yyyy");
+            var endDate = DateTime.Now.AddDays(30).ToString("M/d/yyyy");
 
-            _reportList.ClickReportByReportName("Daily Cashier Activity");
-            _reportPage.ReportMenu.EnterStartDate("1/1/2022");
-            _reportPage.ReportMenu.EnterEndDate("11/9/2022");
+            _reportList.ClickReportByReportName("Cashier Balance");
+            _reportPage.ReportMenu.EnterStartDate(startDate);
+            _reportPage.ReportMenu.EnterEndDate(endDate);
             _reportPage.ReportMenu.RunReport();
             
             _reportPage.ReportMenu.RunReport();
@@ -159,7 +160,7 @@ namespace POS_Automation
             var firstDayDate = new DateTime(today.Year, today.Month, 1);
             var lastDayDate = firstDayDate.AddDays(14);
 
-            _reportList.ClickReportByReportName("Daily Cashier Activity");
+            _reportList.ClickReportByReportName("Cashier Balance");
             _reportPage.ReportMenu.EnterStartDate(firstDayDate.ToString("M/d/yyyy"));
             _reportPage.ReportMenu.EnterEndDate(lastDayDate.ToString("M/d/yyyy"));
             _reportPage.ReportMenu.RunReport();
@@ -182,7 +183,7 @@ namespace POS_Automation
             var firstDayDate = new DateTime(today.Year, today.Month, 1);
             var lastDayDate = firstDayDate.AddDays(14);
 
-            _reportList.ClickReportByReportName("Daily Cashier Activity");
+            _reportList.ClickReportByReportName("Cashier Balance");
             _reportPage.ReportMenu.EnterStartDate(firstDayDate.ToString("M/d/yyyy"));
             _reportPage.ReportMenu.EnterEndDate(lastDayDate.ToString("M/d/yyyy"));
             _reportPage.ReportMenu.RunReport();
@@ -205,7 +206,7 @@ namespace POS_Automation
             var firstDayDate = new DateTime(today.Year, today.Month, 1);
             var lastDayDate = firstDayDate.AddDays(14);
 
-            _reportList.ClickReportByReportName("Daily Cashier Activity");
+            _reportList.ClickReportByReportName("Cashier Balance");
             _reportPage.ReportMenu.EnterStartDate(firstDayDate.ToString("M/d/yyyy"));
             _reportPage.ReportMenu.EnterEndDate(lastDayDate.ToString("M/d/yyyy"));
             _reportPage.ReportMenu.RunReport();
@@ -254,6 +255,104 @@ namespace POS_Automation
             Assert.True(_reportPage.ReportMenu.ParametersAreHidden);
             _reportPage.ReportMenu.ShowParameters();
             Assert.False(_reportPage.ReportMenu.ParametersAreHidden);
+        }
+
+        [Test]
+        public void ExportReportPdf()
+        {
+            _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
+            NavigationTabs.ClickReportsTab();
+
+            _reportList.ClickReportByReportName("Daily Cashier Activity");
+            _reportPage.ReportMenu.ExportReport(ReportExportOptions.PDF);
+
+            string fileName = DateTime.Now.ToString("HHmmssfff") + ".pdf";
+            string fullPath = TestData.DownloadPath + @"\" + fileName;
+
+            _reportPage.SaveFileWindow.EnterFilepath(TestData.DownloadPath);
+            _reportPage.SaveFileWindow.EnterFileName(fileName);
+            _reportPage.SaveFileWindow.Save();
+
+            Assert.True(_reportPage.SaveFileWindow.FileDownloaded(fullPath));
+        }
+
+        [Test]
+        public void ExportReportExcel()
+        {
+            _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
+            NavigationTabs.ClickReportsTab();
+
+            _reportList.ClickReportByReportName("Daily Cashier Activity");
+            _reportPage.ReportMenu.ExportReport(ReportExportOptions.Excel);
+
+            string fileName = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
+            string fullPath = TestData.DownloadPath + @"\" + fileName;
+
+            _reportPage.SaveFileWindow.EnterFilepath(TestData.DownloadPath);
+            _reportPage.SaveFileWindow.EnterFileName(fileName);
+            _reportPage.SaveFileWindow.Save();
+
+            Assert.True(_reportPage.SaveFileWindow.FileDownloaded(fullPath));
+        }
+
+        //Start date is after end date
+        [Test]
+        public void InvalidDateParameters()
+        {
+            _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
+            NavigationTabs.ClickReportsTab();
+
+            var startDate = DateTime.Now.AddDays(-1).ToString("M/d/yyyy");
+            var endDate = DateTime.Now.AddDays(-2).ToString("M/d/yyyy");
+
+            _reportList.ClickReportByReportName("Daily Cashier Activity");
+            _reportPage.ReportMenu.EnterStartDate(startDate);
+            _reportPage.ReportMenu.EnterEndDate(endDate);
+            _reportPage.ReportMenu.RunReport();
+            _reportPage.ReportMenu.ExportReport(ReportExportOptions.Excel);
+
+            string fileName = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
+            string fullPath = TestData.DownloadPath + @"\" + fileName;
+
+            _reportPage.SaveFileWindow.EnterFilepath(TestData.DownloadPath);
+            _reportPage.SaveFileWindow.EnterFileName(fileName);
+            _reportPage.SaveFileWindow.Save();
+
+            Assert.True(_reportPage.SaveFileWindow.FileDownloaded(fullPath));
+
+            ExcelReader reader = new ExcelReader();
+            reader.Open(fullPath);
+
+            var report = reader.ParseCashierActivityReport();
+            Assert.Zero(report.Data.Count);
+        }
+
+        [Test]
+        public void ReportBackButton()
+        {
+            _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
+            NavigationTabs.ClickReportsTab();
+
+            Assert.AreEqual(4, _reportList.RowCount);
+
+            _reportList.ClickReportByReportName("Daily Cashier Activity");
+            Assert.AreEqual(0, _reportList.RowCount);
+
+            _reportPage.ReportMenu.Back();
+            Assert.AreEqual(4, _reportList.RowCount);
+        }
+
+        [Test]
+        public void PrintButton()
+        {
+            _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
+            NavigationTabs.ClickReportsTab();
+
+            _reportList.ClickReportByReportName("Daily Cashier Activity");
+            _reportPage.ReportMenu.ClickPrint();
+
+            var printWindow = driver.FindElements(By.XPath("//Window[@Name='Print']"));
+            Assert.AreEqual(1, printWindow.Count);
         }
     }
 }

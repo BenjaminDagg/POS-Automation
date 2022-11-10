@@ -18,6 +18,7 @@ using POS_Automation.Pages.Payout;
 using POS_Automation.Model.Payout;
 using System.Collections.Generic;
 using POS_Automation.Custom_Elements;
+using POS_Automation.Model.Reports;
 
 namespace POS_Automation.Pages.Reports
 {
@@ -81,9 +82,17 @@ namespace POS_Automation.Pages.Reports
             }
         }
 
+        public void ExportReport(ReportExportOptions exportType)
+        {
+            int index = (int)exportType;
+
+            ExportDropdown.SelectByIndex(index);
+        }
+
         public void EnterStartDate(string date)
         {
             wait.Until(d => driver.FindElement(StartDateField));
+            wait.Until(d => driver.FindElements(By.XPath("//*[@ClassName='ProgressBar']")).Count == 0);
             
             string text = driver.FindElement(StartDateField).Text;
 
@@ -129,6 +138,7 @@ namespace POS_Automation.Pages.Reports
         public void EnterEndDate(string date)
         {
             wait.Until(d => driver.FindElement(EndDateField));
+            wait.Until(d => driver.FindElements(By.XPath("//*[@ClassName='ProgressBar']")).Count == 0);
             driver.FindElement(EndDateField).Click();
 
             //month
@@ -171,6 +181,7 @@ namespace POS_Automation.Pages.Reports
             wait.Until(d => driver.FindElement(ViewReportButton));
             driver.FindElement(ViewReportButton).Click();
             Thread.Sleep(3000);
+            wait.Until(d => driver.FindElements(By.XPath("//*[@ClassName='ProgressBar']")).Count == 0);
         }
 
         public void Back()
@@ -181,6 +192,7 @@ namespace POS_Automation.Pages.Reports
 
         public void ClickPrint()
         {
+            Thread.Sleep(3000);
             wait.Until(d => driver.FindElement(PrintButton));
             driver.FindElement(PrintButton).Click();
         }

@@ -7,6 +7,7 @@ using OpenQA.Selenium.Appium;   //Appium Options
 using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using POS_Automation.Custom_Elements.Alerts;
 
 namespace POS_Automation
 
@@ -22,6 +23,8 @@ namespace POS_Automation
         private By PromptCancelButton;
         public NavTabs NavigationTabs;
         public By LogoutButton;
+        private By LogoutConfirmationSelector;
+        public MultiChoiceAlertWindow LogoutConfirmation;
 
         public BasePage(WindowsDriver<WindowsElement> _driver)
         {
@@ -35,6 +38,9 @@ namespace POS_Automation
             PromptConfirmButton = By.XPath("//Window[@Name='Confirm Action']/Button[@Name='Yes']");
             PromptCancelButton = By.XPath("//Window[@Name='Confirm Action']/Button[@Name='No']");
             LogoutButton = By.Name("Logout");
+            LogoutConfirmationSelector = By.Name("Confirm Action");
+            LogoutConfirmation = new MultiChoiceAlertWindow(driver, LogoutConfirmationSelector);
+
 
             NavigationTabs = new NavTabs(driver);
         }
@@ -44,6 +50,12 @@ namespace POS_Automation
         {
             driver.FindElement(CloseWindowButton).Click();
             driver.FindElement(PromptConfirmButton).Click();
+        }
+
+        public void Logout()
+        {
+            driver.FindElement(LogoutButton).Click();
+            LogoutConfirmation.Confirm();
         }
 
         protected WindowsElement waitForElement(By by, int time)

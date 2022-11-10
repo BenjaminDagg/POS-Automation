@@ -83,36 +83,12 @@ namespace POS_Automation.Pages.Reports
 
         public void EnterStartDate(string date)
         {
-            /*
-            int monthStartSlash = date.IndexOf('/');
-            int monthEndSlash = date.LastIndexOf('/');
-
-            if (monthStartSlash == -1 || monthEndSlash == -1)
-            {
-                return;
-            }
-
-            int length = (monthEndSlash - monthStartSlash) - 1;
-            int dayVal = int.Parse(date.Substring(monthStartSlash + 1, length));
-
-            wait.Until(d => driver.FindElement(StartDateField));
-            driver.FindElement(StartDateDropdown).Click();
-
-            try
-            {
-                driver.FindElement(By.XPath("//*[@Name='" + dayVal.ToString() + "']")).Click();
-            }
-            catch (Exception ex)
-            {
-
-            }
-            */
-
+            
             driver.FindElement(StartDateField).Click();
 
             //month
             int month = int.Parse(date.Substring(0, date.IndexOf('/')));
-            Console.WriteLine("month = " + month);
+
             driver.FindElement(StartDateField).SendKeys(month.ToString());
             if (month < 10)
             {
@@ -130,7 +106,7 @@ namespace POS_Automation.Pages.Reports
 
             int length = (monthEndSlash - monthStartSlash) - 1;
             int dayVal = int.Parse(date.Substring(monthStartSlash + 1, length));
-            Console.WriteLine("day = " + dayVal);
+
             driver.FindElement(StartDateField).SendKeys(dayVal.ToString());
             if (dayVal < 10)
             {
@@ -139,44 +115,19 @@ namespace POS_Automation.Pages.Reports
 
             //year
             int year = int.Parse(date.Substring(monthEndSlash + 1, 4));
-            Console.WriteLine("year = " + year);
+
             driver.FindElement(StartDateField).SendKeys(year.ToString());
             driver.FindElement(StartDateField).SendKeys(Keys.ArrowRight);
         }
 
         public void EnterEndDate(string date)
         {
-            /*
-            int monthStartSlash = date.IndexOf('/');
-            int monthEndSlash = date.LastIndexOf('/');
-
-            if (monthStartSlash == -1 || monthEndSlash == -1)
-            {
-                return;
-            }
-
-            int length = (monthEndSlash - monthStartSlash) - 1;
-            int dayVal = int.Parse(date.Substring(monthStartSlash + 1, length));
-
-            wait.Until(d => driver.FindElement(EndDateField));
-            driver.FindElement(EndDateDropdown).Click();
-
-            try
-            {
-                driver.FindElement(By.XPath("//*[@Name='" + dayVal.ToString() + "']")).Click();
-            }
-            catch (Exception ex)
-            {
-
-            }
-            */
-
             
             driver.FindElement(EndDateField).Click();
 
             //month
             int month = int.Parse(date.Substring(0,date.IndexOf('/')));
-            Console.WriteLine("month = " + month);
+
             driver.FindElement(EndDateDropdown).SendKeys(month.ToString());
             if(month < 10)
             {
@@ -194,7 +145,7 @@ namespace POS_Automation.Pages.Reports
 
             int length = (monthEndSlash - monthStartSlash) - 1;
             int dayVal = int.Parse(date.Substring(monthStartSlash + 1, length));
-            Console.WriteLine("day = " + dayVal);
+
             driver.FindElement(EndDateDropdown).SendKeys(dayVal.ToString());
             if (dayVal < 10)
             {
@@ -203,7 +154,7 @@ namespace POS_Automation.Pages.Reports
 
             //year
             int year = int.Parse(date.Substring(monthEndSlash + 1, 4));
-            Console.WriteLine("year = " + year);
+
             driver.FindElement(EndDateDropdown).SendKeys(year.ToString());
             driver.FindElement(EndDateDropdown).SendKeys(Keys.ArrowRight);
 

@@ -12,7 +12,7 @@ using POS_Automation.Pages.Reports;
 
 namespace POS_Automation
 {
-    public class CashierActivityReportTests : BaseTest
+    public class CashBankActivityReportTests : BaseTest
     {
         private LoginPage _loginPage;
         private VoucherNumPad _numPad;
@@ -69,10 +69,10 @@ namespace POS_Automation
             Console.WriteLine("ran at " + report.RunDate);
             Console.WriteLine("period = " + report.ReportPeriod);
 
-            foreach(var record in report.Data)
+            foreach (var record in report.Data)
             {
                 Console.WriteLine(record.CreatedBy);
-                foreach(var activity in record.Activities)
+                foreach (var activity in record.Activities)
                 {
                     Console.WriteLine($"{activity.CreatedBy},{activity.SessionId},{activity.Station},{activity.VoucherNumber},{activity.PayoutAmount},{activity.ReceiptNumber},{activity.Date}");
                 }
@@ -93,16 +93,16 @@ namespace POS_Automation
             Console.WriteLine("Run Time: " + report.RunDate);
             Console.WriteLine("Period: " + report.ReportPeriod);
 
-            foreach(var cashier in report.Data)
+            foreach (var cashier in report.Data)
             {
                 Console.WriteLine("===================");
                 Console.WriteLine(cashier.CreatedBy);
 
-                foreach(var session in cashier.Sessions)
+                foreach (var session in cashier.Sessions)
                 {
                     Console.WriteLine(" " + session.SessionId);
 
-                    foreach(var trans in session.Transactions)
+                    foreach (var trans in session.Transactions)
                     {
                         Console.WriteLine("  " + $"{trans.Station},{trans.VoucherNumber},{trans.ReferenceNumber},{trans.TransType},{trans.Money},{trans.Payout},{trans.Date}");
                     }
@@ -155,28 +155,33 @@ namespace POS_Automation
         }
 
         [Test]
-        public void CashierActivityReport_PayoutVoucher()
+        public void CashBankActivityReport_PayoutVoucher()
         {
             //create a voucher for $100
             var barcode = TpService.GetVoucher(StartingAmountCredits, 500);
-            
-            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
+
+            _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
             NavigationTabs.ClickPayoutTab();
 
             int startingBalance = 1000;
+            var sessionId = _transRepo.GetCurrentUserSession(TestData.CashierUsername);
 
             _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
             _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
 
             _payoutPage.NumPad.EnterBarcode(barcode);
             _payoutPage.Payout();
+            _payoutPage.NavigationTabs.ClickDeviceTab();
 
-            var session = _transRepo.GetCurrentUserSession(TestData.SuperUserUsername);
+            _payoutPage.Logout();
+            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
 
             string startDate = DateTime.Now.AddDays(-1).ToString("MM/d/yyyy");
             string endDate = DateTime.Now.AddDays(1).ToString("MM/d/yyyy");
             _payoutPage.NavigationTabs.ClickReportsTab();
-            _reportList.ClickReportByReportName("Daily Cashier Activity");
+            _reportList.ClickReportByReportName("Cash Bank Activity");
             _reportPage.ReportMenu.EnterStartDate(startDate);
             _reportPage.ReportMenu.EnterEndDate(endDate);
             _reportPage.ReportMenu.RunReport();
@@ -194,22 +199,32 @@ namespace POS_Automation
 
             ExcelReader reader = new ExcelReader();
             reader.Open(fullPath);
-            var report = reader.ParseCashierActivityReport();
+            var report = reader.ParseCashBankActivityReport();
 
-            var records = report.GetRecordsBySessionsId(session);
-            string expectedVoucher = new string('*', 14) + barcode.Substring(14, 4);
+            var session = report.GetSession(sessionId);
+            Assert.Greater(session.Transactions.Count, 0);
 
-            var activity = records.SingleOrDefault(r => r.VoucherNumber == expectedVoucher);
-            Assert.NotNull(activity);
+            var startTrans = session.Transactions.FirstOrDefault(t => t.TransType == "Start");
+            Assert.NotNull(startTrans);
+            decimal sessionStartBalance = startTrans.Money;
 
-            Assert.AreEqual(expectedVoucher, activity.VoucherNumber);
-            Assert.AreEqual(activity.PayoutAmount, 5);
-            
+            var payoutTrans = session.Transactions.FirstOrDefault(t => t.TransType == "Payout");
+            Assert.NotNull(payoutTrans);
+            Assert.AreEqual(payoutTrans.Payout, 5);
+            Assert.AreEqual(payoutTrans.VoucherNumber, barcode);
+
+            var endTrans = session.Transactions.FirstOrDefault(t => t.TransType == "End");
+            Assert.NotNull(endTrans);
+            decimal endBalance = endTrans.Money;
+
+            Assert.AreEqual(sessionStartBalance - payoutTrans.Payout, endBalance);
+            Assert.AreEqual(endBalance,session.TotalMoney);
         }
 
         [Test]
-        public void CashierActivityReport_MultiplePayouts()
+        public void CashBankActivityReport_PayoutMultipleVoucher()
         {
+
             //create a voucher for $100
             var barcode1 = TpService.GetVoucher(StartingAmountCredits, 500);
             StartingAmountCredits -= 500;
@@ -220,12 +235,13 @@ namespace POS_Automation
             var barcode3 = TpService.GetVoucher(StartingAmountCredits, 1500);
             StartingAmountCredits -= 1500;
 
-            var vouchers = new List<string>() { barcode1,barcode2,barcode3};
+            var vouchers = new List<string>() { barcode1, barcode2, barcode3 };
 
-            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
+            _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
             NavigationTabs.ClickPayoutTab();
 
             int startingBalance = 1000;
+            var sessionId = _transRepo.GetCurrentUserSession(TestData.CashierUsername);
 
             _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
             _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
@@ -235,67 +251,17 @@ namespace POS_Automation
                 _payoutPage.NumPad.EnterBarcode(barcode);
             }
             _payoutPage.Payout();
+            _payoutPage.NavigationTabs.ClickDeviceTab();
 
-            var session = _transRepo.GetCurrentUserSession(TestData.SuperUserUsername);
-
-            string startDate = DateTime.Now.AddDays(-1).ToString("MM/d/yyyy");
-            string endDate = DateTime.Now.AddDays(1).ToString("MM/d/yyyy");
-            _payoutPage.NavigationTabs.ClickReportsTab();
-            _reportList.ClickReportByReportName("Daily Cashier Activity");
-            _reportPage.ReportMenu.EnterStartDate(startDate);
-            _reportPage.ReportMenu.EnterEndDate(endDate);
-            _reportPage.ReportMenu.RunReport();
-
-            string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
-            string filepath = @"C:\Users\bdagg\Downloads";
-            string fullPath = filepath + @"\" + filename;
-
-            _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
-            _reportPage.SaveFileWindow.EnterFilepath(filepath);
-            _reportPage.SaveFileWindow.EnterFileName(filename);
-            _reportPage.SaveFileWindow.Save();
-
-            Assert.True(_reportPage.SaveFileWindow.FileDownloaded(fullPath));
-
-            ExcelReader reader = new ExcelReader();
-            reader.Open(fullPath);
-            var report = reader.ParseCashierActivityReport();
-
-            var records = report.GetRecordsBySessionsId(session);
-            Assert.AreEqual(vouchers.Count,records.Count);
-
-            string expectedVoucher1 = new string('*', 14) + vouchers[0].Substring(14, 4);
-            string expectedVoucher2 = new string('*', 14) + vouchers[1].Substring(14, 4);
-            string expectedVoucher3 = new string('*', 14) + vouchers[2].Substring(14, 4);
-
-            Assert.True(records.Any(r => r.VoucherNumber == expectedVoucher1 && r.PayoutAmount == 5));
-            Assert.True(records.Any(r => r.VoucherNumber == expectedVoucher2 && r.PayoutAmount == 10));
-            Assert.True(records.Any(r => r.VoucherNumber == expectedVoucher3 && r.PayoutAmount == 15));
-        }
-
-        [Test]
-        public void CashierActivityReport_VerifySession()
-        {
-            //create a voucher for $100
-            var barcode = TpService.GetVoucher(StartingAmountCredits, 500);
-
+            _payoutPage.Logout();
             _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
-            NavigationTabs.ClickPayoutTab();
-
-            int startingBalance = 1000;
-
             _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
             _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
 
-            _payoutPage.NumPad.EnterBarcode(barcode);
-            _payoutPage.Payout();
-
-            var session = _transRepo.GetCurrentUserSession(TestData.SuperUserUsername);
-
             string startDate = DateTime.Now.AddDays(-1).ToString("MM/d/yyyy");
             string endDate = DateTime.Now.AddDays(1).ToString("MM/d/yyyy");
             _payoutPage.NavigationTabs.ClickReportsTab();
-            _reportList.ClickReportByReportName("Daily Cashier Activity");
+            _reportList.ClickReportByReportName("Cash Bank Activity");
             _reportPage.ReportMenu.EnterStartDate(startDate);
             _reportPage.ReportMenu.EnterEndDate(endDate);
             _reportPage.ReportMenu.RunReport();
@@ -313,142 +279,64 @@ namespace POS_Automation
 
             ExcelReader reader = new ExcelReader();
             reader.Open(fullPath);
-            var report = reader.ParseCashierActivityReport();
+            var report = reader.ParseCashBankActivityReport();
 
-            string expectedVoucher = new string('*', 14) + barcode.Substring(14, 4);
-            string actualSession = report.GetSessionByVoucher(expectedVoucher);
+            var session = report.GetSession(sessionId);
+            Assert.Greater(session.Transactions.Count, 0);
 
-            Assert.AreEqual(session, actualSession);
-        }
+            var startTrans = session.Transactions.FirstOrDefault(t => t.TransType == "Start");
+            Assert.NotNull(startTrans);
+            decimal sessionStartBalance = startTrans.Money;
+            Assert.AreEqual(1000,sessionStartBalance);
 
-        [Test]
-        public void CashierActivityReport_TotalNumberVouchers()
-        {
-            //create a voucher for $100
-            var barcode = TpService.GetVoucher(StartingAmountCredits, 500);
+            var payoutTrans = session.Transactions.Where(t => t.TransType == "Payout").ToList();
+            Assert.AreEqual(3, payoutTrans.Count);
 
-            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
-            NavigationTabs.ClickPayoutTab();
-
-            int startingBalance = 1000;
-
-            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
-            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
-
-            _payoutPage.NumPad.EnterBarcode(barcode);
-            _payoutPage.Payout();
-
-            string startDate = DateTime.Now.AddDays(-1).ToString("MM/d/yyyy");
-            string endDate = DateTime.Now.AddDays(1).ToString("MM/d/yyyy");
-            _payoutPage.NavigationTabs.ClickReportsTab();
-            _reportList.ClickReportByReportName("Daily Cashier Activity");
-            _reportPage.ReportMenu.EnterStartDate(startDate);
-            _reportPage.ReportMenu.EnterEndDate(endDate);
-            _reportPage.ReportMenu.RunReport();
-
-            string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
-            string filepath = @"C:\Users\bdagg\Downloads";
-            string fullPath = filepath + @"\" + filename;
-
-            _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
-            _reportPage.SaveFileWindow.EnterFilepath(filepath);
-            _reportPage.SaveFileWindow.EnterFileName(filename);
-            _reportPage.SaveFileWindow.Save();
-
-            Assert.True(_reportPage.SaveFileWindow.FileDownloaded(fullPath));
-
-            ExcelReader reader = new ExcelReader();
-            reader.Open(fullPath);
-            var report = reader.ParseCashierActivityReport();
-
-            int actualTotalVouchers = report.TotalVouchers;
-            var records = report.Data;
-
-            int count = 0;
-            foreach(var record in records)
+            foreach(var g in vouchers)
             {
-                count += record.Activities.Count;
+                Console.WriteLine(g);
             }
-
-            Assert.AreEqual(count, actualTotalVouchers);
-        }
-
-        [Test]
-        public void CashierActivityReport_TotalPayoutAmount()
-        {
-            //create a voucher for $100
-            var barcode = TpService.GetVoucher(StartingAmountCredits, 500);
-
-            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
-            NavigationTabs.ClickPayoutTab();
-
-            int startingBalance = 1000;
-
-            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
-            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
-
-            _payoutPage.NumPad.EnterBarcode(barcode);
-            _payoutPage.Payout();
-
-            string startDate = DateTime.Now.AddDays(-1).ToString("MM/d/yyyy");
-            string endDate = DateTime.Now.AddDays(1).ToString("MM/d/yyyy");
-            _payoutPage.NavigationTabs.ClickReportsTab();
-            _reportList.ClickReportByReportName("Daily Cashier Activity");
-            _reportPage.ReportMenu.EnterStartDate(startDate);
-            _reportPage.ReportMenu.EnterEndDate(endDate);
-            _reportPage.ReportMenu.RunReport();
-
-            string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
-            string filepath = @"C:\Users\bdagg\Downloads";
-            string fullPath = filepath + @"\" + filename;
-
-            _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
-            _reportPage.SaveFileWindow.EnterFilepath(filepath);
-            _reportPage.SaveFileWindow.EnterFileName(filename);
-            _reportPage.SaveFileWindow.Save();
-
-            Assert.True(_reportPage.SaveFileWindow.FileDownloaded(fullPath));
-
-            ExcelReader reader = new ExcelReader();
-            reader.Open(fullPath);
-            var report = reader.ParseCashierActivityReport();
-
-            decimal actualTotalPayout = report.TotalAmount;
-            var records = report.Data;
-
-            decimal count = 0;
-            foreach (var record in records)
+            foreach(var t in payoutTrans)
             {
-                foreach(var trans in record.Activities)
-                {
-                    count += trans.PayoutAmount;
-                }
+                Console.WriteLine(t.VoucherNumber + "," + t.Payout);
             }
+            Assert.True(payoutTrans.Any(t => t.Payout == 5));
+            Assert.True(payoutTrans.Any(t => t.Payout == 10));
+            Assert.True(payoutTrans.Any(t => t.Payout == 15));
 
-            Assert.AreEqual(count, actualTotalPayout);
+            var endTrans = session.Transactions.FirstOrDefault(t => t.TransType == "End");
+            Assert.NotNull(endTrans);
+            decimal endBalance = endTrans.Money;
+
+            Assert.AreEqual(sessionStartBalance - 30, endBalance);
+            Assert.AreEqual(endBalance, session.TotalMoney);
         }
 
         [Test]
-        public void CashierActivityReport_TotalTransactions()
+        public void CashBankActivityReport_AddCash()
         {
-            //create a voucher for $100
-            var barcode = TpService.GetVoucher(StartingAmountCredits, 500);
 
-            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
+            _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
             NavigationTabs.ClickPayoutTab();
 
             int startingBalance = 1000;
+            var sessionId = _transRepo.GetCurrentUserSession(TestData.CashierUsername);
 
             _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
             _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
 
-            _payoutPage.NumPad.EnterBarcode(barcode);
-            _payoutPage.Payout();
+            _payoutPage.CashDrawer.AddCash("100", TestData.CashierPassword);
+            _payoutPage.NavigationTabs.ClickDeviceTab();
+
+            _payoutPage.Logout();
+            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
 
             string startDate = DateTime.Now.AddDays(-1).ToString("MM/d/yyyy");
             string endDate = DateTime.Now.AddDays(1).ToString("MM/d/yyyy");
             _payoutPage.NavigationTabs.ClickReportsTab();
-            _reportList.ClickReportByReportName("Daily Cashier Activity");
+            _reportList.ClickReportByReportName("Cash Bank Activity");
             _reportPage.ReportMenu.EnterStartDate(startDate);
             _reportPage.ReportMenu.EnterEndDate(endDate);
             _reportPage.ReportMenu.RunReport();
@@ -466,35 +354,322 @@ namespace POS_Automation
 
             ExcelReader reader = new ExcelReader();
             reader.Open(fullPath);
-            var report = reader.ParseCashierActivityReport();
+            var report = reader.ParseCashBankActivityReport();
 
-            decimal actualTotalTransactions = report.TotalTransactions;
-            var records = report.Data;
+            var session = report.GetSession(sessionId);
+            Assert.Greater(session.Transactions.Count, 0);
 
-            var distinct = new List<string>();
+            var startTrans = session.Transactions.FirstOrDefault(t => t.TransType == "Start");
+            Assert.NotNull(startTrans);
+            decimal sessionStartBalance = startTrans.Money;
+            Assert.AreEqual(1000, sessionStartBalance);
 
-            foreach(var record in records)
+            var addTrans = session.Transactions.FirstOrDefault(t => t.TransType == "Add");
+            Assert.NotNull(addTrans);
+            Assert.AreEqual(100,addTrans.Money);
+
+            var endTrans = session.Transactions.FirstOrDefault(t => t.TransType == "End");
+            Assert.NotNull(endTrans);
+            decimal endBalance = endTrans.Money;
+
+            Assert.AreEqual(1100, endBalance);
+            Assert.AreEqual(endBalance,session.TotalMoney);
+        }
+
+        [Test]
+        public void CashBankActivityReport_RemoveCash()
+        {
+
+            _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
+            NavigationTabs.ClickPayoutTab();
+
+            int startingBalance = 1000;
+            
+
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+            var sessionId = _transRepo.GetCurrentUserSession(TestData.CashierUsername);
+
+            _payoutPage.CashDrawer.RemoveCash("100", TestData.CashierPassword);
+            _payoutPage.NavigationTabs.ClickDeviceTab();
+
+            _payoutPage.Logout();
+            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            string startDate = DateTime.Now.AddDays(-1).ToString("MM/d/yyyy");
+            string endDate = DateTime.Now.AddDays(1).ToString("MM/d/yyyy");
+            _payoutPage.NavigationTabs.ClickReportsTab();
+            _reportList.ClickReportByReportName("Cash Bank Activity");
+            _reportPage.ReportMenu.EnterStartDate(startDate);
+            _reportPage.ReportMenu.EnterEndDate(endDate);
+            _reportPage.ReportMenu.RunReport();
+
+            string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
+            string filepath = @"C:\Users\bdagg\Downloads";
+            string fullPath = filepath + @"\" + filename;
+
+            _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
+            _reportPage.SaveFileWindow.EnterFilepath(filepath);
+            _reportPage.SaveFileWindow.EnterFileName(filename);
+            _reportPage.SaveFileWindow.Save();
+
+            Assert.True(_reportPage.SaveFileWindow.FileDownloaded(fullPath));
+
+            ExcelReader reader = new ExcelReader();
+            reader.Open(fullPath);
+            var report = reader.ParseCashBankActivityReport();
+
+            var session = report.GetSession(sessionId);
+            Assert.AreEqual(session.Transactions.Count, 3);
+
+            var startTrans = session.Transactions.FirstOrDefault(t => t.TransType == "Start");
+            Assert.NotNull(startTrans);
+            decimal sessionStartBalance = startTrans.Money;
+            Assert.AreEqual(1000, sessionStartBalance);
+
+            var removeTrans = session.Transactions.FirstOrDefault(t => t.TransType == "Remove");
+            Assert.NotNull(removeTrans);
+            Assert.AreEqual(100, removeTrans.Money);
+
+            var endTrans = session.Transactions.FirstOrDefault(t => t.TransType == "End");
+            Assert.NotNull(endTrans);
+            decimal endBalance = endTrans.Money;
+
+            Assert.AreEqual(900, endBalance);
+            Assert.AreEqual(endBalance, session.TotalMoney);
+        }
+
+        [Test]
+        public void CashBankActivityReport_MultipleTransaction()
+        {
+
+            //create a voucher for $100
+            var barcode1 = TpService.GetVoucher(StartingAmountCredits, 500);
+            StartingAmountCredits -= 500;
+
+            var barcode2 = TpService.GetVoucher(StartingAmountCredits, 1000);
+            StartingAmountCredits -= 1000;
+
+            var barcode3 = TpService.GetVoucher(StartingAmountCredits, 1500);
+            StartingAmountCredits -= 1500;
+
+            var vouchers = new List<string>() { barcode1, barcode2, barcode3 };
+
+            _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
+            NavigationTabs.ClickPayoutTab();
+
+            int startingBalance = 1000;
+           
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+            var sessionId = _transRepo.GetCurrentUserSession(TestData.CashierUsername);
+
+            //perform transactions
+            _payoutPage.NumPad.EnterBarcode(barcode1);
+            _payoutPage.Payout();
+            _payoutPage.CashDrawer.AddCash("500", TestData.CashierPassword);
+            _payoutPage.NumPad.EnterBarcode(barcode2);
+            _payoutPage.Payout();
+            _payoutPage.CashDrawer.RemoveCash("200",TestData.CashierPassword);
+            _payoutPage.NumPad.EnterBarcode(barcode3);
+            _payoutPage.Payout();
+
+            _payoutPage.NavigationTabs.ClickDeviceTab();
+
+            _payoutPage.Logout();
+            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            string startDate = DateTime.Now.AddDays(-1).ToString("MM/d/yyyy");
+            string endDate = DateTime.Now.AddDays(1).ToString("MM/d/yyyy");
+            _payoutPage.NavigationTabs.ClickReportsTab();
+            _reportList.ClickReportByReportName("Cash Bank Activity");
+            _reportPage.ReportMenu.EnterStartDate(startDate);
+            _reportPage.ReportMenu.EnterEndDate(endDate);
+            _reportPage.ReportMenu.RunReport();
+
+            string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
+            string filepath = @"C:\Users\bdagg\Downloads";
+            string fullPath = filepath + @"\" + filename;
+
+            _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
+            _reportPage.SaveFileWindow.EnterFilepath(filepath);
+            _reportPage.SaveFileWindow.EnterFileName(filename);
+            _reportPage.SaveFileWindow.Save();
+
+            Assert.True(_reportPage.SaveFileWindow.FileDownloaded(fullPath));
+
+            ExcelReader reader = new ExcelReader();
+            reader.Open(fullPath);
+            var report = reader.ParseCashBankActivityReport();
+
+            var session = report.GetSession(sessionId);
+            Assert.Greater(session.Transactions.Count, 0);
+
+            var startTrans = session.Transactions.FirstOrDefault(t => t.TransType == "Start");
+            Assert.NotNull(startTrans);
+            decimal sessionStartBalance = startTrans.Money;
+            Assert.AreEqual(1000, sessionStartBalance);
+
+            var payoutTrans = session.Transactions.Where(t => t.TransType == "Payout").ToList();
+            Assert.AreEqual(3, payoutTrans.Count);
+
+            Assert.True(payoutTrans.Any(t => t.Payout == 5));
+            Assert.True(payoutTrans.Any(t => t.Payout == 10));
+            Assert.True(payoutTrans.Any(t => t.Payout == 15));
+
+            var addCashTrans = session.Transactions.Where(t => t.TransType == "Add").ToList();
+            Assert.AreEqual(1,addCashTrans.Count);
+            Assert.AreEqual(500, addCashTrans[0].Money);
+
+            var removeCashTrans = session.Transactions.Where(t => t.TransType == "Remove").ToList();
+            Assert.AreEqual(1,removeCashTrans.Count);
+            Assert.AreEqual(200, removeCashTrans[0].Money);
+
+            var endTrans = session.Transactions.FirstOrDefault(t => t.TransType == "End");
+            Assert.NotNull(endTrans);
+            decimal endBalance = endTrans.Money;
+
+            Assert.AreEqual(1270, endBalance);
+            Assert.AreEqual(endBalance, session.TotalMoney);
+        }
+
+        [Test]
+        public void CashBankActivityReport_MultipleTransactions()
+        {
+            //create a voucher for $100
+            var barcode = TpService.GetVoucher(StartingAmountCredits, 500);
+
+            _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
+            NavigationTabs.ClickPayoutTab();
+
+            int startingBalance = 1000;
+            var sessionId = _transRepo.GetCurrentUserSession(TestData.CashierUsername);
+
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            _payoutPage.NumPad.EnterBarcode(barcode);
+            _payoutPage.Payout();
+            _payoutPage.NavigationTabs.ClickDeviceTab();
+
+            _payoutPage.Logout();
+            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            string startDate = DateTime.Now.AddDays(-1).ToString("MM/d/yyyy");
+            string endDate = DateTime.Now.AddDays(1).ToString("MM/d/yyyy");
+            _payoutPage.NavigationTabs.ClickReportsTab();
+            _reportList.ClickReportByReportName("Cash Bank Activity");
+            _reportPage.ReportMenu.EnterStartDate(startDate);
+            _reportPage.ReportMenu.EnterEndDate(endDate);
+            _reportPage.ReportMenu.RunReport();
+
+            string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
+            string filepath = @"C:\Users\bdagg\Downloads";
+            string fullPath = filepath + @"\" + filename;
+
+            _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
+            _reportPage.SaveFileWindow.EnterFilepath(filepath);
+            _reportPage.SaveFileWindow.EnterFileName(filename);
+            _reportPage.SaveFileWindow.Save();
+
+            Assert.True(_reportPage.SaveFileWindow.FileDownloaded(fullPath));
+
+            ExcelReader reader = new ExcelReader();
+            reader.Open(fullPath);
+            var report = reader.ParseCashBankActivityReport();
+
+            var session = report.GetSession(sessionId);
+            Assert.Greater(session.Transactions.Count, 0);
+
+            var startTrans = session.Transactions.FirstOrDefault(t => t.TransType == "Start");
+            Assert.NotNull(startTrans);
+            decimal sessionStartBalance = startTrans.Money;
+
+            var payoutTrans = session.Transactions.FirstOrDefault(t => t.TransType == "Payout");
+            Assert.NotNull(payoutTrans);
+            Assert.AreEqual(payoutTrans.Payout, 5);
+            Assert.AreEqual(payoutTrans.VoucherNumber, barcode);
+
+            var endTrans = session.Transactions.FirstOrDefault(t => t.TransType == "End");
+            Assert.NotNull(endTrans);
+            decimal endBalance = endTrans.Money;
+
+            Assert.AreEqual(sessionStartBalance - payoutTrans.Payout, endBalance);
+            Assert.AreEqual(endBalance, session.TotalMoney);
+        }
+
+        [Test]
+        public void CashBankActivityReport_ReportTotals()
+        {
+
+            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
+            NavigationTabs.ClickPayoutTab();
+
+            int startingBalance = 1000;
+            
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            var sessionId = _transRepo.GetCurrentUserSession(TestData.SuperUserUsername);
+
+            _payoutPage.CashDrawer.AddCash("100", TestData.SuperUserPassword);
+            _payoutPage.NavigationTabs.ClickDeviceTab();
+
+            string startDate = DateTime.Now.AddDays(-1).ToString("MM/d/yyyy");
+            string endDate = DateTime.Now.AddDays(1).ToString("MM/d/yyyy");
+            _payoutPage.NavigationTabs.ClickReportsTab();
+            _reportList.ClickReportByReportName("Cash Bank Activity");
+            _reportPage.ReportMenu.EnterStartDate(startDate);
+            _reportPage.ReportMenu.EnterEndDate(endDate);
+            _reportPage.ReportMenu.RunReport();
+
+            string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
+            string filepath = @"C:\Users\bdagg\Downloads";
+            string fullPath = filepath + @"\" + filename;
+
+            _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
+            _reportPage.SaveFileWindow.EnterFilepath(filepath);
+            _reportPage.SaveFileWindow.EnterFileName(filename);
+            _reportPage.SaveFileWindow.Save();
+
+            Assert.True(_reportPage.SaveFileWindow.FileDownloaded(fullPath));
+
+            ExcelReader reader = new ExcelReader();
+            reader.Open(fullPath);
+            var report = reader.ParseCashBankActivityReport();
+
+            decimal totalMoney = 0;
+            decimal totalPayout = 0;
+            foreach(var cashier in report.Data)
             {
-                foreach(var trans in record.Activities)
+                foreach(var session in cashier.Sessions)
                 {
-                    string session = trans.SessionId;
-                    if (!distinct.Contains(session))
+                    totalMoney += session.TotalMoney;
+
+                    var transactions = session.Transactions;
+                    foreach(var trans in transactions)
                     {
-                        distinct.Add(session);
+                        if (trans.TransType == "Payout")
+                        {
+                            totalPayout += trans.Payout;
+                        }
                     }
                 }
             }
 
-            Assert.AreEqual(distinct.Count,actualTotalTransactions);
+            Assert.AreEqual(report.TotalMoney, totalMoney);
+            Assert.AreEqual(report.TotalPayout, totalPayout);
         }
 
         [Test]
-        public void CashierActivityReport_MultipleCashiers()
+        public void CashBankActivityReport_UserTotals()
         {
-            //user 1 pays out a voucher
-            //create a voucher for $100
-            var barcode1 = TpService.GetVoucher(StartingAmountCredits, 500);
-            StartingAmountCredits -= 500;
 
             _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
             NavigationTabs.ClickPayoutTab();
@@ -504,14 +679,11 @@ namespace POS_Automation
             _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
             _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
 
-            _payoutPage.NumPad.EnterBarcode(barcode1);
-            _payoutPage.Payout();
+            var sessionId = _transRepo.GetCurrentUserSession(TestData.CashierUsername);
 
+            _payoutPage.CashDrawer.AddCash("100", TestData.CashierPassword);
+            _payoutPage.NavigationTabs.ClickDeviceTab();
             _payoutPage.Logout();
-
-            //user 2 pays out a voucher
-            //create a voucher for $100
-            var barcode2 = TpService.GetVoucher(StartingAmountCredits, 1000);
 
             _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
             NavigationTabs.ClickPayoutTab();
@@ -521,13 +693,14 @@ namespace POS_Automation
             _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
             _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
 
-            _payoutPage.NumPad.EnterBarcode(barcode2);
-            _payoutPage.Payout();
+            _payoutPage.CashDrawer.AddCash("100", TestData.SuperUserPassword);
+            _payoutPage.NavigationTabs.ClickDeviceTab();
+            _payoutPage.NavigationTabs.ClickReportsTab();
 
             string startDate = DateTime.Now.AddDays(-1).ToString("MM/d/yyyy");
             string endDate = DateTime.Now.AddDays(1).ToString("MM/d/yyyy");
             _payoutPage.NavigationTabs.ClickReportsTab();
-            _reportList.ClickReportByReportName("Daily Cashier Activity");
+            _reportList.ClickReportByReportName("Cash Bank Activity");
             _reportPage.ReportMenu.EnterStartDate(startDate);
             _reportPage.ReportMenu.EnterEndDate(endDate);
             _reportPage.ReportMenu.RunReport();
@@ -545,32 +718,33 @@ namespace POS_Automation
 
             ExcelReader reader = new ExcelReader();
             reader.Open(fullPath);
-            var report = reader.ParseCashierActivityReport();
+            var report = reader.ParseCashBankActivityReport();
 
-            var records = report.Data;
+            var cashierData = report.Data.SingleOrDefault(r => r.CreatedBy == TestData.CashierUsername);
 
-            Assert.True(records.Count >= 2);
-            Assert.True(records.Any(r => r.CreatedBy == TestData.SuperUserUsername));
-            Assert.True(records.Any(r => r.CreatedBy == TestData.CashierUsername));
+            decimal totalMoney = 0;
+            decimal totalPayout = 0;
+            foreach (var session in cashierData.Sessions)
+            {
+                totalMoney += session.TotalMoney;
 
-            var cashierRecords = records.Where(r => r.CreatedBy == TestData.CashierUsername).FirstOrDefault();
-            var cashierTransactions = cashierRecords.Activities;
-            string expectedVoucher = new string('*', 14) + barcode1.Substring(14, 4);
-            Assert.True(cashierTransactions.Any(r => r.VoucherNumber == expectedVoucher && r.PayoutAmount == 5));
+                var transactions = session.Transactions;
+                foreach (var trans in transactions)
+                {
+                    if (trans.TransType == "Payout")
+                    {
+                        totalPayout += trans.Payout;
+                    }
+                }
+            }
 
-            var cashier2Records = records.Where(r => r.CreatedBy == TestData.SuperUserUsername).FirstOrDefault();
-            var cashier2Transactions = cashier2Records.Activities;
-            string expectedVoucher2 = new string('*', 14) + barcode2.Substring(14, 4);
-            Assert.True(cashier2Transactions.Any(r => r.VoucherNumber == expectedVoucher2 && r.PayoutAmount == 10));
+            Assert.AreEqual(cashierData.TotalMoney, totalMoney);
+            Assert.AreEqual(cashierData.TotalPayout, totalPayout);
         }
 
         [Test]
-        public void CashierActivityReport_UserTotal()
+        public void CashBankActivityReport_SessionNotEnded()
         {
-            //user 1 pays out a voucher
-            //create a voucher for $100
-            var barcode1 = TpService.GetVoucher(StartingAmountCredits, 500);
-            StartingAmountCredits -= 500;
 
             _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
             NavigationTabs.ClickPayoutTab();
@@ -580,30 +754,22 @@ namespace POS_Automation
             _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
             _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
 
-            _payoutPage.NumPad.EnterBarcode(barcode1);
-            _payoutPage.Payout();
+            var sessionId = _transRepo.GetCurrentUserSession(TestData.CashierUsername);
 
             _payoutPage.Logout();
 
-            //user 2 pays out a voucher
-            //create a voucher for $100
-            var barcode2 = TpService.GetVoucher(StartingAmountCredits, 1000);
-
             _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
-            NavigationTabs.ClickPayoutTab();
 
             startingBalance = 1000;
 
             _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
             _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
-
-            _payoutPage.NumPad.EnterBarcode(barcode2);
-            _payoutPage.Payout();
+            _payoutPage.NavigationTabs.ClickReportsTab();
 
             string startDate = DateTime.Now.AddDays(-1).ToString("MM/d/yyyy");
             string endDate = DateTime.Now.AddDays(1).ToString("MM/d/yyyy");
             _payoutPage.NavigationTabs.ClickReportsTab();
-            _reportList.ClickReportByReportName("Daily Cashier Activity");
+            _reportList.ClickReportByReportName("Cash Bank Activity");
             _reportPage.ReportMenu.EnterStartDate(startDate);
             _reportPage.ReportMenu.EnterEndDate(endDate);
             _reportPage.ReportMenu.RunReport();
@@ -621,60 +787,26 @@ namespace POS_Automation
 
             ExcelReader reader = new ExcelReader();
             reader.Open(fullPath);
-            var report = reader.ParseCashierActivityReport();
+            var report = reader.ParseCashBankActivityReport();
 
-            var records = report.Data;
-            var cashierRecords = records.Where(r => r.CreatedBy == TestData.CashierUsername).SingleOrDefault();
+            var session = report.GetSession(sessionId);
+            Assert.AreEqual(2, session.Transactions.Count);
 
-            int cashVoucherCount = cashierRecords.Activities.Count;
-            decimal cashPayoutCount = 0;
-            var cashUniqueUserSessions = new List<string>();
-
-            foreach(var trans in cashierRecords.Activities)
-            {
-                cashPayoutCount += trans.PayoutAmount;
-                string session = trans.SessionId;
-
-                if (!cashUniqueUserSessions.Contains(session))
-                {
-                    cashUniqueUserSessions.Add(session);
-                }
-            }
-
-            Assert.AreEqual(cashierRecords.TotalVouchers, cashVoucherCount);
-            Assert.AreEqual(cashierRecords.TotalAmount, cashPayoutCount);
-            Assert.AreEqual(cashierRecords.TotalTransactions, cashUniqueUserSessions.Count);
-
-            var user2Records = records.Where(r => r.CreatedBy == TestData.SuperUserUsername).SingleOrDefault();
-            int userVoucherCount = user2Records.Activities.Count;
-            decimal user2PayoutCount = 0;
-            var user2UniqueUserSessions = new List<string>();
-
-            foreach (var trans in user2Records.Activities)
-            {
-                user2PayoutCount += trans.PayoutAmount;
-                string session = trans.SessionId;
-
-                if (!user2UniqueUserSessions.Contains(session))
-                {
-                    user2UniqueUserSessions.Add(session);
-                }
-            }
-
-            Assert.AreEqual(user2Records.TotalVouchers, userVoucherCount);
-            Assert.AreEqual(user2Records.TotalAmount, user2PayoutCount);
-            Assert.AreEqual(user2Records.TotalTransactions, user2UniqueUserSessions.Count);
+            Assert.True(session.Transactions.Any(t => t.TransType == "Start"));
+            Assert.True(session.Transactions.Any(t => t.TransType == "Session Not Ended"));
+            Assert.False(session.Transactions.Any(t => t.TransType == "End"));
         }
 
+
         [Test]
-        public void CashierActivityReport_VerifyHeader()
+        public void CashBankActivityReport_VerifyHeader()
         {
             _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
             NavigationTabs.ClickReportsTab();
 
             string startDate = DateTime.Now.AddDays(2).ToString("MM/dd/yyyy");
             string endDate = DateTime.Now.AddDays(3).ToString("MM/dd/yyyy");
-            _reportList.ClickReportByReportName("Daily Cashier Activity");
+            _reportList.ClickReportByReportName("Cash Bank Activity");
             _reportPage.ReportMenu.EnterStartDate(startDate);
             _reportPage.ReportMenu.EnterEndDate(endDate);
             _reportPage.ReportMenu.RunReport();
@@ -692,14 +824,14 @@ namespace POS_Automation
             var reader = new ExcelReader();
             //reader.Open(@"C:\Users\Ben\Downloads\20221107083023.xlsx");
             reader.Open(@"C:\Users\bdagg\Downloads\" + filename);
-            var report = reader.ParseCashierActivityReport();
+            var report = reader.ParseCashBankActivityReport();
 
             string title = report.Title;
             string period = report.ReportPeriod;
             string expectedPeriod = "Reporting Period: " + startDate + " to " + endDate + " 11:59:59 PM";
 
-            Assert.AreEqual("Daily Cashier Activity",title);
-            Assert.AreEqual(expectedPeriod,period);
+            Assert.AreEqual("Cash Bank Activity", title);
+            Assert.AreEqual(expectedPeriod, period);
         }
     }
 }

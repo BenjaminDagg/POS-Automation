@@ -72,6 +72,19 @@ namespace POS_Automation.Model
             report.Title = title;
 
             var date = ReadCell(Report<DailyCashierActivityReportRecord>.RuntimeCell.Row, Report<DailyCashierActivityReportRecord>.RuntimeCell.Col);
+            
+
+            var period = ReadCell(Report<DailyCashierActivityReportRecord>.PeriodCell.Row, Report<DailyCashierActivityReportRecord>.PeriodCell.Col);
+            report.ReportPeriod = period;
+
+            //no data found in report. Fill out only title and period then return report with no data
+            if (startRow == -1)
+            {
+                report.RunDate = DateTime.Now;
+                report.Data = records;
+                return report;
+            }
+
             date = date.Replace("\n", "");
             date = date.Replace("Run Date/Time", "");
             report.RunDate = DateTime.Parse(date);
@@ -87,9 +100,7 @@ namespace POS_Automation.Model
             totalTransaction = totalTransaction.Substring(totalTransaction.IndexOf(':') + 1);
             report.TotalTransactions = int.Parse(totalTransaction);
 
-            var period = ReadCell(Report<DailyCashierActivityReportRecord>.PeriodCell.Row, Report<DailyCashierActivityReportRecord>.PeriodCell.Col);
-            report.ReportPeriod = period;
-
+            
             for (int i = startRow + 1; i < xlRange.Rows.Count - 2; i++)
             {
 
@@ -155,6 +166,27 @@ namespace POS_Automation.Model
             var report = new CashBankActivityReport<CashBankActivityReportRecord>();
             var records = new List<CashBankActivityReportRecord>();
 
+            int startRow = RowNum("Created By");    //find row number that has "Created By" to start
+
+           
+            var title = ReadCell(Report<DailyCashierActivityReportRecord>.TitleCell.Row, Report<DailyCashierActivityReportRecord>.TitleCell.Col);
+            report.Title = title;
+
+            var period = ReadCell(6, 6);
+            report.ReportPeriod = period;
+
+            if (startRow == -1)
+            {
+                report.RunDate = DateTime.Now;
+                report.Data = records;
+                return report;
+            }
+
+            var date = ReadCell(2, 12);
+            date = date.Replace("\n", "");
+            date = date.Replace("Run Date/Time", "");
+            report.RunDate = DateTime.Parse(date);
+
             //record header info and totals
             decimal totalReportAmount = decimal.Parse(ReadCell(xlRange.Rows.Count - 3, 11));
             report.TotalMoney = totalReportAmount;
@@ -162,17 +194,6 @@ namespace POS_Automation.Model
             decimal totalReportPayout = decimal.Parse(ReadCell(xlRange.Rows.Count - 3, 13));
             report.TotalPayout = totalReportPayout;
 
-            var title = ReadCell(Report<DailyCashierActivityReportRecord>.TitleCell.Row, Report<DailyCashierActivityReportRecord>.TitleCell.Col);
-            report.Title = title;
-
-            var date = ReadCell(2, 12);
-            date = date.Replace("\n", "");
-            date = date.Replace("Run Date/Time", "");
-            report.RunDate = DateTime.Parse(date);
-
-            var period = ReadCell(6, 6);
-            report.ReportPeriod = period;
-            
             //stores last user and last session while iterating throgugh file
             string fUser = string.Empty;
             string fSession = string.Empty;
@@ -180,8 +201,7 @@ namespace POS_Automation.Model
             var allSessions = new List<CashBankActivitySession>(); //parses all sessions in the list
             var users = new List<CashBankActivityReportRecord>(); //stores each unique cashier username and all of their sessions
             
-            int startRow = RowNum("Created By");    //find row number that has "Created By" to start
-
+            
             for (int i = startRow + 1; i < xlRange.Rows.Count - 1; i++)
             {
 

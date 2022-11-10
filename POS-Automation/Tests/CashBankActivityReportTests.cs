@@ -630,7 +630,7 @@ namespace POS_Automation
             _reportPage.ReportMenu.RunReport();
 
             string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
-            string filepath = @"C:\Users\bdagg\Downloads";
+            string filepath = TestData.DownloadPath;
             string fullPath = filepath + @"\" + filename;
 
             _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
@@ -662,7 +662,7 @@ namespace POS_Automation
                     }
                 }
             }
-
+            Console.WriteLine(report.Title);
             Assert.AreEqual(report.TotalMoney, totalMoney);
             Assert.AreEqual(report.TotalPayout, totalPayout);
         }

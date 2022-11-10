@@ -6220,23 +6220,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\bdagg\\.nuget\\packages\\": {},
+    "C:\\Users\\Ben\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bdagg\\Documents\\POS Automation\\POS-Automation\\POS-Automation.csproj",
+      "projectUniqueName": "C:\\Users\\Ben\\Documents\\POS-Automation\\POS-Automation\\POS-Automation.csproj",
       "projectName": "POS-Automation",
-      "projectPath": "C:\\Users\\bdagg\\Documents\\POS Automation\\POS-Automation\\POS-Automation.csproj",
-      "packagesPath": "C:\\Users\\bdagg\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bdagg\\Documents\\POS Automation\\POS-Automation\\obj\\",
+      "projectPath": "C:\\Users\\Ben\\Documents\\POS-Automation\\POS-Automation\\POS-Automation.csproj",
+      "packagesPath": "C:\\Users\\Ben\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Ben\\Documents\\POS-Automation\\POS-Automation\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\bdagg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Ben\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -6251,8 +6251,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\bdagg\\Documents\\EGM\\EGM\\EGMSimulator.Core\\EGMSimulator.Core.csproj": {
-              "projectPath": "C:\\Users\\bdagg\\Documents\\EGM\\EGM\\EGMSimulator.Core\\EGMSimulator.Core.csproj"
+            "C:\\Users\\Ben\\Documents\\EGM\\EGM\\EGMSimulator.Core\\EGMSimulator.Core.csproj": {
+              "projectPath": "C:\\Users\\Ben\\Documents\\EGM\\EGM\\EGMSimulator.Core\\EGMSimulator.Core.csproj"
             }
           }
         }
@@ -6319,7 +6319,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   },

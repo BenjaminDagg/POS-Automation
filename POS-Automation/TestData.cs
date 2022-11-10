@@ -61,5 +61,6 @@ namespace POS_Automation
         public static int PollingIntervalSec = 5;
 
         public static string ConfigFilePath = ConfigurationManager.AppSettings["ConfigFileJsonPath"];
+        public static string DownloadPath = ConfigurationManager.AppSettings["DownloadPath"];
     }
 }

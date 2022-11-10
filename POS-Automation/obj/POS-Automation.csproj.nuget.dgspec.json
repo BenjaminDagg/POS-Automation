@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ben\\Documents\\POS-Automation\\POS-Automation\\POS-Automation.csproj": {}
+    "C:\\Users\\bdagg\\Documents\\POS Automation\\POS-Automation\\POS-Automation.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ben\\Documents\\EGM\\EGM\\EGMSimulator.Core\\EGMSimulator.Core.csproj": {
+    "C:\\Users\\bdagg\\Documents\\EGM\\EGM\\EGMSimulator.Core\\EGMSimulator.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ben\\Documents\\EGM\\EGM\\EGMSimulator.Core\\EGMSimulator.Core.csproj",
+        "projectUniqueName": "C:\\Users\\bdagg\\Documents\\EGM\\EGM\\EGMSimulator.Core\\EGMSimulator.Core.csproj",
         "projectName": "Egm.Core",
-        "projectPath": "C:\\Users\\Ben\\Documents\\EGM\\EGM\\EGMSimulator.Core\\EGMSimulator.Core.csproj",
-        "packagesPath": "C:\\Users\\Ben\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ben\\Documents\\EGM\\EGM\\EGMSimulator.Core\\obj\\",
+        "projectPath": "C:\\Users\\bdagg\\Documents\\EGM\\EGM\\EGMSimulator.Core\\EGMSimulator.Core.csproj",
+        "packagesPath": "C:\\Users\\bdagg\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\bdagg\\Documents\\EGM\\EGM\\EGMSimulator.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Ben\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\bdagg\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -32,11 +32,11 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\Ben\\Documents\\EGM\\Framework\\Framework.Core\\Framework.Core.csproj": {
-                "projectPath": "C:\\Users\\Ben\\Documents\\EGM\\Framework\\Framework.Core\\Framework.Core.csproj"
+              "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Core\\Framework.Core.csproj": {
+                "projectPath": "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Core\\Framework.Core.csproj"
               },
-              "C:\\Users\\Ben\\Documents\\EGM\\Framework\\Framework.Infrastructure\\Framework.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\Ben\\Documents\\EGM\\Framework\\Framework.Infrastructure\\Framework.Infrastructure.csproj"
+              "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Infrastructure\\Framework.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Infrastructure\\Framework.Infrastructure.csproj"
               }
             }
           }
@@ -82,35 +82,29 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[3.1.10, 3.1.10]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Ben\\Documents\\EGM\\Framework\\Framework.Core\\Framework.Core.csproj": {
+    "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Core\\Framework.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ben\\Documents\\EGM\\Framework\\Framework.Core\\Framework.Core.csproj",
+        "projectUniqueName": "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Core\\Framework.Core.csproj",
         "projectName": "Framework.Core",
-        "projectPath": "C:\\Users\\Ben\\Documents\\EGM\\Framework\\Framework.Core\\Framework.Core.csproj",
-        "packagesPath": "C:\\Users\\Ben\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ben\\Documents\\EGM\\Framework\\Framework.Core\\obj\\",
+        "projectPath": "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Core\\Framework.Core.csproj",
+        "packagesPath": "C:\\Users\\bdagg\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Ben\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\bdagg\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -125,8 +119,8 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "C:\\Users\\Ben\\Documents\\EGM\\Framework\\Framework.Domain\\Framework.Domain.csproj": {
-                "projectPath": "C:\\Users\\Ben\\Documents\\EGM\\Framework\\Framework.Domain\\Framework.Domain.csproj"
+              "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Domain\\Framework.Domain.csproj": {
+                "projectPath": "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Domain\\Framework.Domain.csproj"
               }
             }
           }
@@ -161,24 +155,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Ben\\Documents\\EGM\\Framework\\Framework.Domain\\Framework.Domain.csproj": {
+    "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Domain\\Framework.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ben\\Documents\\EGM\\Framework\\Framework.Domain\\Framework.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Domain\\Framework.Domain.csproj",
         "projectName": "Framework.Domain",
-        "projectPath": "C:\\Users\\Ben\\Documents\\EGM\\Framework\\Framework.Domain\\Framework.Domain.csproj",
-        "packagesPath": "C:\\Users\\Ben\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ben\\Documents\\EGM\\Framework\\Framework.Domain\\obj\\",
+        "projectPath": "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Domain\\Framework.Domain.csproj",
+        "packagesPath": "C:\\Users\\bdagg\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Ben\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\bdagg\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -225,24 +219,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Ben\\Documents\\EGM\\Framework\\Framework.Infrastructure\\Framework.Infrastructure.csproj": {
+    "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Infrastructure\\Framework.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ben\\Documents\\EGM\\Framework\\Framework.Infrastructure\\Framework.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Infrastructure\\Framework.Infrastructure.csproj",
         "projectName": "Framework.Infrastructure",
-        "projectPath": "C:\\Users\\Ben\\Documents\\EGM\\Framework\\Framework.Infrastructure\\Framework.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\Ben\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ben\\Documents\\EGM\\Framework\\Framework.Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Infrastructure\\Framework.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\bdagg\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Ben\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\bdagg\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -257,8 +251,8 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "C:\\Users\\Ben\\Documents\\EGM\\Framework\\Framework.Core\\Framework.Core.csproj": {
-                "projectPath": "C:\\Users\\Ben\\Documents\\EGM\\Framework\\Framework.Core\\Framework.Core.csproj"
+              "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Core\\Framework.Core.csproj": {
+                "projectPath": "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Core\\Framework.Core.csproj"
               }
             }
           }
@@ -321,24 +315,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Ben\\Documents\\POS-Automation\\POS-Automation\\POS-Automation.csproj": {
+    "C:\\Users\\bdagg\\Documents\\POS Automation\\POS-Automation\\POS-Automation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ben\\Documents\\POS-Automation\\POS-Automation\\POS-Automation.csproj",
+        "projectUniqueName": "C:\\Users\\bdagg\\Documents\\POS Automation\\POS-Automation\\POS-Automation.csproj",
         "projectName": "POS-Automation",
-        "projectPath": "C:\\Users\\Ben\\Documents\\POS-Automation\\POS-Automation\\POS-Automation.csproj",
-        "packagesPath": "C:\\Users\\Ben\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ben\\Documents\\POS-Automation\\POS-Automation\\obj\\",
+        "projectPath": "C:\\Users\\bdagg\\Documents\\POS Automation\\POS-Automation\\POS-Automation.csproj",
+        "packagesPath": "C:\\Users\\bdagg\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\bdagg\\Documents\\POS Automation\\POS-Automation\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Ben\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\bdagg\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -353,8 +347,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Ben\\Documents\\EGM\\EGM\\EGMSimulator.Core\\EGMSimulator.Core.csproj": {
-                "projectPath": "C:\\Users\\Ben\\Documents\\EGM\\EGM\\EGMSimulator.Core\\EGMSimulator.Core.csproj"
+              "C:\\Users\\bdagg\\Documents\\EGM\\EGM\\EGMSimulator.Core\\EGMSimulator.Core.csproj": {
+                "projectPath": "C:\\Users\\bdagg\\Documents\\EGM\\EGM\\EGMSimulator.Core\\EGMSimulator.Core.csproj"
               }
             }
           }
@@ -421,7 +415,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

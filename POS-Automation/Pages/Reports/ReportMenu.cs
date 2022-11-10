@@ -83,8 +83,14 @@ namespace POS_Automation.Pages.Reports
 
         public void EnterStartDate(string date)
         {
+            wait.Until(d => driver.FindElement(StartDateField));
             
-            driver.FindElement(StartDateField).Click();
+            string text = driver.FindElement(StartDateField).Text;
+
+            if(text.IndexOf(':') == -1)
+            {
+                driver.FindElement(StartDateField).Click();
+            }
 
             //month
             int month = int.Parse(date.Substring(0, date.IndexOf('/')));
@@ -122,7 +128,7 @@ namespace POS_Automation.Pages.Reports
 
         public void EnterEndDate(string date)
         {
-            
+            wait.Until(d => driver.FindElement(EndDateField));
             driver.FindElement(EndDateField).Click();
 
             //month

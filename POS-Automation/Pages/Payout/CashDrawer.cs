@@ -163,11 +163,13 @@ namespace POS_Automation.Pages.Payout
         {
             wait.Until(d => driver.FindElement(AddCashButton));
             driver.FindElement(AddCashButton).Click();
+            driver.FindElement(AddCashButton).Click();
         }
 
         public void ClickRemoveCash()
         {
             wait.Until(d => driver.FindElement(RemoveCashButton));
+            driver.FindElement(RemoveCashButton).Click();
             driver.FindElement(RemoveCashButton).Click();
         }
 

@@ -9,6 +9,8 @@ using OpenQA.Selenium.Appium.Windows;
 using System.Linq;
 using POS_Automation.Model.Payout;
 using POS_Automation.Pages.Reports;
+using System.Globalization;
+using System.IO;
 
 namespace POS_Automation
 {
@@ -152,6 +154,35 @@ namespace POS_Automation
                 }
                 Console.WriteLine($"vouchers:{record.TotalVouchers}, amount:{record.TotalAmount},trans:{record.TotalTransactions}");
             }
+        }
+
+        [Test]
+        public void Test()
+        {
+            string filepath = @"C:\Users\bdagg\Downloads\Cashier Balance2lsx.xlsx";
+            bool exists = File.Exists(filepath);
+
+            if (!exists)
+            {
+                Assert.Fail();
+            }
+
+            var reader = new ExcelReader();
+            //reader.Open(@"C:\Users\Ben\Downloads\20221107083023.xlsx");
+            reader.Open(filepath);
+            var report = reader.ParseCashierBalanceReport(includeVouchers: true);
+
+            var vouchers = report.UnpaidVouchers;
+            var reportStartDate = DateTime.ParseExact("11/9/2022", "M/d/yyyy", CultureInfo.InvariantCulture);
+            var reportEndDate = DateTime.ParseExact("11/10/2022", "M/d/yyyy", CultureInfo.InvariantCulture);
+
+            foreach(var voucher in vouchers)
+            {
+                var date = voucher.CreatedDate;
+
+                Assert.True(date >= reportStartDate && date <= reportEndDate);
+            }
+
         }
 
         [Test]

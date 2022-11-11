@@ -58,29 +58,6 @@ namespace POS_Automation
             StartingAmountCredits = 100000;
         }
 
-        //Verify an error is displayed to the user if the scanned barcode is already in the transaction
-        [Test]
-        public void PayoutTest_VoucherAlreadyInTransaction()
-        {
-
-            var reader = new ExcelReader();
-            //reader.Open(@"C:\Users\Ben\Downloads\20221107083023.xlsx");
-            reader.Open(@"C:\Users\bdagg\Downloads\Daily Cashier Activityall.xlsx");
-            var report = reader.ParseCashierActivityReport();
-            Console.WriteLine("title = " + report.Title);
-            Console.WriteLine("ran at " + report.RunDate);
-            Console.WriteLine("period = " + report.ReportPeriod);
-
-            foreach (var record in report.Data)
-            {
-                Console.WriteLine(record.CreatedBy);
-                foreach (var activity in record.Activities)
-                {
-                    Console.WriteLine($"{activity.CreatedBy},{activity.SessionId},{activity.Station},{activity.VoucherNumber},{activity.PayoutAmount},{activity.ReceiptNumber},{activity.Date}");
-                }
-                Console.WriteLine($"vouchers:{record.TotalVouchers}, amount:{record.TotalAmount},trans:{record.TotalTransactions}");
-            }
-        }
 
 
         [Test]

@@ -155,7 +155,12 @@ namespace POS_Automation
 
         private void EndSession()
         {
-            _payoutPage.NavigationTabs.ClickDeviceTab();
+            _payoutPage.Logout();
+            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
+            NavigationTabs.ClickPayoutTab();
+
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(CashDrawerStartingBalanceDollars.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
         }
 
         private void GenerateReport()
@@ -386,7 +391,7 @@ namespace POS_Automation
             Assert.NotNull(session);
 
             string expectedVoucher = new string('*', 13) + UnpaidBarcode.Substring(13, 5);
-            var unpaidVoucher = report.UnpaidVouchers.FirstOrDefault(v => v.VoucherNumber == expectedVoucher);
+            var unpaidVoucher = report.UnpaidVouchers.FirstOrDefault(v => v.VoucherNumber == expectedVoucher && v.Amount == 15);
             
             Assert.NotNull(unpaidVoucher);
             Assert.AreEqual(15,unpaidVoucher.Amount);
@@ -536,34 +541,6 @@ namespace POS_Automation
                     var endDate = sesh.EndDate;
                     Assert.True(endDate <= reportEndDate);
                 }
-            }
-        }
-
-        [Test]
-        public void CashierBalance_VerifyVoucherDates()
-        {
-            string filepath = TestData.DownloadPath + @"\" + ReportFileName;
-            bool exists = File.Exists(filepath);
-
-            if (!exists)
-            {
-                Assert.Fail();
-            }
-
-            var reader = new ExcelReader();
-            //reader.Open(@"C:\Users\Ben\Downloads\20221107083023.xlsx");
-            reader.Open(filepath);
-            var report = reader.ParseCashierBalanceReport(includeVouchers: true);
-
-            var vouchers = report.UnpaidVouchers;
-            var reportStartDate = DateTime.ParseExact(ReportStartDate, "M/d/yyyy", CultureInfo.InvariantCulture);
-            var reportEndDate = DateTime.ParseExact(ReportEndDate, "M/d/yyyy", CultureInfo.InvariantCulture);
-
-            foreach (var voucher in vouchers)
-            {
-                var date = voucher.CreatedDate;
-
-                Assert.True(date >= reportStartDate && date <= reportEndDate);
             }
         }
     }

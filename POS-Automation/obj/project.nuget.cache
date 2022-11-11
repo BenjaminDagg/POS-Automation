@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XNVrROOWFj7lYfkKVXTv9OmhgFCS1ysmP7ynY60E6QGRnIK3ZISUr6sk1rgFLTTQSvLZw8Fp1Qa/wD44cprUwQ==",
+  "dgSpecHash": "K50F7QhPzyQMsoDlh9gQb68iGXQRdGJfpH0hkGH5YwwootOW37LDvcIyVIjDQzgzF1vuVQjWwcmAbyLj7Ql2+A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\bdagg\\Documents\\POS Automation\\POS-Automation\\POS-Automation.csproj",
+  "projectFilePath": "c:\\Users\\bdagg\\Documents\\POS Automation\\POS-Automation\\POS-Automation.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bdagg\\.nuget\\packages\\appium.webdriver\\4.3.2\\appium.webdriver.4.3.2.nupkg.sha512",
     "C:\\Users\\bdagg\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",

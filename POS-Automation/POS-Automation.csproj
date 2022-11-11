@@ -27,11 +27,14 @@
 
   <ItemGroup>
     <Reference Include="office">
-      <HintPath>..\..\..\..\..\Windows\assembly\GAC_MSIL\office\15.0.0.0__71e9bce111e9429c\office.dll</HintPath>
+      <HintPath>bin\Debug\net6.0\office.dll</HintPath>
     </Reference>
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="office.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="testhost.dll.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

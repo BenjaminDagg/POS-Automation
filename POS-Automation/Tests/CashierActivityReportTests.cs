@@ -471,16 +471,18 @@ namespace POS_Automation
             decimal actualTotalTransactions = report.TotalTransactions;
             var records = report.Data;
 
-            var distinct = new List<string>();
+            var distinct = new List<int>();
 
             foreach(var record in records)
             {
                 foreach(var trans in record.Activities)
                 {
                     string session = trans.SessionId;
-                    if (!distinct.Contains(session))
+                    int transId = trans.ReceiptNumber;
+
+                    if (!distinct.Contains(transId))
                     {
-                        distinct.Add(session);
+                        distinct.Add(transId);
                     }
                 }
             }
@@ -628,42 +630,44 @@ namespace POS_Automation
 
             int cashVoucherCount = cashierRecords.Activities.Count;
             decimal cashPayoutCount = 0;
-            var cashUniqueUserSessions = new List<string>();
+            var cashUniqueTransactions = new List<int>();
 
             foreach(var trans in cashierRecords.Activities)
             {
                 cashPayoutCount += trans.PayoutAmount;
                 string session = trans.SessionId;
 
-                if (!cashUniqueUserSessions.Contains(session))
+                int transId = trans.ReceiptNumber;
+                if (!cashUniqueTransactions.Contains(transId))
                 {
-                    cashUniqueUserSessions.Add(session);
+                    cashUniqueTransactions.Add(transId);
                 }
             }
 
             Assert.AreEqual(cashierRecords.TotalVouchers, cashVoucherCount);
             Assert.AreEqual(cashierRecords.TotalAmount, cashPayoutCount);
-            Assert.AreEqual(cashierRecords.TotalTransactions, cashUniqueUserSessions.Count);
+            Assert.AreEqual(cashierRecords.TotalTransactions, cashUniqueTransactions.Count);
 
             var user2Records = records.Where(r => r.CreatedBy == TestData.SuperUserUsername).SingleOrDefault();
             int userVoucherCount = user2Records.Activities.Count;
             decimal user2PayoutCount = 0;
-            var user2UniqueUserSessions = new List<string>();
+            var user2UniqueTrans = new List<int>();
 
             foreach (var trans in user2Records.Activities)
             {
                 user2PayoutCount += trans.PayoutAmount;
                 string session = trans.SessionId;
 
-                if (!user2UniqueUserSessions.Contains(session))
+                int transId = trans.ReceiptNumber;
+                if (!user2UniqueTrans.Contains(transId))
                 {
-                    user2UniqueUserSessions.Add(session);
+                    user2UniqueTrans.Add(transId);
                 }
             }
 
             Assert.AreEqual(user2Records.TotalVouchers, userVoucherCount);
             Assert.AreEqual(user2Records.TotalAmount, user2PayoutCount);
-            Assert.AreEqual(user2Records.TotalTransactions, user2UniqueUserSessions.Count);
+            Assert.AreEqual(user2Records.TotalTransactions, user2UniqueTrans.Count);
         }
 
         [Test]

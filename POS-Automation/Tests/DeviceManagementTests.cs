@@ -336,7 +336,7 @@ namespace POS_Automation
             var lastPlayedDates = _devicePage.GetValuesForColumn(3);
             var targetDate = lastPlayedDates[0];
             DateTime outDate;
-            string[] dateFormats = { "MM/dd/yyyy hh:mm:ss tt" };
+            string[] dateFormats = { "MM/dd/yyyy hh:mm tt" };
             string[] dateStrings = { targetDate };
 
             Assert.True(DateTime.TryParseExact(targetDate, dateFormats, CultureInfo.InvariantCulture, DateTimeStyles.None, out outDate));
@@ -492,34 +492,6 @@ namespace POS_Automation
             driver.FindElement(_devicePage.SetAllOfflineButton).Click();
             Assert.True(_devicePage.ChangeStatusAlert.IsOpen);
         }
-
-        [Test]
-        public void SuccesfullLogin()
-        {
-            _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
-            NavigationTabs.ClickDeviceTab();
-
-            //GameSimulator.SetOffline();
-            
-            Thread.Sleep(20000);
-            Byte[] data = System.Text.Encoding.ASCII.GetBytes("test");
-            data = new Byte[256];
-
-            // String to store the response ASCII representation.
-            String responseData = String.Empty;
-
-            // Read the first batch of the TcpServer response bytes.
-            Int32 bytes = GameSimulator.transactionPortalService.tpClient.tcpClient.GetStream().Read(data, 0, data.Length); //(**This receives the data using the byte method**)
-            responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes); //(**This converts it to string**)
-            Console.WriteLine(responseData);
-
-            GameSimulator.transactionPortalService.tpClient.Execute("3,Z,2021-07-15 10:39:22,0,,0,ShutdownMachine");
-
-            var mach = _devicePage.GetMachineByMachNo("00001");
-
-            Assert.False(mach.Status);
-        }
-
 
     }
 }

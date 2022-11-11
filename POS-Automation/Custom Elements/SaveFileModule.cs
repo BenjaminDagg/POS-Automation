@@ -62,7 +62,7 @@ namespace POS_Automation.Custom_Elements
         private bool WaitForDownload(string filepath)
         {
             bool exists = File.Exists(filepath);
-            int timer = 5;
+            int timer = 15;
 
             while(timer > 0)
             {

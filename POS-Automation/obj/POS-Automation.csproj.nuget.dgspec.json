@@ -91,14 +91,14 @@
         }
       }
     },
-    "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Core\\Framework.Core.csproj": {
+    "c:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Core\\Framework.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Core\\Framework.Core.csproj",
+        "projectUniqueName": "c:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Core\\Framework.Core.csproj",
         "projectName": "Framework.Core",
-        "projectPath": "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Core\\Framework.Core.csproj",
+        "projectPath": "c:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Core\\Framework.Core.csproj",
         "packagesPath": "C:\\Users\\bdagg\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Core\\obj\\",
+        "outputPath": "c:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -119,8 +119,8 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Domain\\Framework.Domain.csproj": {
-                "projectPath": "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Domain\\Framework.Domain.csproj"
+              "c:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Domain\\Framework.Domain.csproj": {
+                "projectPath": "c:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Domain\\Framework.Domain.csproj"
               }
             }
           }
@@ -159,14 +159,14 @@
         }
       }
     },
-    "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Domain\\Framework.Domain.csproj": {
+    "c:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Domain\\Framework.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Domain\\Framework.Domain.csproj",
+        "projectUniqueName": "c:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Domain\\Framework.Domain.csproj",
         "projectName": "Framework.Domain",
-        "projectPath": "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Domain\\Framework.Domain.csproj",
+        "projectPath": "c:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Domain\\Framework.Domain.csproj",
         "packagesPath": "C:\\Users\\bdagg\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Domain\\obj\\",
+        "outputPath": "c:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -223,14 +223,14 @@
         }
       }
     },
-    "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Infrastructure\\Framework.Infrastructure.csproj": {
+    "c:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Infrastructure\\Framework.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Infrastructure\\Framework.Infrastructure.csproj",
+        "projectUniqueName": "c:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Infrastructure\\Framework.Infrastructure.csproj",
         "projectName": "Framework.Infrastructure",
-        "projectPath": "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Infrastructure\\Framework.Infrastructure.csproj",
+        "projectPath": "c:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Infrastructure\\Framework.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\bdagg\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Infrastructure\\obj\\",
+        "outputPath": "c:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -251,8 +251,8 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Core\\Framework.Core.csproj": {
-                "projectPath": "C:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Core\\Framework.Core.csproj"
+              "c:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Core\\Framework.Core.csproj": {
+                "projectPath": "c:\\Users\\bdagg\\Documents\\EGM\\Framework\\Framework.Core\\Framework.Core.csproj"
               }
             }
           }

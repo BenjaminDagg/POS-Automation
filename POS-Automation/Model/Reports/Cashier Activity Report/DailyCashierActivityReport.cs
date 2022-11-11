@@ -24,7 +24,7 @@ namespace POS_Automation.Model.Reports
                 {
                     if(activity.SessionId == session)
                     {
-                        
+                        records.Add(activity);
                     }
                 }
             }

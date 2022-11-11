@@ -230,14 +230,15 @@ namespace POS_Automation
             _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
             _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
 
-            foreach(var barcode in vouchers)
+            var session = _transRepo.GetCurrentUserSession(TestData.SuperUserUsername);
+
+            foreach (var barcode in vouchers)
             {
                 _payoutPage.NumPad.EnterBarcode(barcode);
             }
             _payoutPage.Payout();
 
-            var session = _transRepo.GetCurrentUserSession(TestData.SuperUserUsername);
-
+            
             string startDate = DateTime.Now.AddDays(-1).ToString("MM/d/yyyy");
             string endDate = DateTime.Now.AddDays(1).ToString("MM/d/yyyy");
             _payoutPage.NavigationTabs.ClickReportsTab();

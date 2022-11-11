@@ -155,12 +155,7 @@ namespace POS_Automation
 
         private void EndSession()
         {
-            _payoutPage.Logout();
-            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
-            NavigationTabs.ClickPayoutTab();
-
-            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(CashDrawerStartingBalanceDollars.ToString());
-            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+            _payoutPage.NavigationTabs.ClickDeviceTab();
         }
 
         private void GenerateReport()
@@ -543,5 +538,6 @@ namespace POS_Automation
                 }
             }
         }
+
     }
 }

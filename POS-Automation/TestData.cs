@@ -20,6 +20,9 @@ namespace POS_Automation
         public static string CashierPassword = ConfigurationManager.AppSettings["CashierPassword"];
         public static string CashierUsername2 = ConfigurationManager.AppSettings["CashierUsername2"];
         public static string CashierPassword2 = ConfigurationManager.AppSettings["CashierPassword2"];
+        public static string DeactivatedUsername = ConfigurationManager.AppSettings["DeactivatedUsername"];
+        public static string DeactivatedPassword = ConfigurationManager.AppSettings["DeactivatedPassword"];
+        public static int IncorrectPasswordAttempts = int.Parse(ConfigurationManager.AppSettings["IncorrectPasswordAttempts"]);
 
         //Payout Settings 
         public static int CashDrawerMaxBalance = int.Parse(ConfigurationManager.AppSettings["CashdrawerMaxBalance"]);

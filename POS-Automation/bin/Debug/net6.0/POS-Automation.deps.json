@@ -18,7 +18,8 @@
           "Newtonsoft.Json": "13.0.1",
           "System.Configuration.ConfigurationManager": "6.0.1",
           "System.Data.SqlClient": "4.8.4",
-          "coverlet.collector": "3.1.0"
+          "coverlet.collector": "3.1.0",
+          "office": "15.0.0.0"
         },
         "runtime": {
           "POS-Automation.dll": {}
@@ -1333,6 +1334,14 @@
           "Framework.Infrastructure.dll": {}
         }
       },
+      "office/15.0.0.0": {
+        "runtime": {
+          "office.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.0.4613.1000"
+          }
+        }
+      },
       "eBarcodeLibrary/3.1.8069.13535": {
         "runtime": {
           "eBarcodeLibrary.dll": {
@@ -2115,6 +2124,11 @@
     },
     "Framework.Infrastructure/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "office/15.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     },

@@ -81,5 +81,20 @@ namespace POS_Automation
             return true;
         }
 
+        public bool IsLoggedIn
+        {
+            get
+            {
+                try
+                {
+                    wait.Until(d => driver.FindElement(LogoutButton));
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+        }
     }
 }

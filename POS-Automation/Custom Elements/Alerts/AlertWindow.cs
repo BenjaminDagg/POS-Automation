@@ -38,13 +38,7 @@ namespace POS_Automation.Custom_Elements.Alerts
                 try
                 {
 
-                    Thread.Sleep(1000);
-                    wait.Until(d =>
-                    {
-                        WindowsElement element = driver.FindElement(Window);
-
-                        return element != null;
-                    });
+                    wait.Until(d => driver.FindElement(Window));
                     return true;
                 }
                 catch (Exception ex)

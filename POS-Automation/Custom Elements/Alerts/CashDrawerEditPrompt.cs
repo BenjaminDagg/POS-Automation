@@ -47,12 +47,22 @@ namespace POS_Automation.Custom_Elements.Alerts
 
         public void EnterAmount(string text)
         {
+            if (!IsOpen)
+            {
+                return;
+            }
+
             wait.Until(d => driver.FindElement(AmountTextbox));
             driver.FindElement(AmountTextbox).SendKeys(text);
         }
 
         public void EnterPassword(string text)
         {
+            if (!IsOpen)
+            {
+                return;
+            }
+
             wait.Until(d => driver.FindElement(PasswordTextbox));
             driver.FindElement(PasswordTextbox).SendKeys(text);
         }

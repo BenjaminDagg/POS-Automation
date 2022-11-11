@@ -67,6 +67,7 @@ namespace POS_Automation.Pages.Reports
         {
             var options = new List<ReportListItem>();
 
+            Thread.Sleep(1000);
             wait.Until(d => driver.FindElements(RowSelector).Count > 0);
             var rows = driver.FindElements(RowSelector);
 
@@ -83,7 +84,7 @@ namespace POS_Automation.Pages.Reports
                 }
                 catch (Exception ex)
                 {
-
+                    Console.WriteLine($"ReportListPage.ClickReportByName: Failed to find report {targetReport}");
                 }
             }
         }

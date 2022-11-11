@@ -47,7 +47,7 @@ namespace POS_Automation.Pages.Payout
             if (num == 0)
             {
                 WindowsElement zeroBtn = driver.FindElement(By.XPath(btnXpath));
-                driver.Mouse.MouseMove(zeroBtn.Coordinates, 24, 0);
+                driver.Mouse.MouseMove(zeroBtn.Coordinates, 24, 24);
                 driver.Mouse.Click(null);
 
                 return;

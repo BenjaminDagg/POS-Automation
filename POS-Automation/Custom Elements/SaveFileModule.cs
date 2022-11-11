@@ -58,7 +58,15 @@ namespace POS_Automation.Custom_Elements
             driver.FindElement(WindowSelector).FindElement(SaveButton).Click();
 
             //throw exception in something went wrong during save
-            wait.Until(d => driver.FindElements(WindowSelector).Count == 0);
+            try
+            {
+                wait.Until(d => driver.FindElements(WindowSelector).Count == 0);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Error saving file. " + ex.Message);
+                Assert.Fail();
+            }
         }
 
 

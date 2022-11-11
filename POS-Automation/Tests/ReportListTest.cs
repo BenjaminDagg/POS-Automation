@@ -277,6 +277,25 @@ namespace POS_Automation
         }
 
         [Test]
+        public void InvalidFilePath()
+        {
+            _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
+            NavigationTabs.ClickReportsTab();
+
+            _reportList.ClickReportByReportName("Daily Cashier Activity");
+            _reportPage.ReportMenu.ExportReport(ReportExportOptions.PDF);
+
+            string fileName = DateTime.Now.ToString("HHmmssfff") + ".pdf";
+            string fullPath = TestData.DownloadPath + @"\" + fileName;
+
+            _reportPage.SaveFileWindow.EnterFilepath(@"C:\invalid\path");
+            _reportPage.SaveFileWindow.EnterFileName(fileName);
+            _reportPage.SaveFileWindow.Save();
+
+            Assert.True(_reportPage.SaveFileWindow.FileDownloaded(fullPath));
+        }
+
+        [Test]
         public void ExportReportExcel()
         {
             _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);

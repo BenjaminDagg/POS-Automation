@@ -32,10 +32,10 @@ namespace POS_Automation
 
         public void EnterUserName(string username)
         {
-            waitForElement(UsernameField, 5);
-            WindowsElement usernameField = (WindowsElement)wait.Until(d => driver.FindElement(UsernameField));
-            usernameField.Clear();
-            usernameField.SendKeys(username);
+            waitForElement(UsernameField, 15);
+            wait.Until(d => driver.FindElement(UsernameField));
+            driver.FindElement(UsernameField).Clear();
+            driver.FindElement(UsernameField).SendKeys(username);
         }
 
 

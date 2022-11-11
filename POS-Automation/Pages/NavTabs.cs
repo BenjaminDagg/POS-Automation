@@ -42,7 +42,14 @@ namespace POS_Automation
 
         public void ClickDeviceTab()
         {
-            wait.Until(d => driver.FindElement(DeviceManagementTab));
+            try
+            {
+                wait.Until(d => driver.FindElement(DeviceManagementTab));
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("NavTabs.ClickDeviceTab: Timed out waiting for Device Management tab. " + ex.Message);
+            }
             driver.FindElement(DeviceManagementTab).Click();
         }
 

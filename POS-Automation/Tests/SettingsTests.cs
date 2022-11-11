@@ -139,7 +139,7 @@ namespace POS_Automation
             Assert.True(_settingsPage.ErrorIsDisplayed(_settingsPage.PortNumberField));
         }
 
-        [TestCase(4999)]
+        [TestCase(4499)]
         [TestCase(5001)]
         [TestCase(123)]
         [TestCase(50001)]

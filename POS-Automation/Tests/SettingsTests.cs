@@ -11,18 +11,24 @@ namespace POS_Automation
     {
         private LoginPage _loginPage;
         private SettingsPage _settingsPage;
+        private AppSettings AppSettings;
 
         [SetUp]
         public void Setup()
         {
             _loginPage = new LoginPage(driver);
             _settingsPage = new SettingsPage(driver);
+
+            AppSettings = AppSettingsManager.Read();
         }
 
         [TearDown]
         public void TearDown()
         {
-
+            if(AppSettings != null)
+            {
+                AppSettingsManager.Write(AppSettings);
+            }
         }
 
         [Test]
@@ -150,7 +156,7 @@ namespace POS_Automation
 
             Assert.False(_settingsPage.ErrorIsDisplayed(_settingsPage.PortNumberField));
 
-            _settingsPage.EnterPortNumber(port.ToString());
+            _settingsPage.EnterPortNumber(port);
             _settingsPage.SaveDeviceSettings();
 
             Assert.True(_settingsPage.ErrorIsDisplayed(_settingsPage.PortNumberField));

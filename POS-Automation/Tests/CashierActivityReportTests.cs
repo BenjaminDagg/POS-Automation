@@ -688,7 +688,7 @@ namespace POS_Automation
             _reportPage.SaveFileWindow.EnterFilepath(TestData.DownloadPath);
 
             string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
-            string filepath = TestData.DownloadPath = @"\" + filename;
+            string filepath = TestData.DownloadPath + @"\" + filename;
             _reportPage.SaveFileWindow.EnterFileName(filename);
             _reportPage.SaveFileWindow.Save();
 

@@ -82,108 +82,6 @@ namespace POS_Automation
             }
         }
 
-        [Test]
-        public void CashBankActivityTest()
-        {
-
-            var reader = new ExcelReader();
-            //reader.Open(@"C:\Users\Ben\Downloads\20221107083023.xlsx");
-            reader.Open(@"C:\Users\bdagg\Downloads\Cash Bank Activityold.xlsx");
-            var report = reader.ParseCashBankActivityReport();
-
-            Console.WriteLine("Title: " + report.Title);
-            Console.WriteLine("Run Time: " + report.RunDate);
-            Console.WriteLine("Period: " + report.ReportPeriod);
-
-            foreach (var cashier in report.Data)
-            {
-                Console.WriteLine("===================");
-                Console.WriteLine(cashier.CreatedBy);
-
-                foreach (var session in cashier.Sessions)
-                {
-                    Console.WriteLine(" " + session.SessionId);
-
-                    foreach (var trans in session.Transactions)
-                    {
-                        Console.WriteLine("  " + $"{trans.Station},{trans.VoucherNumber},{trans.ReferenceNumber},{trans.TransType},{trans.Money},{trans.Payout},{trans.Date}");
-                    }
-
-                    Console.WriteLine(" Total: " + session.TotalMoney + ", " + session.TotalPayout);
-                }
-
-                Console.WriteLine("User Totals: " + cashier.TotalMoney + ", " + cashier.TotalPayout);
-            }
-        }
-
-        [Test]
-        public void TestOpenReport()
-        {
-            _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
-            NavigationTabs.ClickReportsTab();
-
-            _reportList.ClickReportByReportName("Daily Cashier Activity");
-            _reportPage.ReportMenu.EnterStartDate("11/1/2022");
-            _reportPage.ReportMenu.EnterEndDate("11/9/2022");
-            _reportPage.ReportMenu.RunReport();
-
-            _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
-            _reportPage.SaveFileWindow.EnterFilepath(TestData.DownloadPath);
-
-            string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
-            string filepath = TestData.DownloadPath + @"\" + filename;
-            _reportPage.SaveFileWindow.EnterFileName(filename);
-            _reportPage.SaveFileWindow.Save();
-
-            Assert.True(_reportPage.SaveFileWindow.FileDownloaded(filepath));
-
-            var reader = new ExcelReader();
-            //reader.Open(@"C:\Users\Ben\Downloads\20221107083023.xlsx");
-            reader.Open(TestData.DownloadPath + @"\" + filename);
-            var report = reader.ParseCashierActivityReport();
-            Console.WriteLine("title = " + report.Title);
-            Console.WriteLine("ran at " + report.RunDate);
-            Console.WriteLine("period = " + report.ReportPeriod);
-
-            foreach (var record in report.Data)
-            {
-                Console.WriteLine(record.CreatedBy);
-                foreach (var activity in record.Activities)
-                {
-                    Console.WriteLine($"{activity.CreatedBy},{activity.SessionId},{activity.Station},{activity.VoucherNumber},{activity.PayoutAmount},{activity.ReceiptNumber},{activity.Date}");
-                }
-                Console.WriteLine($"vouchers:{record.TotalVouchers}, amount:{record.TotalAmount},trans:{record.TotalTransactions}");
-            }
-        }
-
-        [Test]
-        public void Test()
-        {
-            string filepath = @"C:\Users\bdagg\Downloads\Cashier Balance2lsx.xlsx";
-            bool exists = File.Exists(filepath);
-
-            if (!exists)
-            {
-                Assert.Fail();
-            }
-
-            var reader = new ExcelReader();
-            //reader.Open(@"C:\Users\Ben\Downloads\20221107083023.xlsx");
-            reader.Open(filepath);
-            var report = reader.ParseCashierBalanceReport(includeVouchers: true);
-
-            var vouchers = report.UnpaidVouchers;
-            var reportStartDate = DateTime.ParseExact("11/9/2022", "M/d/yyyy", CultureInfo.InvariantCulture);
-            var reportEndDate = DateTime.ParseExact("11/10/2022", "M/d/yyyy", CultureInfo.InvariantCulture);
-
-            foreach(var voucher in vouchers)
-            {
-                var date = voucher.CreatedDate;
-
-                Assert.True(date >= reportStartDate && date <= reportEndDate);
-            }
-
-        }
 
         [Test]
         public void CashBankActivityReport_PayoutVoucher()
@@ -273,12 +171,13 @@ namespace POS_Automation
             NavigationTabs.ClickPayoutTab();
 
             int startingBalance = 1000;
-            var sessionId = _transRepo.GetCurrentUserSession(TestData.CashierUsername);
 
             _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
             _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
 
-            foreach(var barcode in vouchers)
+            var sessionId = _transRepo.GetCurrentUserSession(TestData.CashierUsername);
+
+            foreach (var barcode in vouchers)
             {
                 _payoutPage.NumPad.EnterBarcode(barcode);
             }
@@ -324,14 +223,6 @@ namespace POS_Automation
             var payoutTrans = session.Transactions.Where(t => t.TransType == "Payout").ToList();
             Assert.AreEqual(3, payoutTrans.Count);
 
-            foreach(var g in vouchers)
-            {
-                Console.WriteLine(g);
-            }
-            foreach(var t in payoutTrans)
-            {
-                Console.WriteLine(t.VoucherNumber + "," + t.Payout);
-            }
             Assert.True(payoutTrans.Any(t => t.Payout == 5));
             Assert.True(payoutTrans.Any(t => t.Payout == 10));
             Assert.True(payoutTrans.Any(t => t.Payout == 15));
@@ -876,6 +767,160 @@ namespace POS_Automation
 
             Assert.AreEqual("Cash Bank Activity", title);
             Assert.AreEqual(expectedPeriod, period);
+        }
+
+        [Test]
+        public void CashBankActivityReport_DefaultDateRange()
+        {
+
+            
+            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput("1000");
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            string startDate = DateTime.Now.AddDays(-1).ToString("MM/d/yyyy");
+            string endDate = DateTime.Now.AddDays(-1).ToString("MM/d/yyyy");
+
+            _payoutPage.NavigationTabs.ClickReportsTab();
+            _reportList.ClickReportByReportName("Cash Bank Activity");
+
+            string actualStartDate = _reportPage.ReportMenu.GetStartStart();
+            string actualEndDate = _reportPage.ReportMenu.GetEndDate();
+
+            Assert.AreEqual(startDate, actualStartDate);
+            Assert.AreEqual(endDate, actualEndDate);
+        }
+
+        [Test]
+        public void CashBankActivityReport_TotalAfterPayout()
+        {
+            //create a voucher for $100
+            var barcode = TpService.GetVoucher(StartingAmountCredits, 500);
+
+            _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
+            NavigationTabs.ClickPayoutTab();
+
+            int startingBalance = 1000;
+
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            var sessionId = _transRepo.GetCurrentUserSession(TestData.CashierUsername);
+
+            _payoutPage.NumPad.EnterBarcode(barcode);
+            _payoutPage.Payout();
+            _payoutPage.NavigationTabs.ClickDeviceTab();
+
+            _payoutPage.Logout();
+            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            string startDate = DateTime.Now.AddDays(-1).ToString("MM/d/yyyy");
+            string endDate = DateTime.Now.AddDays(1).ToString("MM/d/yyyy");
+
+            _payoutPage.NavigationTabs.ClickReportsTab();
+            _reportList.ClickReportByReportName("Cash Bank Activity");
+            _reportPage.ReportMenu.EnterStartDate(startDate);
+            _reportPage.ReportMenu.EnterEndDate(endDate);
+            _reportPage.ReportMenu.RunReport();
+
+            string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
+            string filepath = TestData.DownloadPath;
+            string fullPath = filepath + @"\" + filename;
+
+            _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
+            _reportPage.SaveFileWindow.EnterFilepath(filepath);
+            _reportPage.SaveFileWindow.EnterFileName(filename);
+            _reportPage.SaveFileWindow.Save();
+
+            Assert.True(_reportPage.SaveFileWindow.FileDownloaded(fullPath));
+
+            ExcelReader reader = new ExcelReader();
+            reader.Open(fullPath);
+            var report = reader.ParseCashBankActivityReport();
+
+            var session = report.GetSession(sessionId);
+
+            var startTrans = session.Transactions.SingleOrDefault(t => t.TransType == "Start");
+            Assert.AreEqual(startingBalance, startTrans.Money);
+
+            var payout = session.Transactions.SingleOrDefault(t => t.TransType == "Payout");
+            Assert.AreEqual(5, payout.Payout);
+
+            var endTrans = session.Transactions.SingleOrDefault(t => t.TransType == "End");
+            Assert.AreEqual(995,endTrans.Money);
+            Assert.AreEqual(995,session.TotalMoney);
+        }
+
+        [Test]
+        public void CashBankActivityReport_VerifySessionDates()
+        {
+
+            _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
+            NavigationTabs.ClickPayoutTab();
+
+            int startingBalance = 1000;
+
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            var sessionId = _transRepo.GetCurrentUserSession(TestData.CashierUsername);
+
+            _payoutPage.CashDrawer.AddCash("100", TestData.CashierPassword);
+            _payoutPage.NavigationTabs.ClickDeviceTab();
+
+            _payoutPage.Logout();
+            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            string startDate = DateTime.Now.AddDays(-1).ToString("MM/d/yyyy");
+            string endDate = DateTime.Now.AddDays(1).ToString("MM/d/yyyy");
+
+            _payoutPage.NavigationTabs.ClickReportsTab();
+            _reportList.ClickReportByReportName("Cash Bank Activity");
+            _reportPage.ReportMenu.EnterStartDate(startDate);
+            _reportPage.ReportMenu.EnterEndDate(endDate);
+            _reportPage.ReportMenu.RunReport();
+
+            string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
+            string filepath = TestData.DownloadPath;
+            string fullPath = filepath + @"\" + filename;
+
+            _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
+            _reportPage.SaveFileWindow.EnterFilepath(filepath);
+            _reportPage.SaveFileWindow.EnterFileName(filename);
+            _reportPage.SaveFileWindow.Save();
+
+            Assert.True(_reportPage.SaveFileWindow.FileDownloaded(fullPath));
+
+            ExcelReader reader = new ExcelReader();
+            reader.Open(fullPath);
+            var report = reader.ParseCashBankActivityReport();
+
+            var reportStartDate = DateTime.ParseExact(startDate, "MM/d/yyyy", CultureInfo.InvariantCulture);
+            var reportEndtDate = DateTime.ParseExact(endDate, "MM/d/yyyy", CultureInfo.InvariantCulture);
+
+            var records = report.Data;
+
+            foreach(var user in records)
+            {
+                var sessions = user.Sessions;
+
+                foreach(var session in sessions)
+                {
+                    foreach(var trans in session.Transactions)
+                    {
+                        if(trans.TransType == "Start")
+                        {
+                            var date = trans.Date;
+
+                            Assert.True(date >= reportStartDate && date <= reportEndtDate);
+                        }
+                    }
+                }
+            }
         }
     }
 }

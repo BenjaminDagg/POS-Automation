@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "bSblgMGHGHDw96ORf6+rRnQOa/5aDEm+9AhxQuHgsWBFnG5qza5yzUGMulrJc/woZxuW81Q74MulVb7tY3loJw==",
+  "dgSpecHash": "JezRkP408iZ9yPDNGt+u1f74xGNnegItarB+rMZ95ynFcL1jZ0H8XJRl7Z5jQBEbpEwO1nYuq1GJ84Ts/wtTRA==",
   "success": true,
   "projectFilePath": "C:\\Users\\bdagg\\Documents\\POS Automation\\POS-Automation\\POS-Automation.csproj",
   "expectedPackageFiles": [
@@ -40,7 +40,7 @@
     "C:\\Users\\bdagg\\.nuget\\packages\\microsoft.net.test.sdk\\16.11.0\\microsoft.net.test.sdk.16.11.0.nupkg.sha512",
     "C:\\Users\\bdagg\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\bdagg\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
-    "C:\\Users\\bdagg\\.nuget\\packages\\microsoft.office.excel\\14.0.4760.1000\\microsoft.office.excel.14.0.4760.1000.nupkg.sha512",
+    "C:\\Users\\bdagg\\.nuget\\packages\\microsoft.testplatform\\17.4.0\\microsoft.testplatform.17.4.0.nupkg.sha512",
     "C:\\Users\\bdagg\\.nuget\\packages\\microsoft.testplatform.objectmodel\\16.11.0\\microsoft.testplatform.objectmodel.16.11.0.nupkg.sha512",
     "C:\\Users\\bdagg\\.nuget\\packages\\microsoft.testplatform.testhost\\16.11.0\\microsoft.testplatform.testhost.16.11.0.nupkg.sha512",
     "C:\\Users\\bdagg\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
@@ -111,16 +111,5 @@
     "C:\\Users\\bdagg\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\bdagg\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.Office.Excel 14.0.4760.1000' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.Office.Excel",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    }
-  ]
+  "logs": []
 }

@@ -331,6 +331,5 @@ C:\Users\Ben\Documents\POS-Automation\POS-Automation\obj\Debug\net6.0\ref\POS-Au
 C:\Users\Ben\Documents\POS-Automation\POS-Automation\bin\Debug\net6.0\Office.dll
 C:\Users\Ben\Documents\POS-Automation\POS-Automation\obj\Debug\net6.0\Interop.Microsoft.Office.Interop.Excel.dll
 C:\Users\Ben\Documents\POS-Automation\POS-Automation\obj\Debug\net6.0\POS-Automation.csproj.ResolveComReference.cache
-C:\Users\bdagg\Documents\POS Automation\POS-Automation\bin\Debug\net6.0\Office.dll
 C:\Users\bdagg\Documents\POS Automation\POS-Automation\obj\Debug\net6.0\Interop.Microsoft.Office.Interop.Excel.dll
 C:\Users\bdagg\Documents\POS Automation\POS-Automation\obj\Debug\net6.0\POS-Automation.csproj.ResolveComReference.cache

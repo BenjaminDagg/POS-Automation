@@ -176,6 +176,22 @@ namespace POS_Automation.Pages.Reports
 
         }
 
+        public string GetStartStart()
+        {
+            wait.Until(d => driver.FindElement(StartDateField));
+            wait.Until(d => driver.FindElements(By.XPath("//*[@ClassName='ProgressBar']")).Count == 0);
+
+            return driver.FindElement(StartDateField).Text;
+        }
+
+        public string GetEndDate()
+        {
+            wait.Until(d => driver.FindElement(EndDateField));
+            wait.Until(d => driver.FindElements(By.XPath("//*[@ClassName='ProgressBar']")).Count == 0);
+
+            return driver.FindElement(EndDateField).Text;
+        }
+
         public void RunReport()
         {
             wait.Until(d => driver.FindElement(ViewReportButton));

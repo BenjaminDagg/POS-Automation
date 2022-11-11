@@ -461,6 +461,8 @@ namespace POS_Automation
         [Test]
         public void EmptyReport()
         {
+            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
+
             string startDate = DateTime.Now.AddDays(3).ToString("MM/d/yyyy");
             string endDate = DateTime.Now.AddDays(4).ToString("MM/d/yyyy");
             _payoutPage.NavigationTabs.ClickReportsTab();

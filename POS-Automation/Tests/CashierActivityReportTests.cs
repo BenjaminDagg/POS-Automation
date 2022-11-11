@@ -117,6 +117,7 @@ namespace POS_Automation
         [Test]
         public void TestOpenReport()
         {
+            /*
             _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
             NavigationTabs.ClickReportsTab();
 
@@ -134,10 +135,12 @@ namespace POS_Automation
             _reportPage.SaveFileWindow.Save();
 
             Assert.True(_reportPage.SaveFileWindow.FileDownloaded(filepath));
+            */
+
 
             var reader = new ExcelReader();
             //reader.Open(@"C:\Users\Ben\Downloads\20221107083023.xlsx");
-            reader.Open(TestData.DownloadPath + @"\" + filename);
+            reader.Open(@"C:\Users\bdagg\Downloads\Daily Cashier Activityall.xlsx");
             var report = reader.ParseCashierActivityReport();
             Console.WriteLine("title = " + report.Title);
             Console.WriteLine("ran at " + report.RunDate);

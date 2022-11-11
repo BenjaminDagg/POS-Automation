@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "35wjao0Lkxf6H4hZKCkf3oKPeuHJyV8FCl26AkpyYY9a0W4i5/ooOvxKMfmmXldZXIa/yKvVe3VBDUaCR4IbgQ==",
+  "dgSpecHash": "XNVrROOWFj7lYfkKVXTv9OmhgFCS1ysmP7ynY60E6QGRnIK3ZISUr6sk1rgFLTTQSvLZw8Fp1Qa/wD44cprUwQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\bdagg\\Documents\\POS Automation\\POS-Automation\\POS-Automation.csproj",
   "expectedPackageFiles": [
@@ -40,6 +40,7 @@
     "C:\\Users\\bdagg\\.nuget\\packages\\microsoft.net.test.sdk\\16.11.0\\microsoft.net.test.sdk.16.11.0.nupkg.sha512",
     "C:\\Users\\bdagg\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\bdagg\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "C:\\Users\\bdagg\\.nuget\\packages\\microsoft.office.interop.excel\\15.0.4795.1001\\microsoft.office.interop.excel.15.0.4795.1001.nupkg.sha512",
     "C:\\Users\\bdagg\\.nuget\\packages\\microsoft.testplatform\\17.4.0\\microsoft.testplatform.17.4.0.nupkg.sha512",
     "C:\\Users\\bdagg\\.nuget\\packages\\microsoft.testplatform.objectmodel\\16.11.0\\microsoft.testplatform.objectmodel.16.11.0.nupkg.sha512",
     "C:\\Users\\bdagg\\.nuget\\packages\\microsoft.testplatform.testhost\\16.11.0\\microsoft.testplatform.testhost.16.11.0.nupkg.sha512",

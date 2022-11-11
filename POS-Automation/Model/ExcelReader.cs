@@ -10,6 +10,7 @@ using POS_Automation.Model.Reports;
 using System.Text.RegularExpressions;
 using POS_Automation.Model.Reports.Cashier_Balance_Report;
 
+//IMPORT THIS DLL AS REFERENCE: C:\Windows\assembly\GAC_MSIL\office\15.0.0.0__71e9bce111e9429c\OFFICE.DLL
 
 namespace POS_Automation.Model
 {
@@ -47,7 +48,7 @@ namespace POS_Automation.Model
             filename = filepath;
 
             xlWorkbook = xlApp.Workbooks.Open(filepath);
-            xlWorksheet = xlWorkbook.Sheets[1];
+            xlWorksheet = (Excel.Worksheet)xlWorkbook.Sheets[1];
             xlRange = xlWorksheet.UsedRange;
         }
 
@@ -55,7 +56,7 @@ namespace POS_Automation.Model
         {
             try
             {
-                var val = xlRange.Cells[row,col].Value2.ToString();
+                var val = ((Excel.Range)xlRange.Cells[row,col]).Value2.ToString();
                 return val;
             }
             catch (Exception ex)
@@ -340,13 +341,13 @@ namespace POS_Automation.Model
             //if cant find cashier summary then report is empty. Just return report with title, period, and empty values for data
             if (cashierSummaryTotalsRow == -1)
             {
-                report.Title = xlWorksheet.Cells[3, 4].Value.ToString();
+                report.Title = ((Excel.Range)xlWorksheet.Cells[3, 4]).Value.ToString();
 
-                period = xlWorksheet.Cells[6, 3].Value.ToString();
+                period = ((Excel.Range)xlWorksheet.Cells[6, 3]).Value.ToString();
                 period = Regex.Replace(period, @"\t|\n|\r", "");
                 report.ReportPeriod = period;
 
-                string runTimeS = xlWorksheet.Cells[2, 8].Value.ToString();
+                string runTimeS = ((Excel.Range)xlWorksheet.Cells[2, 8]).Value.ToString();
                 runTimeS = Regex.Replace(runTimeS, @"\t|\n|\r", "");
                 runTimeS = runTimeS.Replace("Run Date/Time", "");
                 runTime = DateTime.Parse(runTimeS);
@@ -356,16 +357,16 @@ namespace POS_Automation.Model
             }
 
             //get title
-            title = xlWorksheet.Cells[3,5].Value.ToString();
+            title = ((Excel.Range)xlWorksheet.Cells[3,5]).Value.ToString();
             report.Title = title;
 
             //get period
-            period = xlWorksheet.Cells[6, 3].Value.ToString();
+            period = ((Excel.Range)xlWorksheet.Cells[6, 3]).Value.ToString();
             period = Regex.Replace(period, @"\t|\n|\r", "");
             report.ReportPeriod = period;
 
             //get run time
-            string runTimeString = xlWorksheet.Cells[2, 13].Value.ToString();
+            string runTimeString = ((Excel.Range)xlWorksheet.Cells[2, 13]).Value.ToString();
             runTimeString = Regex.Replace(runTimeString, @"\t|\n|\r", "");
             runTimeString = runTimeString.Replace("Run Date/Time", "");
             runTime = DateTime.Parse(runTimeString);
@@ -424,11 +425,11 @@ namespace POS_Automation.Model
             }
             
             //get totals for session summary
-            report.TotalStartingBalance = decimal.Parse(xlWorksheet.Cells[cashierSummaryTotalsRow, 4].Value2.ToString());
-            report.TotalPayoutAmount = decimal.Parse(xlWorksheet.Cells[cashierSummaryTotalsRow, 6].Value2.ToString());
-            report.TotalAmountAdded = decimal.Parse(xlWorksheet.Cells[cashierSummaryTotalsRow, 7].Value2.ToString());
-            report.TotalAmountRemoved = decimal.Parse(xlWorksheet.Cells[cashierSummaryTotalsRow, 8].Value2.ToString());
-            report.TotalEndBalance = decimal.Parse(xlWorksheet.Cells[cashierSummaryTotalsRow, 11].Value2.ToString());
+            report.TotalStartingBalance = decimal.Parse(((Excel.Range)xlWorksheet.Cells[cashierSummaryTotalsRow, 4]).Value2.ToString());
+            report.TotalPayoutAmount = decimal.Parse(((Excel.Range)xlWorksheet.Cells[cashierSummaryTotalsRow, 6]).Value2.ToString());
+            report.TotalAmountAdded = decimal.Parse(((Excel.Range)xlWorksheet.Cells[cashierSummaryTotalsRow, 7]).Value2.ToString());
+            report.TotalAmountRemoved = decimal.Parse(((Excel.Range)xlWorksheet.Cells[cashierSummaryTotalsRow, 8]).Value2.ToString());
+            report.TotalEndBalance = decimal.Parse(((Excel.Range)xlWorksheet.Cells[cashierSummaryTotalsRow, 11]).Value2.ToString());
 
             //switch sheets
             xlWorksheet = (Excel.Worksheet)xlWorkbook.Sheets[2];
@@ -455,7 +456,7 @@ namespace POS_Automation.Model
             }
 
             //Get unpaid vouchers totals
-            report.TotalUnpaidVoucherAmount = includeVouchers ? decimal.Parse(xlWorksheet.Cells[rowCount, 3].Value2.ToString()) : 0;
+            report.TotalUnpaidVoucherAmount = includeVouchers ? decimal.Parse(((Excel.Range)xlWorksheet.Cells[rowCount, 3]).Value2.ToString()) : 0;
 
             return report;
         }
@@ -465,7 +466,7 @@ namespace POS_Automation.Model
             
             int rowEnd = xlRange.Rows.Count - 1;
             
-            var value = xlRange.Cells[rowEnd,5].Value2.ToString();
+            var value = ((Excel.Range)xlRange.Cells[rowEnd,5]).Value2.ToString();
             Console.WriteLine("Got total of " + value);
         }
 
@@ -476,9 +477,9 @@ namespace POS_Automation.Model
             {
                 for(int j = 1; j < xlRange.Columns.Count; j++)
                 {
-                    if(xlRange.Cells[i, j] != null && xlRange.Cells[i, j].Value2 != null)
+                    if(xlRange.Cells[i, j] != null && ((Excel.Range)xlRange.Cells[i, j]).Value2 != null)
                     {
-                        if(xlRange.Cells[i,j].Value2.ToString().ToLower() == searchText.ToLower())
+                        if(((Excel.Range)xlRange.Cells[i,j]).Value2.ToString().ToLower() == searchText.ToLower())
                         {
                             return i;
                         }
@@ -496,9 +497,9 @@ namespace POS_Automation.Model
             {
                 for (int j = 1; j < xlRange.Columns.Count; j++)
                 {
-                    if (xlRange.Cells[i, j] != null && xlRange.Cells[i, j].Value2 != null)
+                    if (xlRange.Cells[i, j] != null && ((Excel.Range)xlRange.Cells[i, j]).Value2 != null)
                     {
-                        if (xlRange.Cells[i, j].Value2.ToString().ToLower() == searchText.ToLower())
+                        if (((Excel.Range)xlRange.Cells[i, j]).Value2.ToString().ToLower() == searchText.ToLower())
                         {
                             return j;
                         }

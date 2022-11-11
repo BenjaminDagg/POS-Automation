@@ -11,13 +11,15 @@
           "Appium.WebDriver": "4.3.2",
           "Egm.Core": "1.0.0",
           "Microsoft.NET.Test.Sdk": "16.11.0",
+          "Microsoft.Office.Interop.Excel": "15.0.4795.1001",
           "Microsoft.TestPlatform": "17.4.0",
           "NUnit": "3.13.2",
           "NUnit3TestAdapter": "4.0.0",
           "Newtonsoft.Json": "13.0.1",
           "System.Configuration.ConfigurationManager": "6.0.1",
           "System.Data.SqlClient": "4.8.4",
-          "coverlet.collector": "3.1.0"
+          "coverlet.collector": "3.1.0",
+          "office": "15.0.0.0"
         },
         "runtime": {
           "POS-Automation.dll": {}
@@ -398,6 +400,14 @@
       },
       "Microsoft.NETCore.Platforms/3.1.0": {},
       "Microsoft.NETCore.Targets/1.1.0": {},
+      "Microsoft.Office.Interop.Excel/15.0.4795.1001": {
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Office.Interop.Excel.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.0.4795.1000"
+          }
+        }
+      },
       "Microsoft.TestPlatform/17.4.0": {},
       "Microsoft.TestPlatform.ObjectModel/16.11.0": {
         "dependencies": {
@@ -1324,6 +1334,14 @@
           "Framework.Infrastructure.dll": {}
         }
       },
+      "office/15.0.0.0": {
+        "runtime": {
+          "office.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.0.4613.1000"
+          }
+        }
+      },
       "eBarcodeLibrary/3.1.8069.13535": {
         "runtime": {
           "eBarcodeLibrary.dll": {
@@ -1591,6 +1609,13 @@
       "sha512": "sha512-aOZA3BWfz9RXjpzt0sRJJMjAscAUm3Hoa4UWAfceV9UTYxgwZ1lZt5nO2myFf+/jetYQo4uTP7zS8sJY67BBxg==",
       "path": "microsoft.netcore.targets/1.1.0",
       "hashPath": "microsoft.netcore.targets.1.1.0.nupkg.sha512"
+    },
+    "Microsoft.Office.Interop.Excel/15.0.4795.1001": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cuvqi/U5MYSM0gvR2l90q0m/urRgmg69EiwP5VWp1RcaJ0YT5G26Va5LaOZ3KJFc22FNihS5CUjeePUp2YpGQA==",
+      "path": "microsoft.office.interop.excel/15.0.4795.1001",
+      "hashPath": "microsoft.office.interop.excel.15.0.4795.1001.nupkg.sha512"
     },
     "Microsoft.TestPlatform/17.4.0": {
       "type": "package",
@@ -2099,6 +2124,11 @@
     },
     "Framework.Infrastructure/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "office/15.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     },

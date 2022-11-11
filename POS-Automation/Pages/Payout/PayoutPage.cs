@@ -78,8 +78,19 @@ namespace POS_Automation.Pages.Payout
             Thread.Sleep(1000);
 
             wait.Until(d => driver.FindElement(PayoutButton));
+
             driver.FindElement(PayoutButton).Click();
             driver.FindElement(PayoutButton).Click();
+
+            try
+            {
+                wait.Until(d => PayoutConfirmationAlert.IsOpen);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
             PayoutConfirmationAlert.Confirm();
 
             Thread.Sleep(1000);

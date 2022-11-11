@@ -71,6 +71,16 @@ namespace POS_Automation.Pages.Payout
 
             driver.FindElement(NumPadTextBox).Clear();
             driver.FindElement(NumPadTextBox).SendKeys(text);
+
+            try
+            {
+                Thread.Sleep(1000);
+                wait.Until(d => driver.FindElement(NumPadTextBox).Text.Length == 0);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         public string GetBarcode()

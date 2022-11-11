@@ -32,7 +32,7 @@ namespace POS_Automation.Model.Reports
             return records;
         }
 
-        public string GetSessionByVoucher(string voucher)
+        public string GetSessionByVoucher(string voucher,decimal amount,string user)
         {
             string result = string.Empty;
 
@@ -40,7 +40,7 @@ namespace POS_Automation.Model.Reports
             {
                 foreach (CashierActivityRecord activity in record.Activities)
                 {
-                    if(activity.VoucherNumber == voucher)
+                    if(activity.VoucherNumber == voucher && activity.PayoutAmount == amount && activity.CreatedBy == user)
                     {
                         result =  activity.SessionId;
                     }

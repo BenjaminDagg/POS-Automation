@@ -306,7 +306,7 @@ namespace POS_Automation
             string fullPath = filepath + @"\" + filename;
 
             _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
-            _reportPage.SaveFileWindow.EnterFilepath(filepath);
+            _reportPage.SaveFileWindow.EnterFilepath(TestData.DownloadPath);
             _reportPage.SaveFileWindow.EnterFileName(filename);
             _reportPage.SaveFileWindow.Save();
 
@@ -317,7 +317,7 @@ namespace POS_Automation
             var report = reader.ParseCashierActivityReport();
 
             string expectedVoucher = new string('*', 14) + barcode.Substring(14, 4);
-            string actualSession = report.GetSessionByVoucher(expectedVoucher);
+            string actualSession = report.GetSessionByVoucher(expectedVoucher,5,TestData.SuperUserUsername);
 
             Assert.AreEqual(session, actualSession);
         }

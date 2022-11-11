@@ -156,7 +156,7 @@ namespace POS_Automation
 
             Assert.False(_settingsPage.ErrorIsDisplayed(_settingsPage.PortNumberField));
 
-            _settingsPage.EnterPortNumber(port);
+            _settingsPage.EnterPortNumber(port.ToString());
             _settingsPage.SaveDeviceSettings();
 
             Assert.True(_settingsPage.ErrorIsDisplayed(_settingsPage.PortNumberField));

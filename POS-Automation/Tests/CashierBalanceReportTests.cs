@@ -471,7 +471,10 @@ namespace POS_Automation
             else
             {
                 _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
-                NavigationTabs.ClickPayoutTab();
+                 NavigationTabs.ClickPayoutTab();
+                _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(CashDrawerStartingBalanceDollars.ToString());
+                _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+                NavigationTabs.ClickReportsTab();
                 _reportList.ClickReportByReportName("Cashier Balance");
             }
 

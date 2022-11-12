@@ -461,13 +461,23 @@ namespace POS_Automation
         [Test]
         public void EmptyReport()
         {
-            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
+
+            if (_loginPage.IsLoggedIn)
+            {
+                _payoutPage.NavigationTabs.ClickReportsTab();
+                _reportPage.ReportMenu.Back();
+                _reportList.ClickReportByReportName("Cashier Balance");
+            }
+            else
+            {
+                _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
+                NavigationTabs.ClickPayoutTab();
+                _reportList.ClickReportByReportName("Cashier Balance");
+            }
 
             string startDate = DateTime.Now.AddDays(3).ToString("MM/d/yyyy");
             string endDate = DateTime.Now.AddDays(4).ToString("MM/d/yyyy");
-            _payoutPage.NavigationTabs.ClickReportsTab();
-            _reportPage.ReportMenu.Back();
-            _reportList.ClickReportByReportName("Cashier Balance");
+            
             _reportPage.ReportMenu.EnterStartDate(startDate);
             _reportPage.ReportMenu.EnterEndDate(endDate);
             _reportPage.ReportMenu.RunReport();
@@ -481,11 +491,11 @@ namespace POS_Automation
             _reportPage.SaveFileWindow.EnterFileName(filename);
             _reportPage.SaveFileWindow.Save();
 
-            bool exists = File.Exists(filepath);
+            bool exists = File.Exists(fullPath);
             while (!exists)
             {
                 Thread.Sleep(1000);
-                exists = File.Exists(filepath);
+                exists = File.Exists(fullPath);
 
                 if (exists)
                 {
@@ -495,8 +505,8 @@ namespace POS_Automation
 
             var reader = new ExcelReader();
             //reader.Open(@"C:\Users\Ben\Downloads\20221107083023.xlsx");
-            reader.Open(filepath);
-            var report = reader.ParseCashierBalanceReport(includeVouchers: true);
+            reader.Open(fullPath);
+            var report = reader.ParseCashierBalanceReport(includeVouchers: false);
 
             Assert.AreEqual("Cashier Balance Report", report.Title);
             Assert.True(report.ReportPeriod.ToLower().Contains(startDate.ToLower()));

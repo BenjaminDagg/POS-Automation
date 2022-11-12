@@ -1,0 +1,2439 @@
+title = Cashier Balance Report
+ran at 11/11/2022 8:05:00 PM
+period = 4064 - American Eagle2Reporting Period: 11/10/2022 2:00:00 AM To: 11/12/2022 2:00:00 AM
+bdagg_220011_0300_21
+start: 11/11/2022 3:00:21 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_220011_1100_15
+start: 11/11/2022 11:00:16 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_220111_1001_17
+start: 11/11/2022 10:01:17 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 10, Added: 0, Removed: 0, end: 990
+
+bdagg_220111_1101_27
+start: 11/11/2022 11:01:28 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_220111_1201_35
+start: 11/11/2022 12:01:35 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_220211_1102_43
+start: 11/11/2022 11:02:44 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_220310_0103_05
+start: 11/10/2022 1:03:05 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_220310_1103_29
+start: 11/10/2022 11:03:30 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_220310_1103_42
+start: 11/10/2022 11:03:42 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_220410_0304_21
+start: 11/10/2022 3:04:21 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_220411_0904_57
+start: 11/11/2022 9:04:59 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_220411_1104_00
+start: 11/11/2022 11:04:00 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_220411_1204_18
+start: 11/11/2022 12:04:19 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 0, Added: 300, Removed: 0, end: 2300
+
+bdagg_220411_1204_39
+start: 11/11/2022 12:04:40 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_220510_0405_52
+start: 11/10/2022 4:05:53 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_220510_1105_04
+start: 11/10/2022 11:05:05 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_220510_1105_26
+start: 11/10/2022 11:05:27 AM
+end: 11/10/2022 11:05:34 AM
+Start balance: 1000, Payout: 0, Added: 300, Removed: 0, end: 1300
+
+bdagg_220510_1105_46
+start: 11/10/2022 11:05:47 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 15, Added: 400, Removed: 0, end: 1385
+
+bdagg_220511_0805_04
+start: 11/11/2022 8:05:07 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_220511_1105_24
+start: 11/11/2022 11:05:26 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+bdagg_220511_1105_56
+start: 11/11/2022 11:05:56 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_220610_1106_55
+start: 11/10/2022 11:06:56 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 15, Added: 1400, Removed: 50, end: 2335
+
+bdagg_220711_1107_12
+start: 11/11/2022 11:07:13 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_220711_1207_28
+start: 11/11/2022 12:07:29 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_220810_1008_31
+start: 11/10/2022 10:08:31 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_220811_1108_26
+start: 11/11/2022 11:08:27 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+bdagg_220911_0709_53
+start: 11/11/2022 7:09:54 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_220911_1109_31
+start: 11/11/2022 11:09:31 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+bdagg_221010_0210_16
+start: 11/10/2022 2:10:19 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_221010_0810_30
+start: 11/10/2022 8:10:31 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_221010_1010_14
+start: 11/10/2022 10:10:19 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_221010_1010_59
+start: 11/10/2022 10:10:59 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_221011_0310_16
+start: 11/11/2022 3:10:18 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_221011_1110_47
+start: 11/11/2022 11:10:48 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_221011_1210_03
+start: 11/11/2022 12:10:03 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 15, Added: 400, Removed: 0, end: 2385
+
+bdagg_221011_1210_46
+start: 11/11/2022 12:10:47 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_221111_1211_46
+start: 11/11/2022 12:11:47 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_221210_0112_15
+start: 11/10/2022 1:12:15 PM
+end: 11/10/2022 1:12:22 PM
+Start balance: 2000, Payout: 0, Added: 0, Removed: 0, end: 2000
+
+bdagg_221210_0212_45
+start: 11/10/2022 2:12:47 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_221210_1012_18
+start: 11/10/2022 10:12:18 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_221211_0412_47
+start: 11/11/2022 4:12:48 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+bdagg_221211_0812_36
+start: 11/11/2022 8:12:35 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 10, Added: 0, Removed: 0, end: 990
+
+bdagg_221310_0813_41
+start: 11/10/2022 8:13:42 PM
+end: 11/10/2022 8:13:44 PM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_221310_1013_14
+start: 11/10/2022 10:13:14 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_221311_1113_39
+start: 11/11/2022 11:13:39 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_221410_1014_45
+start: 11/10/2022 10:14:46 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_221410_1114_50
+start: 11/10/2022 11:14:51 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 30, Added: 1400, Removed: 50, end: 2320
+
+bdagg_221411_0414_42
+start: 11/11/2022 4:14:43 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_221411_0714_20
+start: 11/11/2022 7:14:20 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_221411_1114_37
+start: 11/11/2022 11:14:37 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_221411_1214_25
+start: 11/11/2022 12:14:25 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_221510_0115_54
+start: 11/10/2022 1:15:54 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_221511_0415_58
+start: 11/11/2022 4:15:59 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_221511_1115_31
+start: 11/11/2022 11:15:32 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_221610_0116_57
+start: 11/10/2022 1:16:58 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_221610_1016_17
+start: 11/10/2022 10:16:17 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_221611_0416_56
+start: 11/11/2022 4:16:57 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_221611_1116_44
+start: 11/11/2022 11:16:45 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_221711_1217_01
+start: 11/11/2022 12:17:02 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_221810_0118_08
+start: 11/10/2022 1:18:12 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_221810_1018_18
+start: 11/10/2022 10:18:18 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_221811_0418_37
+start: 11/11/2022 4:18:38 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_221811_1118_18
+start: 11/11/2022 11:18:18 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_221910_0119_49
+start: 11/10/2022 1:19:49 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_221910_1019_44
+start: 11/10/2022 10:19:44 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_221911_1119_31
+start: 11/11/2022 11:19:31 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_222011_0420_14
+start: 11/11/2022 4:20:15 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_222011_1120_43
+start: 11/11/2022 11:20:44 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_222011_1220_06
+start: 11/11/2022 12:20:06 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 5, Added: 300, Removed: 0, end: 2295
+
+bdagg_222011_1220_39
+start: 11/11/2022 12:20:40 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_222110_1021_00
+start: 11/10/2022 10:21:01 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+bdagg_222111_0421_42
+start: 11/11/2022 4:21:42 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_222111_1121_46
+start: 11/11/2022 11:21:47 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+bdagg_222210_0122_00
+start: 11/10/2022 1:22:03 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_222210_0322_31
+start: 11/10/2022 3:22:32 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_222210_1022_29
+start: 11/10/2022 10:22:29 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_222211_1122_59
+start: 11/11/2022 11:22:59 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_222311_0423_11
+start: 11/11/2022 4:23:12 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_222311_1223_17
+start: 11/11/2022 12:23:17 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 50, end: 3320
+
+bdagg_222410_0824_18
+start: 11/10/2022 8:24:21 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_222410_1024_02
+start: 11/10/2022 10:24:02 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_222411_0224_24
+start: 11/11/2022 2:24:26 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_222411_0424_29
+start: 11/11/2022 4:24:30 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+bdagg_222411_1124_18
+start: 11/11/2022 11:24:18 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_222411_1224_15
+start: 11/11/2022 12:24:16 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_222510_0225_47
+start: 11/10/2022 2:25:49 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_222510_1025_00
+start: 11/10/2022 10:25:04 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_222510_1025_28
+start: 11/10/2022 10:25:28 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+bdagg_222511_0325_07
+start: 11/11/2022 3:25:09 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_222511_0425_57
+start: 11/11/2022 4:25:57 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_222511_0725_18
+start: 11/11/2022 7:25:19 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_222511_0825_56
+start: 11/11/2022 8:25:56 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 10, Added: 0, Removed: 0, end: 990
+
+bdagg_222511_1125_27
+start: 11/11/2022 11:25:28 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+bdagg_222610_1026_51
+start: 11/10/2022 10:26:52 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+bdagg_222611_0126_50
+start: 11/11/2022 1:26:50 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_222611_1126_35
+start: 11/11/2022 11:26:36 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+bdagg_222711_0127_06
+start: 11/11/2022 1:27:07 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_222711_0127_23
+start: 11/11/2022 1:27:24 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_222711_0127_39
+start: 11/11/2022 1:27:40 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_222711_0127_56
+start: 11/11/2022 1:27:56 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_222711_0427_32
+start: 11/11/2022 4:27:32 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_222711_1127_52
+start: 11/11/2022 11:27:53 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_222810_1028_26
+start: 11/10/2022 10:28:26 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_222811_0128_16
+start: 11/11/2022 1:28:17 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_222811_0128_34
+start: 11/11/2022 1:28:35 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_222811_0128_50
+start: 11/11/2022 1:28:51 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_222811_0428_55
+start: 11/11/2022 4:28:56 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+bdagg_222811_0828_38
+start: 11/11/2022 8:28:38 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 10, Added: 0, Removed: 0, end: 990
+
+bdagg_222911_0129_07
+start: 11/11/2022 1:29:07 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_222911_0129_23
+start: 11/11/2022 1:29:23 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_222911_0129_39
+start: 11/11/2022 1:29:39 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_222911_0129_55
+start: 11/11/2022 1:29:55 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_223011_0130_11
+start: 11/11/2022 1:30:11 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_223011_0130_27
+start: 11/11/2022 1:30:28 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_223011_0130_43
+start: 11/11/2022 1:30:43 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_223011_0130_59
+start: 11/11/2022 1:30:59 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_223011_0430_21
+start: 11/11/2022 4:30:22 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+bdagg_223011_0530_38
+start: 11/11/2022 5:30:39 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_223011_0530_55
+start: 11/11/2022 5:30:55 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_223011_0830_51
+start: 11/11/2022 8:30:50 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+bdagg_223111_0431_56
+start: 11/11/2022 4:31:57 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_223111_0531_19
+start: 11/11/2022 5:31:20 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_223111_0531_55
+start: 11/11/2022 5:31:56 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_223211_0532_20
+start: 11/11/2022 5:32:20 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_223211_0532_50
+start: 11/11/2022 5:32:50 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_223311_0533_07
+start: 11/11/2022 5:33:07 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_223311_0533_23
+start: 11/11/2022 5:33:23 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_223311_0533_39
+start: 11/11/2022 5:33:39 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_223311_0533_55
+start: 11/11/2022 5:33:56 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_223311_0833_28
+start: 11/11/2022 8:33:28 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 30, Added: 0, Removed: 0, end: 970
+
+bdagg_223311_1133_53
+start: 11/11/2022 11:33:52 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_223411_0534_12
+start: 11/11/2022 5:34:12 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_223411_0534_27
+start: 11/11/2022 5:34:28 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_223411_0534_43
+start: 11/11/2022 5:34:44 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_223411_0534_59
+start: 11/11/2022 5:35:00 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_223411_0734_18
+start: 11/11/2022 7:34:19 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_223411_1234_15
+start: 11/11/2022 12:34:16 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_223511_0535_15
+start: 11/11/2022 5:35:15 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_223511_0535_31
+start: 11/11/2022 5:35:31 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_223511_0635_49
+start: 11/11/2022 6:35:50 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 10, Added: 0, Removed: 0, end: 990
+
+bdagg_223611_0236_05
+start: 11/11/2022 2:36:06 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_223611_0836_14
+start: 11/11/2022 8:36:13 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 20, Added: 0, Removed: 0, end: 980
+
+bdagg_223711_0637_49
+start: 11/11/2022 6:37:50 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 10, Added: 0, Removed: 0, end: 990
+
+bdagg_223711_1137_19
+start: 11/11/2022 11:37:20 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_223811_0838_36
+start: 11/11/2022 8:38:36 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 30, Added: 0, Removed: 0, end: 970
+
+bdagg_223811_1238_21
+start: 11/11/2022 12:38:21 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 5, Added: 300, Removed: 0, end: 2295
+
+bdagg_223911_0639_56
+start: 11/11/2022 6:39:57 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 10, Added: 0, Removed: 0, end: 990
+
+bdagg_223911_0839_48
+start: 11/11/2022 8:39:47 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 30, Added: 0, Removed: 0, end: 970
+
+bdagg_223911_1239_09
+start: 11/11/2022 12:39:10 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_224010_1240_11
+start: 11/10/2022 12:40:12 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_224011_0340_52
+start: 11/11/2022 3:40:52 PM
+end: 11/11/2022 3:41:35 PM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_224011_0840_50
+start: 11/11/2022 8:40:49 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+bdagg_224111_0341_39
+start: 11/11/2022 3:41:39 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 0, Added: 0, Removed: 0, end: 2000
+
+bdagg_224210_1242_19
+start: 11/10/2022 12:42:20 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_224310_1043_07
+start: 11/10/2022 10:43:07 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 10, Added: 0, Removed: 0, end: 990
+
+bdagg_224310_1243_34
+start: 11/10/2022 12:43:35 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_224311_0743_59
+start: 11/11/2022 7:43:59 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_224311_1243_28
+start: 11/11/2022 12:43:29 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_224410_1044_15
+start: 11/10/2022 10:44:15 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 30, Added: 0, Removed: 0, end: 970
+
+bdagg_224411_0444_56
+start: 11/11/2022 4:44:57 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 30, Added: 0, Removed: 0, end: 970
+
+bdagg_224510_1045_32
+start: 11/10/2022 10:45:33 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+bdagg_224610_0146_54
+start: 11/10/2022 1:46:54 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_224610_1046_42
+start: 11/10/2022 10:46:43 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+bdagg_224611_0446_02
+start: 11/11/2022 4:46:02 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+bdagg_224710_1047_54
+start: 11/10/2022 10:47:55 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+bdagg_224711_0447_03
+start: 11/11/2022 4:47:03 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+bdagg_224811_0448_05
+start: 11/11/2022 4:48:06 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+bdagg_224811_0848_06
+start: 11/11/2022 8:48:06 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+bdagg_224910_1049_04
+start: 11/10/2022 10:49:05 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+bdagg_224910_1149_44
+start: 11/10/2022 11:49:45 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_224911_0449_09
+start: 11/11/2022 4:49:09 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+bdagg_225010_1050_26
+start: 11/10/2022 10:50:26 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 10, Added: 0, Removed: 0, end: 990
+
+bdagg_225011_0450_24
+start: 11/11/2022 4:50:25 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 10, Added: 0, Removed: 0, end: 990
+
+bdagg_225011_1150_55
+start: 11/11/2022 11:50:56 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 30, Added: 0, Removed: 0, end: 970
+
+bdagg_225110_1251_00
+start: 11/10/2022 12:51:04 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_225111_0851_11
+start: 11/11/2022 8:51:10 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+bdagg_225111_1051_40
+start: 11/11/2022 10:51:40 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_225111_1151_57
+start: 11/11/2022 11:51:57 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+bdagg_225210_0852_06
+start: 11/10/2022 8:52:07 PM
+end: 11/10/2022 8:52:46 PM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_225210_1052_39
+start: 11/10/2022 10:52:39 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+bdagg_225211_0452_16
+start: 11/11/2022 4:52:16 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+bdagg_225211_1152_54
+start: 11/11/2022 11:52:54 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+bdagg_225310_0253_12
+start: 11/10/2022 2:53:16 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_225311_0253_58
+start: 11/11/2022 2:53:59 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_225311_0453_34
+start: 11/11/2022 4:53:35 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_225311_0853_04
+start: 11/11/2022 8:53:03 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+bdagg_225311_1153_55
+start: 11/11/2022 11:53:55 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+bdagg_225411_0254_56
+start: 11/11/2022 2:54:57 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_225411_1154_51
+start: 11/11/2022 11:54:52 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+bdagg_225510_1055_48
+start: 11/10/2022 10:55:49 PM
+end: 11/11/2022 8:05:06 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_225611_0256_18
+start: 11/11/2022 2:56:19 PM
+end: 11/11/2022 2:58:35 PM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_225611_1056_26
+start: 11/11/2022 10:56:26 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_225611_1156_03
+start: 11/11/2022 11:56:04 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 10, Added: 0, Removed: 0, end: 990
+
+bdagg_225710_0257_06
+start: 11/10/2022 2:57:06 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_225710_1257_13
+start: 11/10/2022 12:57:13 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_225711_0257_15
+start: 11/11/2022 2:57:16 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_225711_0257_55
+start: 11/11/2022 2:57:56 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_225711_1157_52
+start: 11/11/2022 11:57:52 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+bdagg_225811_1058_22
+start: 11/11/2022 10:58:23 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+bdagg_225811_1158_56
+start: 11/11/2022 11:58:57 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_225911_0259_09
+start: 11/11/2022 2:59:09 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_225911_0259_53
+start: 11/11/2022 2:59:52 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 100, Payout: 0, Added: 0, Removed: 0, end: 100
+
+bdagg_225911_0359_41
+start: 11/11/2022 3:59:40 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 2000, Payout: 30, Added: 1400, Removed: 750, end: 2620
+
+bdagg_225911_0959_32
+start: 11/11/2022 9:59:32 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 10, Added: 0, Removed: 0, end: 990
+
+bdagg_225911_1059_21
+start: 11/11/2022 10:59:22 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_220111_1001_04
+start: 11/11/2022 10:01:04 AM
+end: 11/11/2022 10:01:13 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_220111_1101_14
+start: 11/11/2022 11:01:14 AM
+end: 11/11/2022 11:01:24 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_220211_1102_26
+start: 11/11/2022 11:02:27 AM
+end: 11/11/2022 11:02:40 AM
+Start balance: 1000, Payout: 30, Added: 0, Removed: 0, end: 970
+
+cashTes_220311_1103_44
+start: 11/11/2022 11:03:44 AM
+end: 11/11/2022 11:03:54 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_220410_0304_09
+start: 11/10/2022 3:04:09 PM
+end: 11/10/2022 3:04:18 PM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_220411_1104_58
+start: 11/11/2022 11:04:59 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 100, end: 900
+
+cashTes_220510_0405_21
+start: 11/10/2022 4:05:22 PM
+end: 11/10/2022 4:05:49 PM
+Start balance: 1000, Payout: 30, Added: 500, Removed: 200, end: 1270
+
+cashTes_220511_1105_50
+start: 11/11/2022 11:05:51 AM
+end: 11/11/2022 11:05:53 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_220611_0806_17
+start: 11/11/2022 8:06:17 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 400, Removed: 600, end: 800
+
+cashTes_220611_1106_56
+start: 11/11/2022 11:06:57 AM
+end: 11/11/2022 11:07:06 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_220710_1007_34
+start: 11/10/2022 10:07:35 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_220810_1008_19
+start: 11/10/2022 10:08:20 PM
+end: 11/10/2022 10:08:27 PM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_220811_1108_16
+start: 11/11/2022 11:08:16 AM
+end: 11/11/2022 11:08:22 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_221010_0810_18
+start: 11/10/2022 8:10:19 PM
+end: 11/10/2022 8:10:27 PM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_221010_1010_48
+start: 11/10/2022 10:10:49 PM
+end: 11/10/2022 10:10:56 PM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_221011_0210_11
+start: 11/11/2022 2:10:12 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 10001, Payout: 0, Added: 0, Removed: 0, end: 10001
+
+cashTes_221011_0210_34
+start: 11/11/2022 2:10:35 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 10001, Payout: 0, Added: 0, Removed: 0, end: 10001
+
+cashTes_221011_1110_36
+start: 11/11/2022 11:10:36 AM
+end: 11/11/2022 11:10:44 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_221111_0211_07
+start: 11/11/2022 2:11:08 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 10001, Payout: 0, Added: 0, Removed: 0, end: 10001
+
+cashTes_221111_0211_31
+start: 11/11/2022 2:11:32 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 10001, Payout: 0, Added: 0, Removed: 0, end: 10001
+
+cashTes_221111_0211_54
+start: 11/11/2022 2:11:54 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 10001, Payout: 0, Added: 0, Removed: 0, end: 10001
+
+cashTes_221210_0812_37
+start: 11/10/2022 8:12:42 PM
+end: 11/10/2022 8:12:50 PM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_221210_1012_40
+start: 11/10/2022 10:12:40 PM
+end: 11/10/2022 10:13:11 PM
+Start balance: 1000, Payout: 30, Added: 500, Removed: 200, end: 1270
+
+cashTes_221211_0212_18
+start: 11/11/2022 2:12:18 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 10001, Payout: 499, Added: 0, Removed: 0, end: 9502
+
+cashTes_221211_0212_42
+start: 11/11/2022 2:12:43 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 10001, Payout: 0, Added: 0, Removed: 0, end: 10001
+
+cashTes_221211_0812_22
+start: 11/11/2022 8:12:22 AM
+end: 11/11/2022 8:12:32 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_221211_1112_07
+start: 11/11/2022 11:12:07 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_221310_0813_18
+start: 11/10/2022 8:13:18 PM
+end: 11/10/2022 8:13:21 PM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_221311_0213_16
+start: 11/11/2022 2:13:17 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 10001, Payout: 0, Added: 0, Removed: 0, end: 10001
+
+cashTes_221311_0213_40
+start: 11/11/2022 2:13:41 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_221311_0213_56
+start: 11/11/2022 2:13:57 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_221311_1113_28
+start: 11/11/2022 11:13:29 AM
+end: 11/11/2022 11:13:35 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_221410_1014_32
+start: 11/10/2022 10:14:33 PM
+end: 11/10/2022 10:14:42 PM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_221411_0214_20
+start: 11/11/2022 2:14:21 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 30, Added: 0, Removed: 0, end: 970
+
+cashTes_221411_0214_44
+start: 11/11/2022 2:14:44 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 25, Added: 0, Removed: 0, end: 975
+
+cashTes_221411_0414_30
+start: 11/11/2022 4:14:31 PM
+end: 11/11/2022 4:14:38 PM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_221411_1114_56
+start: 11/11/2022 11:14:57 AM
+end: 11/11/2022 11:15:29 AM
+Start balance: 1000, Payout: 30, Added: 500, Removed: 200, end: 1270
+
+cashTes_221510_0115_40
+start: 11/10/2022 1:15:40 PM
+end: 11/10/2022 1:15:50 PM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_221510_0815_41
+start: 11/10/2022 8:15:42 PM
+end: 11/10/2022 8:15:46 PM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_221511_0215_12
+start: 11/11/2022 2:15:13 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_221511_0215_43
+start: 11/11/2022 2:15:44 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_221610_0116_43
+start: 11/10/2022 1:16:44 PM
+end: 11/10/2022 1:16:53 PM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_221610_0816_24
+start: 11/10/2022 8:16:25 PM
+end: 11/10/2022 8:16:28 PM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_221610_1016_01
+start: 11/10/2022 10:16:01 PM
+end: 11/10/2022 10:16:13 PM
+Start balance: 1000, Payout: 30, Added: 0, Removed: 0, end: 970
+
+cashTes_221611_0216_20
+start: 11/11/2022 2:16:21 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_221611_0416_18
+start: 11/11/2022 4:16:19 PM
+end: 11/11/2022 4:16:53 PM
+Start balance: 1000, Payout: 30, Added: 500, Removed: 200, end: 1270
+
+cashTes_221611_1116_31
+start: 11/11/2022 11:16:32 AM
+end: 11/11/2022 11:16:41 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_221711_0217_06
+start: 11/11/2022 2:17:07 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_221711_0217_47
+start: 11/11/2022 2:17:48 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_221711_1117_58
+start: 11/11/2022 11:17:59 AM
+end: 11/11/2022 11:18:14 AM
+Start balance: 1000, Payout: 15, Added: 0, Removed: 0, end: 985
+
+cashTes_221810_1018_03
+start: 11/10/2022 10:18:03 PM
+end: 11/10/2022 10:18:14 PM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_221811_0218_12
+start: 11/11/2022 2:18:13 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_221811_0218_35
+start: 11/11/2022 2:18:35 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_221811_0218_54
+start: 11/11/2022 2:18:55 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_221811_0418_22
+start: 11/11/2022 4:18:23 PM
+end: 11/11/2022 4:18:34 PM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_221811_0618_13
+start: 11/11/2022 6:18:13 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 10001, Payout: 0, Added: 0, Removed: 0, end: 10001
+
+cashTes_221811_0618_32
+start: 11/11/2022 6:18:32 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 10001, Payout: 0, Added: 0, Removed: 0, end: 10001
+
+cashTes_221910_0119_34
+start: 11/10/2022 1:19:35 PM
+end: 11/10/2022 1:19:45 PM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_221910_0819_03
+start: 11/10/2022 8:19:03 PM
+end: 11/10/2022 8:19:08 PM
+Start balance: 1, Payout: 0, Added: 0, Removed: 0, end: 1
+
+cashTes_221910_1019_34
+start: 11/10/2022 10:19:34 PM
+end: 11/10/2022 10:19:41 PM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 100, end: 900
+
+cashTes_221911_0219_19
+start: 11/11/2022 2:19:20 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_221911_0219_37
+start: 11/11/2022 2:19:38 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_221911_0419_53
+start: 11/11/2022 4:19:54 PM
+end: 11/11/2022 4:20:10 PM
+Start balance: 1000, Payout: 30, Added: 0, Removed: 0, end: 970
+
+cashTes_221911_0619_06
+start: 11/11/2022 6:19:06 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 10001, Payout: 0, Added: 0, Removed: 0, end: 10001
+
+cashTes_221911_0619_29
+start: 11/11/2022 6:19:30 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 10001, Payout: 0, Added: 0, Removed: 0, end: 10001
+
+cashTes_221911_0619_54
+start: 11/11/2022 6:19:54 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 10001, Payout: 0, Added: 0, Removed: 0, end: 10001
+
+cashTes_221911_1119_17
+start: 11/11/2022 11:19:17 AM
+end: 11/11/2022 11:19:28 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_222011_0220_03
+start: 11/11/2022 2:20:04 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_222011_0620_17
+start: 11/11/2022 6:20:18 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 10001, Payout: 499, Added: 0, Removed: 0, end: 9502
+
+cashTes_222011_0620_42
+start: 11/11/2022 6:20:42 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 10001, Payout: 0, Added: 0, Removed: 0, end: 10001
+
+cashTes_222011_1120_31
+start: 11/11/2022 11:20:32 AM
+end: 11/11/2022 11:20:38 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 100, end: 900
+
+cashTes_222111_0121_04
+start: 11/11/2022 1:21:05 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 40, Added: 0, Removed: 0, end: 960
+
+cashTes_222111_0121_32
+start: 11/11/2022 1:21:33 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 25, Added: 0, Removed: 0, end: 975
+
+cashTes_222111_0421_27
+start: 11/11/2022 4:21:28 PM
+end: 11/11/2022 4:21:38 PM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_222111_0621_21
+start: 11/11/2022 6:21:22 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 10001, Payout: 0, Added: 0, Removed: 0, end: 10001
+
+cashTes_222111_0621_45
+start: 11/11/2022 6:21:46 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_222210_0322_22
+start: 11/10/2022 3:22:22 PM
+end: 11/10/2022 3:22:28 PM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_222210_1022_23
+start: 11/10/2022 10:22:24 PM
+end: 11/10/2022 10:22:25 PM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_222211_0122_00
+start: 11/11/2022 1:22:00 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_222211_0122_29
+start: 11/11/2022 1:22:30 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_222211_0122_49
+start: 11/11/2022 1:22:49 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_222211_0522_34
+start: 11/11/2022 5:22:34 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 40, Added: 0, Removed: 0, end: 960
+
+cashTes_222211_0622_02
+start: 11/11/2022 6:22:02 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_222211_0622_35
+start: 11/11/2022 6:22:35 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 30, Added: 0, Removed: 0, end: 970
+
+cashTes_222211_1122_53
+start: 11/11/2022 11:22:53 AM
+end: 11/11/2022 11:22:55 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_222310_1023_49
+start: 11/10/2022 10:23:49 PM
+end: 11/10/2022 10:23:59 PM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_222311_0423_00
+start: 11/11/2022 4:23:00 PM
+end: 11/11/2022 4:23:07 PM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 100, end: 900
+
+cashTes_222311_0523_01
+start: 11/11/2022 5:23:02 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 25, Added: 0, Removed: 0, end: 975
+
+cashTes_222311_0523_35
+start: 11/11/2022 5:23:37 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_222311_0523_58
+start: 11/11/2022 5:23:58 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_222311_0623_02
+start: 11/11/2022 6:23:02 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 25, Added: 0, Removed: 0, end: 975
+
+cashTes_222311_0623_36
+start: 11/11/2022 6:23:37 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_222411_0524_20
+start: 11/11/2022 5:24:21 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_222411_0624_09
+start: 11/11/2022 6:24:09 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_222411_0624_45
+start: 11/11/2022 6:24:46 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_222411_0824_55
+start: 11/11/2022 8:24:55 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_222411_1124_05
+start: 11/11/2022 11:24:05 AM
+end: 11/11/2022 11:24:15 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_222510_1025_18
+start: 11/10/2022 10:25:18 PM
+end: 11/10/2022 10:25:25 PM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_222511_0425_51
+start: 11/11/2022 4:25:51 PM
+end: 11/11/2022 4:25:53 PM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_222511_0625_33
+start: 11/11/2022 6:25:35 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_222511_0825_41
+start: 11/11/2022 8:25:41 AM
+end: 11/11/2022 8:25:49 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_222511_1125_17
+start: 11/11/2022 11:25:18 AM
+end: 11/11/2022 11:25:24 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_222611_0626_02
+start: 11/11/2022 6:26:03 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_222611_0626_28
+start: 11/11/2022 6:26:29 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_222611_0626_49
+start: 11/11/2022 6:26:50 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_222711_0427_17
+start: 11/11/2022 4:27:18 PM
+end: 11/11/2022 4:27:28 PM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_222711_0627_13
+start: 11/11/2022 6:27:13 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_222711_0627_45
+start: 11/11/2022 6:27:45 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_222711_1127_42
+start: 11/11/2022 11:27:42 AM
+end: 11/11/2022 11:27:49 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_222810_1028_15
+start: 11/10/2022 10:28:16 PM
+end: 11/10/2022 10:28:22 PM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_222811_0428_44
+start: 11/11/2022 4:28:45 PM
+end: 11/11/2022 4:28:51 PM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_222811_0628_02
+start: 11/11/2022 6:28:03 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_222811_0628_33
+start: 11/11/2022 6:28:33 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_222811_0828_26
+start: 11/11/2022 8:28:26 AM
+end: 11/11/2022 8:28:34 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_222910_0829_31
+start: 11/10/2022 8:29:34 PM
+end: 11/10/2022 8:29:40 PM
+Start balance: 10, Payout: 0, Added: 0, Removed: 0, end: 10
+
+cashTes_223010_1030_38
+start: 11/10/2022 10:30:38 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_223010_1030_57
+start: 11/10/2022 10:30:58 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223110_0431_37
+start: 11/10/2022 4:31:38 PM
+end: 11/10/2022 4:31:45 PM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_223110_1031_17
+start: 11/10/2022 10:31:17 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223110_1031_37
+start: 11/10/2022 10:31:37 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1, Payout: 0, Added: 0, Removed: 0, end: 1
+
+cashTes_223110_1031_56
+start: 11/10/2022 10:31:56 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223111_0131_15
+start: 11/11/2022 1:31:16 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223111_0131_51
+start: 11/11/2022 1:31:52 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223111_0431_45
+start: 11/11/2022 4:31:46 PM
+end: 11/11/2022 4:31:52 PM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_223210_1032_14
+start: 11/10/2022 10:32:14 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_223210_1032_32
+start: 11/10/2022 10:32:33 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 500, Removed: 0, end: 1500
+
+cashTes_223210_1032_52
+start: 11/10/2022 10:32:52 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 400, Removed: 600, end: 800
+
+cashTes_223211_0132_18
+start: 11/11/2022 1:32:18 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223211_0132_47
+start: 11/11/2022 1:32:48 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223211_0632_19
+start: 11/11/2022 6:32:19 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 4, Payout: 5, Added: 1, Removed: 0, end: 0
+
+cashTes_223310_1033_23
+start: 11/10/2022 10:33:23 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 500, end: 500
+
+cashTes_223310_1033_43
+start: 11/10/2022 10:33:43 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223310_1033_58
+start: 11/10/2022 10:33:58 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 100, end: 900
+
+cashTes_223311_0133_06
+start: 11/11/2022 1:33:06 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223311_0133_25
+start: 11/11/2022 1:33:26 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 10, Payout: 0, Added: 0, Removed: 0, end: 10
+
+cashTes_223311_0433_27
+start: 11/11/2022 4:33:27 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_223311_0433_45
+start: 11/11/2022 4:33:45 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223311_0633_50
+start: 11/11/2022 6:33:51 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_223311_1133_33
+start: 11/11/2022 11:33:32 AM
+end: 11/11/2022 11:33:48 AM
+Start balance: 1000, Payout: 30, Added: 0, Removed: 0, end: 970
+
+cashTes_223410_0834_07
+start: 11/10/2022 8:34:08 PM
+end: 11/10/2022 8:34:15 PM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_223410_0834_32
+start: 11/10/2022 8:34:33 PM
+end: 11/10/2022 8:34:43 PM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223410_1034_18
+start: 11/10/2022 10:34:19 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_223410_1034_37
+start: 11/10/2022 10:34:37 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 100, Added: 0, Removed: 0, end: 900
+
+cashTes_223410_1034_57
+start: 11/10/2022 10:34:57 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 100, end: 900
+
+cashTes_223411_0134_01
+start: 11/11/2022 1:34:01 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223411_0134_32
+start: 11/11/2022 1:34:33 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223411_0434_05
+start: 11/11/2022 4:34:06 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223411_0434_27
+start: 11/11/2022 4:34:27 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1, Payout: 0, Added: 0, Removed: 0, end: 1
+
+cashTes_223411_0434_44
+start: 11/11/2022 4:34:45 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223510_1035_36
+start: 11/10/2022 10:35:38 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223510_1035_52
+start: 11/10/2022 10:35:52 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 12345, Payout: 0, Added: 0, Removed: 0, end: 12345
+
+cashTes_223511_0135_31
+start: 11/11/2022 1:35:31 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223511_0435_02
+start: 11/11/2022 4:35:02 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_223511_0435_19
+start: 11/11/2022 4:35:20 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 500, Removed: 0, end: 1500
+
+cashTes_223511_0435_39
+start: 11/11/2022 4:35:39 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 400, Removed: 600, end: 800
+
+cashTes_223511_0535_49
+start: 11/11/2022 5:35:50 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223511_0635_27
+start: 11/11/2022 6:35:28 PM
+end: 11/11/2022 6:35:45 PM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_223610_0836_27
+start: 11/10/2022 8:36:28 PM
+end: 11/10/2022 8:36:31 PM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223610_1036_06
+start: 11/10/2022 10:36:06 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 4, Payout: 0, Added: 0, Removed: 0, end: 4
+
+cashTes_223610_1036_23
+start: 11/10/2022 10:36:23 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 4, Payout: 5, Added: 1, Removed: 0, end: 0
+
+cashTes_223610_1036_59
+start: 11/10/2022 10:36:59 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 5, Payout: 0, Added: 0, Removed: 1, end: 4
+
+cashTes_223611_0136_18
+start: 11/11/2022 1:36:19 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223611_0136_38
+start: 11/11/2022 1:36:38 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 15, Payout: 0, Added: 0, Removed: 0, end: 15
+
+cashTes_223611_0436_11
+start: 11/11/2022 4:36:12 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 500, end: 500
+
+cashTes_223611_0436_32
+start: 11/11/2022 4:36:33 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223611_0436_47
+start: 11/11/2022 4:36:47 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 100, end: 900
+
+cashTes_223611_0536_26
+start: 11/11/2022 5:36:27 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223611_0536_56
+start: 11/11/2022 5:36:57 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223611_1136_57
+start: 11/11/2022 11:36:58 AM
+end: 11/11/2022 11:37:11 AM
+Start balance: 1000, Payout: 30, Added: 0, Removed: 0, end: 970
+
+cashTes_223710_1037_20
+start: 11/10/2022 10:37:20 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223710_1037_39
+start: 11/10/2022 10:37:40 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 4, Payout: 0, Added: 0, Removed: 0, end: 4
+
+cashTes_223711_0137_02
+start: 11/11/2022 1:37:03 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223711_0337_59
+start: 11/11/2022 3:38:00 PM
+end: 11/11/2022 3:38:24 PM
+Start balance: 2000, Payout: 0, Added: 0, Removed: 0, end: 2000
+
+cashTes_223711_0437_04
+start: 11/11/2022 4:37:05 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_223711_0437_22
+start: 11/11/2022 4:37:23 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 100, Added: 0, Removed: 0, end: 900
+
+cashTes_223711_0437_44
+start: 11/11/2022 4:37:45 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 100, end: 900
+
+cashTes_223711_0537_29
+start: 11/11/2022 5:37:30 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223711_0537_48
+start: 11/11/2022 5:37:48 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223711_0637_35
+start: 11/11/2022 6:37:35 PM
+end: 11/11/2022 6:37:46 PM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_223810_1038_00
+start: 11/10/2022 10:38:00 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223810_1038_20
+start: 11/10/2022 10:38:22 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 250000, Payout: 0, Added: 0, Removed: 0, end: 250000
+
+cashTes_223810_1038_40
+start: 11/10/2022 10:38:40 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 5, Payout: 0, Added: 0, Removed: 1, end: 4
+
+cashTes_223811_0438_21
+start: 11/11/2022 4:38:22 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223811_0438_36
+start: 11/11/2022 4:38:37 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 12345, Payout: 0, Added: 0, Removed: 0, end: 12345
+
+cashTes_223811_0438_50
+start: 11/11/2022 4:38:50 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 4, Payout: 0, Added: 0, Removed: 0, end: 4
+
+cashTes_223811_0538_05
+start: 11/11/2022 5:38:06 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 10, Payout: 0, Added: 0, Removed: 0, end: 10
+
+cashTes_223811_0538_40
+start: 11/11/2022 5:38:40 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223811_1138_43
+start: 11/11/2022 11:38:44 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223910_0839_56
+start: 11/10/2022 8:39:56 PM
+end: 11/10/2022 8:40:06 PM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223910_1039_12
+start: 11/10/2022 10:39:12 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 12345, Payout: 0, Added: 0, Removed: 0, end: 12345
+
+cashTes_223910_1039_42
+start: 11/10/2022 10:39:42 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 300, Added: 0, Removed: 0, end: 700
+
+cashTes_223911_0339_29
+start: 11/11/2022 3:39:29 PM
+end: 11/11/2022 3:39:44 PM
+Start balance: 2000, Payout: 0, Added: 0, Removed: 0, end: 2000
+
+cashTes_223911_0439_07
+start: 11/11/2022 4:39:07 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 4, Payout: 5, Added: 1, Removed: 0, end: 0
+
+cashTes_223911_0439_43
+start: 11/11/2022 4:39:43 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 5, Payout: 0, Added: 0, Removed: 1, end: 4
+
+cashTes_223911_0539_13
+start: 11/11/2022 5:39:13 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223911_0639_41
+start: 11/11/2022 6:39:42 PM
+end: 11/11/2022 6:39:52 PM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_223911_1139_15
+start: 11/11/2022 11:39:15 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_223911_1139_34
+start: 11/11/2022 11:39:54 AM
+end: 11/11/2022 11:39:56 AM
+Start balance: 1, Payout: 0, Added: 0, Removed: 0, end: 1
+
+cashTes_224010_1040_16
+start: 11/10/2022 10:40:16 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 300, Added: 0, Removed: 0, end: 700
+
+cashTes_224011_0440_00
+start: 11/11/2022 4:40:01 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_224011_0440_19
+start: 11/11/2022 4:40:19 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 4, Payout: 0, Added: 0, Removed: 0, end: 4
+
+cashTes_224011_0440_41
+start: 11/11/2022 4:40:41 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_224011_0540_36
+start: 11/11/2022 5:40:36 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_224011_1140_09
+start: 11/11/2022 11:40:10 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1, Payout: 0, Added: 0, Removed: 0, end: 1
+
+cashTes_224011_1140_38
+start: 11/11/2022 11:40:39 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_224011_1140_54
+start: 11/11/2022 11:40:55 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_224110_1041_02
+start: 11/10/2022 10:41:03 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_224111_0441_01
+start: 11/11/2022 4:41:01 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 250000, Payout: 0, Added: 0, Removed: 0, end: 250000
+
+cashTes_224111_0441_18
+start: 11/11/2022 4:41:19 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 5, Payout: 0, Added: 0, Removed: 1, end: 4
+
+cashTes_224111_0441_49
+start: 11/11/2022 4:41:50 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 12345, Payout: 0, Added: 0, Removed: 0, end: 12345
+
+cashTes_224111_0541_16
+start: 1/1/0001 12:00:00 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 0, Payout: 5, Added: 0, Removed: 0, end: -5
+
+cashTes_224111_0541_35
+start: 11/11/2022 5:41:35 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_224111_0541_55
+start: 11/11/2022 5:41:56 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 15, Payout: 0, Added: 0, Removed: 0, end: 15
+
+cashTes_224111_1141_12
+start: 11/11/2022 11:41:12 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 500, Removed: 0, end: 1500
+
+cashTes_224111_1141_31
+start: 11/11/2022 11:41:32 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 400, Removed: 600, end: 800
+
+cashTes_224210_1042_55
+start: 11/10/2022 10:42:55 PM
+end: 11/10/2022 10:43:03 PM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_224211_0442_17
+start: 11/11/2022 4:42:18 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 300, Added: 0, Removed: 0, end: 700
+
+cashTes_224211_0442_55
+start: 11/11/2022 4:42:56 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 300, Added: 0, Removed: 0, end: 700
+
+cashTes_224211_0542_21
+start: 11/11/2022 5:42:22 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_224211_1142_07
+start: 11/11/2022 11:42:08 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 500, end: 500
+
+cashTes_224211_1142_28
+start: 11/11/2022 11:42:29 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_224211_1142_42
+start: 11/11/2022 11:42:43 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 100, end: 900
+
+cashTes_224211_1142_59
+start: 11/11/2022 11:43:00 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_224311_0443_43
+start: 11/11/2022 4:43:43 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_224311_0443_56
+start: 11/11/2022 4:43:57 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 0, Payout: 0, Added: 0, Removed: 0, end: 0
+
+cashTes_224311_1143_16
+start: 11/11/2022 11:43:17 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 100, Added: 0, Removed: 0, end: 900
+
+cashTes_224311_1143_36
+start: 11/11/2022 11:43:37 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 100, end: 900
+
+cashTes_224411_0444_26
+start: 11/11/2022 4:44:27 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_224411_1144_13
+start: 11/11/2022 11:44:15 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_224411_1144_27
+start: 11/11/2022 11:44:28 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 12345, Payout: 0, Added: 0, Removed: 0, end: 12345
+
+cashTes_224411_1144_42
+start: 11/11/2022 11:44:42 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 4, Payout: 0, Added: 0, Removed: 0, end: 4
+
+cashTes_224411_1144_57
+start: 11/11/2022 11:44:58 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 4, Payout: 5, Added: 1, Removed: 0, end: 0
+
+cashTes_224511_1145_36
+start: 11/11/2022 11:45:36 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 5, Payout: 0, Added: 0, Removed: 1, end: 4
+
+cashTes_224511_1145_53
+start: 11/11/2022 11:45:54 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_224611_1146_12
+start: 11/11/2022 11:46:12 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 4, Payout: 0, Added: 0, Removed: 0, end: 4
+
+cashTes_224611_1146_31
+start: 11/11/2022 11:46:31 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_224611_1146_50
+start: 11/11/2022 11:46:51 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 250000, Payout: 0, Added: 0, Removed: 0, end: 250000
+
+cashTes_224711_1147_08
+start: 11/11/2022 11:47:08 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 5, Payout: 0, Added: 0, Removed: 1, end: 4
+
+cashTes_224711_1147_41
+start: 11/11/2022 11:47:42 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 12345, Payout: 0, Added: 0, Removed: 0, end: 12345
+
+cashTes_224811_1148_11
+start: 11/11/2022 11:48:11 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 300, Added: 0, Removed: 0, end: 700
+
+cashTes_224811_1148_45
+start: 11/11/2022 11:48:45 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 300, Added: 0, Removed: 0, end: 700
+
+cashTes_224911_1149_30
+start: 11/11/2022 11:49:32 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_224911_1149_56
+start: 11/11/2022 11:49:57 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 0, Payout: 0, Added: 0, Removed: 0, end: 0
+
+cashTes_225010_1050_14
+start: 11/10/2022 10:50:14 PM
+end: 11/10/2022 10:50:22 PM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_225011_0450_10
+start: 11/11/2022 4:50:11 PM
+end: 11/11/2022 4:50:20 PM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_225011_1150_26
+start: 11/11/2022 11:50:27 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_225110_0851_56
+start: 11/10/2022 8:51:57 PM
+end: 11/10/2022 8:52:04 PM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_225111_1051_26
+start: 11/11/2022 10:51:27 AM
+end: 11/11/2022 10:51:36 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_225511_1155_49
+start: 11/11/2022 11:55:50 AM
+end: 11/11/2022 11:56:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_225611_0956_49
+start: 11/11/2022 9:56:48 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_225611_1056_15
+start: 11/11/2022 10:56:16 AM
+end: 11/11/2022 10:56:23 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_225711_0957_25
+start: 11/11/2022 9:57:25 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_225811_0958_14
+start: 11/11/2022 9:58:14 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes_225811_1058_12
+start: 11/11/2022 10:58:13 AM
+end: 11/11/2022 10:58:19 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+cashTes_225911_0859_34
+start: 11/11/2022 8:59:34 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 0, Payout: 0, Added: 0, Removed: 0, end: 0
+
+cashTes_225911_0959_19
+start: 11/11/2022 9:59:19 AM
+end: 11/11/2022 9:59:28 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+cashTes_225911_1059_42
+start: 11/11/2022 10:59:42 AM
+end: 11/11/2022 11:00:12 AM
+Start balance: 1000, Payout: 30, Added: 500, Removed: 200, end: 1270
+
+cashTes2_221111_0111_42
+start: 11/11/2022 1:11:42 PM
+end: 11/11/2022 1:11:43 PM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes2_221211_0112_24
+start: 11/11/2022 1:12:23 PM
+end: 11/11/2022 1:12:25 PM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+cashTes2_225711_0557_39
+start: 11/11/2022 5:57:41 PM
+end: 11/11/2022 5:57:42 PM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+user1_220011_0600_30
+start: 11/11/2022 6:00:31 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+user1_220111_0201_41
+start: 11/11/2022 2:01:43 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+user1_220211_0602_01
+start: 11/11/2022 6:02:01 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 500, end: 500
+
+user1_220311_0603_26
+start: 11/11/2022 6:03:26 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+user1_220711_0207_58
+start: 11/11/2022 2:07:57 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+user1_220811_0208_41
+start: 11/11/2022 2:08:41 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 100, Removed: 0, end: 1100
+
+user1_221211_0112_29
+start: 11/11/2022 1:12:29 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+user1_222311_0123_25
+start: 11/11/2022 1:23:27 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+user1_222511_0125_42
+start: 11/11/2022 1:25:41 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 500, Removed: 0, end: 1500
+
+user1_222811_0128_02
+start: 11/11/2022 1:28:02 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 500, end: 500
+
+user1_223111_0131_42
+start: 11/11/2022 1:31:44 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+user1_223311_0133_06
+start: 11/11/2022 1:33:06 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 5, Added: 0, Removed: 0, end: 995
+
+user1_224411_1244_55
+start: 11/11/2022 12:44:57 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+user1_224811_1148_25
+start: 11/11/2022 11:48:25 AM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+user1_224911_1149_44
+start: 11/11/2022 11:49:46 AM
+end: 11/11/2022 12:38:35 PM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+user1_225211_1252_04
+start: 11/11/2022 12:52:04 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+user1_225411_1254_23
+start: 11/11/2022 12:54:25 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+user1_225611_0556_04
+start: 11/11/2022 5:56:04 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 500, Removed: 0, end: 1500
+
+user1_225711_0557_25
+start: 11/11/2022 5:57:25 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+user1_225711_0557_46
+start: 11/11/2022 5:57:46 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+user1_225911_0559_05
+start: 11/11/2022 5:59:06 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+user1_225911_1259_14
+start: 11/11/2022 12:59:14 PM
+end: 1/1/0001 12:00:00 AM
+Start balance: 1000, Payout: 0, Added: 0, Removed: 0, end: 1000
+
+closing

@@ -390,16 +390,16 @@ namespace POS_Automation.Model
                 int startDateEndIndex = sessionIdText.IndexOf("End Date:");
                 int startDateLength = startDateEndIndex - startDateStartIndex - 1;
                 string startDate = sessionIdText.Substring(startDateStartIndex + 1, startDateLength).Replace("\n","");
-                if (startDate.Length < 2)
+                startDate = Regex.Replace(startDate, @"\t|\n|\r", "").Trim();
+                try
                 {
-                    startDate = Regex.Replace(startDate, @"\t|\n|\r", "").Trim();
                     session.StartDate = DateTime.ParseExact(startDate, "M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
                 }
-                else
+                catch(Exception ex)
                 {
                     session.StartDate = default(DateTime);
                 }
-                
+
                 //parse end date
                 int endDateStartIndex = sessionIdText.LastIndexOf("e:");
                 int endDateEndIndex = sessionIdText.Length - 1;

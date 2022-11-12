@@ -140,20 +140,19 @@ namespace POS_Automation
 
             var reader = new ExcelReader();
             //reader.Open(@"C:\Users\Ben\Downloads\20221107083023.xlsx");
-            reader.Open(@"C:\Users\bdagg\Downloads\Daily Cashier Activityall.xlsx");
-            var report = reader.ParseCashierActivityReport();
+            reader.Open(@"C:\Users\Ben\Downloads\Cashier Balancetest.xlsx");
+            var report = reader.ParseCashierBalanceReport(includeVouchers:false);
             Console.WriteLine("title = " + report.Title);
             Console.WriteLine("ran at " + report.RunDate);
             Console.WriteLine("period = " + report.ReportPeriod);
 
-            foreach (var record in report.Data)
+            foreach(var session in report.Data)
             {
-                Console.WriteLine(record.CreatedBy);
-                foreach (var activity in record.Activities)
-                {
-                    Console.WriteLine($"{activity.CreatedBy},{activity.SessionId},{activity.Station},{activity.VoucherNumber},{activity.PayoutAmount},{activity.ReceiptNumber},{activity.Date}");
-                }
-                Console.WriteLine($"vouchers:{record.TotalVouchers}, amount:{record.TotalAmount},trans:{record.TotalTransactions}");
+                Console.WriteLine(session.SessionId);
+                Console.WriteLine("start: " + session.StartDate);
+                Console.WriteLine("end: " + session.EndDate);
+                Console.WriteLine("Start balance: " + session.StartBalance + ", " + "Payout: " + session.TotalPayoutAmount + ", " + "Added: " + session.TotalAmountAdded + ", " + "Removed: " + session.TotalAmountRemoved + ", " + "end: " + session.EndBalance);
+                Console.WriteLine();
             }
         }
 

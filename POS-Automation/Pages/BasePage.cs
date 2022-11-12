@@ -55,6 +55,16 @@ namespace POS_Automation
         public void Logout()
         {
             driver.FindElement(LogoutButton).Click();
+
+            try
+            {
+                wait.Until(d => LogoutConfirmation.IsOpen);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
             LogoutConfirmation.Confirm();
         }
 

@@ -57,7 +57,7 @@ namespace POS_Automation
         }
 
         //Verify an error is displayed to the user if the scanned barcode is already in the transaction
-        [Test]
+        [Test, Ignore("")]
         public void PayoutTest_VoucherAlreadyInTransaction()
         {
 
@@ -80,7 +80,8 @@ namespace POS_Automation
             }
         }
 
-        [Test]
+        
+        [Test, Ignore("")]
         public void CashBankActivityTest()
         {
 

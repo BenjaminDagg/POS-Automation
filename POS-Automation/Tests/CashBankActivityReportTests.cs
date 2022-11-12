@@ -649,7 +649,7 @@ namespace POS_Automation
         public void CashBankActivityReport_SessionNotEnded()
         {
 
-            _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
+            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
             NavigationTabs.ClickPayoutTab();
 
             int startingBalance = 1000;
@@ -657,16 +657,8 @@ namespace POS_Automation
             _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
             _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
 
-            var sessionId = _transRepo.GetCurrentUserSession(TestData.CashierUsername);
+            var sessionId = _transRepo.GetCurrentUserSession(TestData.SuperUserUsername);
 
-            _payoutPage.Logout();
-
-            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
-
-            startingBalance = 1000;
-
-            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
-            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
             _payoutPage.NavigationTabs.ClickReportsTab();
 
             string startDate = DateTime.Now.AddDays(-1).ToString("MM/d/yyyy");

@@ -96,13 +96,13 @@ namespace POS_Automation
         
         private void GoToPayoutPage()
         {
-            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
+            _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
             NavigationTabs.ClickPayoutTab();
 
             _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(CashDrawerStartingBalanceDollars.ToString());
             _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
 
-            SessionId = _transRepo.GetCurrentUserSession(TestData.SuperUserUsername);
+            SessionId = _transRepo.GetCurrentUserSession(TestData.CashierUsername);
         }
 
         private void PerformTransactions()
@@ -125,37 +125,43 @@ namespace POS_Automation
 
 
             //add cash
-            _payoutPage.CashDrawer.AddCash("300", TestData.SuperUserPassword);
+            _payoutPage.CashDrawer.AddCash("300", TestData.CashierPassword);
 
             //payout vouchers
             _payoutPage.NumPad.EnterBarcode(vouchers[0]);
             _payoutPage.Payout();
 
             //add cash
-            _payoutPage.CashDrawer.AddCash("100", TestData.SuperUserPassword);
+            _payoutPage.CashDrawer.AddCash("100", TestData.CashierPassword);
 
             //payout remaining vouchers
             _payoutPage.NumPad.EnterBarcode(vouchers[1]);
             _payoutPage.Payout();
 
             //remove cash
-            _payoutPage.CashDrawer.RemoveCash("50", TestData.SuperUserPassword);
+            _payoutPage.CashDrawer.RemoveCash("50", TestData.CashierPassword);
 
             //payout last voucher
             _payoutPage.NumPad.EnterBarcode(vouchers[2]);
             _payoutPage.Payout();
 
             //add cash
-            _payoutPage.CashDrawer.AddCash("1000", TestData.SuperUserPassword);
+            _payoutPage.CashDrawer.AddCash("1000", TestData.CashierPassword);
 
             //remove cash
-            _payoutPage.CashDrawer.RemoveCash("700", TestData.SuperUserPassword);
+            _payoutPage.CashDrawer.RemoveCash("700", TestData.CashierPassword);
 
         }
 
         private void EndSession()
         {
-            _payoutPage.NavigationTabs.ClickDeviceTab();
+            _payoutPage.Logout();
+
+            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
+            NavigationTabs.ClickPayoutTab();
+
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(CashDrawerStartingBalanceDollars.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
         }
 
         private void GenerateReport()
@@ -186,23 +192,7 @@ namespace POS_Automation
             
         }
 
-        //Verify an error is displayed to the user if the scanned barcode is already in the transaction
-        [Test]
-        public void Test()
-        {
-
-            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
-            NavigationTabs.ClickPayoutTab();
-
-            string startDate = DateTime.Now.AddDays(3).ToString("MM/d/yyyy");
-            string endDate = DateTime.Now.AddDays(4).ToString("MM/d/yyyy");
-            _payoutPage.NavigationTabs.ClickReportsTab();
-            _reportList.ClickReportByReportName("Cashier Balance");
-            _reportPage.ReportMenu.EnterStartDate(startDate);
-            _reportPage.ReportMenu.EnterEndDate(endDate);
-            _reportPage.ReportMenu.RunReport();
-        }
-
+        
         [Test]
         public void CashierBalance_VerifyHeaders()
         {

@@ -118,7 +118,7 @@ namespace POS_Automation
             var payoutTrans = session.Transactions.FirstOrDefault(t => t.TransType == "Payout");
             Assert.NotNull(payoutTrans);
             Assert.AreEqual(payoutTrans.Payout, 5);
-            Assert.AreEqual(payoutTrans.VoucherNumber, barcode);
+            Assert.AreEqual(payoutTrans.VoucherNumber.Substring(0,15), barcode.Substring(0,15));
 
             var endTrans = session.Transactions.FirstOrDefault(t => t.TransType == "End");
             Assert.NotNull(endTrans);
@@ -497,7 +497,7 @@ namespace POS_Automation
             var payoutTrans = session.Transactions.FirstOrDefault(t => t.TransType == "Payout");
             Assert.NotNull(payoutTrans);
             Assert.AreEqual(payoutTrans.Payout, 5);
-            Assert.AreEqual(payoutTrans.VoucherNumber, barcode);
+            Assert.AreEqual(payoutTrans.VoucherNumber.Substring(0,15), barcode.Substring(0, 15));
 
             var endTrans = session.Transactions.FirstOrDefault(t => t.TransType == "End");
             Assert.NotNull(endTrans);

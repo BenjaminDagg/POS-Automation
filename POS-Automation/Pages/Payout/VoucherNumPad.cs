@@ -58,7 +58,11 @@ namespace POS_Automation.Pages.Payout
             {
                 try
                 {
+                    wait.Until(d => driver.FindElement(By.XPath(btnXpath)));
                     driver.FindElement(By.XPath(btnXpath)).Click();
+
+                    //wait for text to be entered
+                    wait.Until(d => d.FindElement(NumPadTextBox).Text.Length > 0);
                 }
                 catch (Exception ex)
                 {

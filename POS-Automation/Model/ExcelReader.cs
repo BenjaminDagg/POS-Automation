@@ -172,7 +172,10 @@ namespace POS_Automation.Model
 
             int startRow = RowNum("Created By");    //find row number that has "Created By" to start
 
-           
+            //format voucher column in text format
+            var r = (Excel.Range)xlWorksheet.Range["H:H"];
+            r.NumberFormat = "@";
+          
             var title = ReadCell(CashBankActivityReport<CashBankActivityReportRecord>.TitleCell.Row, CashBankActivityReport<CashBankActivityReportRecord>.TitleCell.Col);
             report.Title = title;
 
@@ -230,7 +233,20 @@ namespace POS_Automation.Model
                         trans.SessionId = fSession;
                         trans.TransType = ReadCell(j, 9);
                         trans.Station = ReadCell(j, 5);
-                        trans.VoucherNumber = ReadCell(j, 7);
+
+                        //read voucher number if payout transtype
+                        if(ReadCell(j,7) != String.Empty)
+                        {
+                            var voucher = Decimal.Parse(ReadCell(j, 7), NumberStyles.AllowExponent | NumberStyles.AllowDecimalPoint);
+
+                            trans.VoucherNumber = voucher.ToString();
+                        }
+                        else
+                        {
+                            trans.VoucherNumber = String.Empty;
+                        }
+
+                        //read reference number
                         if(ReadCell(j, 8) != string.Empty)
                         {
                             trans.ReferenceNumber = int.Parse(ReadCell(j, 8));
@@ -239,6 +255,7 @@ namespace POS_Automation.Model
                         {
                             trans.ReferenceNumber = 0;
                         }
+
                         trans.Money = decimal.Parse(ReadCell(j, 11));
                         trans.Payout = decimal.Parse(ReadCell(j, 13));
                         if(ReadCell(j, 17) != string.Empty)

@@ -34,7 +34,7 @@ namespace POS_Automation.Pages
                 try
                 {
                     WindowsElement list = (WindowsElement)wait.Until(d => driver.FindElement(DataGrid));
-                    var rows = list.FindElements(RowSelector);
+                    var rows = driver.FindElements(RowSelector);
 
                     return rows.Count;
                 }

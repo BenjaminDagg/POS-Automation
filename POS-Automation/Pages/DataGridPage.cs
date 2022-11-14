@@ -172,7 +172,7 @@ namespace POS_Automation.Pages
             }
 
             WindowsElement list = (WindowsElement)wait.Until(d => driver.FindElement(DataGrid));
-            var rows = list.FindElements(RowSelector);
+            var rows = driver.FindElements(RowSelector);
 
             var values = new List<string>();
 

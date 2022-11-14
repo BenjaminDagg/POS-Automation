@@ -71,6 +71,15 @@ namespace POS_Automation.Custom_Elements.Alerts
         {
             base.Confirm();
             Thread.Sleep(1000);
+
+            try
+            {
+                wait.Until(d => driver.FindElements(AmountTextbox).Count == 0);
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
     }

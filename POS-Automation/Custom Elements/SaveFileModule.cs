@@ -38,6 +38,12 @@ namespace POS_Automation.Custom_Elements
         public void EnterFilepath(string filepath)
         {
             Thread.Sleep(2000);
+
+            if (!IsOpen)
+            {
+                return;
+            }
+
             WindowsElement zeroBtn = driver.FindElement(FilepathEdit);
             driver.Mouse.MouseMove(zeroBtn.Coordinates, 300, 20);
             driver.Mouse.Click(null);
@@ -47,6 +53,11 @@ namespace POS_Automation.Custom_Elements
 
         public void EnterFileName(string filename)
         {
+            if (!IsOpen)
+            {
+                return;
+            }
+
             driver.FindElement(FilenameEdit).Click();
             driver.FindElement(FilenameEdit).SendKeys(Keys.Control + "a");
             driver.FindElement(FilenameEdit).SendKeys(Keys.Backspace);
@@ -55,6 +66,12 @@ namespace POS_Automation.Custom_Elements
 
         public void Save()
         {
+
+            if (!IsOpen)
+            {
+                return;
+            }
+
             driver.FindElement(WindowSelector).FindElement(SaveButton).Click();
 
             //throw exception in something went wrong during save
@@ -73,7 +90,7 @@ namespace POS_Automation.Custom_Elements
         private bool WaitForDownload(string filepath)
         {
             bool exists = File.Exists(filepath);
-            int timer = 15;
+            int timer = 30;
 
             while(timer > 0)
             {
@@ -94,6 +111,22 @@ namespace POS_Automation.Custom_Elements
         public bool FileDownloaded(string filepath)
         {
             return WaitForDownload(filepath);
+        }
+
+        public bool IsOpen
+        {
+            get
+            {
+                try
+                {
+                    wait.Until(d => driver.FindElement(SaveButton));
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
         }
     }
 }

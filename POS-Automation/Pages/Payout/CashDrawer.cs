@@ -176,6 +176,16 @@ namespace POS_Automation.Pages.Payout
         public void ClickCashDrawerHistory()
         {
             driver.FindElement(CashDrawerHistoryButton).Click();
+            driver.FindElement(CashDrawerHistoryButton).Click();
+
+            try
+            {
+                wait.Until(d => CashDrawerHistory.IsOpen);
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         public void AddCash(string amount, string password)

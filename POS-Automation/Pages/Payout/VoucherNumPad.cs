@@ -40,6 +40,8 @@ namespace POS_Automation.Pages.Payout
                 return;
             }
 
+            wait.Until(d => driver.FindElement(NumPadTextBox));
+
             string btnXpath = $"//Button[@Name='{num.ToString()}']";
 
             //zero button hitbox is larger than the button appears. By default it clicks in the middle

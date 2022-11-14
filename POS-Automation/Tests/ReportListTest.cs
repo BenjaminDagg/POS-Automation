@@ -137,8 +137,7 @@ namespace POS_Automation
             _reportPage.ReportMenu.EnterStartDate(startDate);
             _reportPage.ReportMenu.EnterEndDate(endDate);
             _reportPage.ReportMenu.RunReport();
-            
-            _reportPage.ReportMenu.RunReport();
+
             _reportPage.ReportMenu.ClickNextPage();
 
             Assert.AreEqual(2, _reportPage.ReportMenu.GetCurrentPage());
@@ -287,7 +286,7 @@ namespace POS_Automation
             _reportPage.SaveFileWindow.EnterFileName(fileName);
             _reportPage.SaveFileWindow.Save();
 
-            Assert.True(_reportPage.SaveFileWindow.FileDownloaded(fullPath));
+            Assert.False(_reportPage.SaveFileWindow.FileDownloaded(fullPath));
         }
 
         [Test]

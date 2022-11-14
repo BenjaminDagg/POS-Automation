@@ -49,5 +49,23 @@ namespace POS_Automation.Model.Reports
 
             return result;
         }
+
+
+        public DailyCashierActivityReportRecord GetSession(string sessionId)
+        {
+            foreach (DailyCashierActivityReportRecord record in Data)
+            {
+                
+                foreach (CashierActivityRecord activity in record.Activities)
+                {
+                    if(activity.SessionId == sessionId)
+                    {
+                        return record;
+                    }
+                }
+            }
+
+            return null;
+        }
     }
 }

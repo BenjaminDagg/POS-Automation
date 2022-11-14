@@ -530,13 +530,19 @@ namespace POS_Automation
 
             foreach(var sesh in sessions)
             {
-                var startDate = sesh.StartDate;
-
-                Assert.True(startDate >= reportStartDate);
+                if(sesh.StartDate != default(DateTime))
+                {
+                    var startDateString = sesh.StartDate.ToString("M/d/yyyy");
+                    var startDate = DateTime.ParseExact(startDateString, "M/d/yyyy", CultureInfo.InvariantCulture);
+                    
+                    Assert.True((startDate >= reportStartDate));
+                }
 
                 if(sesh.EndDate != default(DateTime))
                 {
-                    var endDate = sesh.EndDate;
+                    var endDateString = sesh.EndDate.ToString("M/d/yyyy");
+                    var endDate = DateTime.ParseExact(endDateString, "M/d/yyyy", CultureInfo.InvariantCulture);
+                    
                     Assert.True(endDate <= reportEndDate);
                 }
             }

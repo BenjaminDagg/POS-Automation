@@ -294,7 +294,7 @@ namespace POS_Automation
             _payoutPage.NumPad.EnterBarcode(barcode);
             _payoutPage.Payout();
 
-            var session = _transRepo.GetCurrentUserSession(TestData.SuperUserUsername);
+            var sessionId = _transRepo.GetCurrentUserSession(TestData.SuperUserUsername);
 
             string startDate = DateTime.Now.AddDays(-1).ToString("MM/d/yyyy");
             string endDate = DateTime.Now.AddDays(1).ToString("MM/d/yyyy");
@@ -320,9 +320,12 @@ namespace POS_Automation
             var report = reader.ParseCashierActivityReport();
 
             string expectedVoucher = new string('*', 14) + barcode.Substring(14, 4);
-            string actualSession = report.GetSessionByVoucher(expectedVoucher,5,TestData.SuperUserUsername);
 
-            Assert.AreEqual(session, actualSession);
+            var userSessions = report.Data.SingleOrDefault(r => r.CreatedBy == TestData.SuperUserUsername);
+            Assert.NotNull(userSessions);
+
+            var transactions = userSessions.Activities.Where(a => a.SessionId == sessionId);
+            Assert.True(transactions.Any(t => t.SessionId == sessionId && t.VoucherNumber == expectedVoucher));
         }
 
         [Test]

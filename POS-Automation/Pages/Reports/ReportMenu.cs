@@ -70,6 +70,8 @@ namespace POS_Automation.Pages.Reports
         {
             get
             {
+                Thread.Sleep(2000);
+
                 try
                 {
                     wait.Until(d => driver.FindElement(StartDateDropdown));
@@ -197,7 +199,14 @@ namespace POS_Automation.Pages.Reports
             wait.Until(d => driver.FindElement(ViewReportButton));
             driver.FindElement(ViewReportButton).Click();
             Thread.Sleep(3000);
-            wait.Until(d => driver.FindElements(By.XPath("//*[@ClassName='ProgressBar']")).Count == 0);
+            try
+            {
+                wait.Until(d => driver.FindElements(By.XPath("//*[@ClassName='ProgressBar']")).Count == 0);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         public void Back()

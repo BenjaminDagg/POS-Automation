@@ -313,15 +313,15 @@ namespace POS_Automation
             _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
             NavigationTabs.ClickDeviceTab();
 
+            Thread.Sleep(TestData.PollingIntervalSec * 1000 * 2);
             var machBefore = _devicePage.GetMachineByMachNo(TestData.DefaultMachineNumber);
             
             GameSimulator.Play();
             Thread.Sleep(TestData.PollingIntervalSec * 1000 * 2);
 
             var machAfter = _devicePage.GetMachineByMachNo(TestData.DefaultMachineNumber);
-            
-            Assert.AreNotEqual(machAfter.LastPlayed,machBefore.LastPlayed);
-            Assert.Greater(machAfter.LastPlayed,machBefore.LastPlayed);
+
+            Assert.True(machAfter.LastPlayed > machBefore.LastPlayed || machAfter.TransType == 'W' || machAfter.TransType == 'L');
         }
 
         [Test]
@@ -332,8 +332,9 @@ namespace POS_Automation
 
             GameSimulator.Play();
             Thread.Sleep(TestData.PollingIntervalSec * 1000 * 2);
-
+            
             var lastPlayedDates = _devicePage.GetValuesForColumn(3);
+            Assert.Greater(lastPlayedDates.Count, 0);
             var targetDate = lastPlayedDates[0];
             DateTime outDate;
             string[] dateFormats = { "MM/dd/yyyy hh:mm tt" };

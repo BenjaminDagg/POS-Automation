@@ -280,8 +280,6 @@ namespace POS_Automation
             _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
             _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
 
-            var cashRemovedCountBefore = _payoutPage.CashDrawer.CashRemoved;
-
             _payoutPage.CashDrawer.RemoveCash("100", TestData.CashierPassword);
 
             var cashRemovedCountAfter = _payoutPage.CashDrawer.CashRemoved;
@@ -741,6 +739,8 @@ namespace POS_Automation
             var trans = _payoutPage.CashDrawer.CashDrawerHistory.GetTransactions();
 
             var currentBalanceTrans = trans.SingleOrDefault(x => x.TransactionType == CashDrawerTransactionType.StartingBalance);
+            Assert.NotNull(currentBalanceTrans);
+
             Assert.AreEqual(startingBalance, currentBalanceTrans.Amount);
         }
 

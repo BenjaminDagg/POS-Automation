@@ -114,7 +114,6 @@ namespace POS_Automation
             var balanceAfter = machAfter.Balance * 100;
             int expectedBalance = (balanceStart - betAmount);
 
-            Assert.GreaterOrEqual(machAfter.LastPlayed, machBefore.LastPlayed);
             Assert.AreEqual('L', machAfter.TransType);
             Assert.AreEqual(expectedBalance, balanceAfter);
         }

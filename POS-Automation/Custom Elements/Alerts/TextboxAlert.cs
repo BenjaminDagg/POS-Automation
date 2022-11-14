@@ -51,7 +51,7 @@ namespace POS_Automation.Custom_Elements.Alerts
         public override void Confirm()
         {
             base.Confirm();
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
         }
     }
 }

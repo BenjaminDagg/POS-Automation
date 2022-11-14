@@ -16,7 +16,7 @@ namespace POS_Automation
     {
         protected WindowsDriver<WindowsElement> driver;
         protected DefaultWait<WindowsDriver<WindowsElement>> wait;
-        protected int DefaultWaitTimeoutSeconds = 7;
+        protected int DefaultWaitTimeoutSeconds = 10;
         private By ExitConfirmationWindow;
         private ByAccessibilityId CloseWindowButton;
         private By PromptConfirmButton;
@@ -54,6 +54,7 @@ namespace POS_Automation
 
         public void Logout()
         {
+            driver.FindElement(LogoutButton).Click();
             driver.FindElement(LogoutButton).Click();
 
             try

@@ -164,6 +164,28 @@ namespace POS_Automation.Model
             return response;
         }
 
+
+        public string TransC()
+        {
+            string cTrans = $"{SequenceNumber},C,{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")},";
+            var response = tpClient.Execute(cTrans);
+
+            SequenceNumber++;
+
+            return response;
+        }
+
+
+        //Cash Drop
+        public string TransD(POS_Automation.Model.GameplayParams gameParam)
+        {
+            string dTrans = $"{SequenceNumber},D,{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")},DGE00177777OpKey,1900-01-01 00:00:00,{gameParam.DollarsInCredits},{gameParam.Count1Dollar},{gameParam.Count2Dollar},{gameParam.Count5Dollar},{gameParam.count10Dollar},{gameParam.Count20Dollar},{gameParam.Count50Dollar},{gameParam.Count100Dollar},{gameParam.TabsSold},{gameParam.WinTabs},{gameParam.LoseTabs},{gameParam.PayoutCredits},{gameParam.TicketDroppedValue},{gameParam.TicketCountDropped},0,0";
+            var response = tpClient.Execute(dTrans);
+
+            return response;
+        }
+
+
         public string GetVoucher(int currentBalanceCredits, int voucherAmountCredits,bool jackpotFlag = false)
         {
             var newBalance = currentBalanceCredits - voucherAmountCredits;

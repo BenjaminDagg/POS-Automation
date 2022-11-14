@@ -199,5 +199,25 @@ namespace POS_Automation
             var machFinal = _devicePage.GetMachineByMachNo(TestData.DefaultMachineNumber);
             Assert.True(machFinal.Status);
         }
+
+        [Test]
+        public async Task CashDrop()
+        {
+            _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
+            NavigationTabs.ClickDeviceTab();
+
+            GameSimulator.BillIn(5);
+            Thread.Sleep(6000);
+            GameSimulator.Play();
+            Console.WriteLine("1: " + GameSimulator.gameplayParams.Count1Dollar);
+            Console.WriteLine("2: " + GameSimulator.gameplayParams.Count2Dollar);
+            Console.WriteLine("5: " + GameSimulator.gameplayParams.Count5Dollar);
+            Console.WriteLine("10: " + GameSimulator.gameplayParams.count10Dollar);
+            Console.WriteLine("20: " + GameSimulator.gameplayParams.Count20Dollar);
+            Console.WriteLine("50: " + GameSimulator.gameplayParams.Count50Dollar);
+            Console.WriteLine("100: " + GameSimulator.gameplayParams.Count100Dollar);
+
+            GameSimulator.CashDrop();
+        }
     }
 }

@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\EGM\EGM\EGMSimulator.Core\EGMSimulator.Core.csproj" />
+    <ProjectReference Include="..\..\EGM\EGM\EGMSimulator.Core\EGMSimulator.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

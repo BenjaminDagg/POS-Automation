@@ -23,6 +23,20 @@ namespace POS_Automation.Model
         public int CoinsBet { get; set; }
         public int DealNumber { get; set; }
         public int BarcodeTypeId { get; set; }
+        public int DollarsInCredits { get; set; }
+        public int Count1Dollar { get; set; }
+        public int Count2Dollar { get; set; }
+        public int Count5Dollar { get; set; }
+        public int count10Dollar { get; set; }
+        public int Count20Dollar { get; set; }
+        public int Count50Dollar { get; set; }
+        public int Count100Dollar { get; set; }
+        public int TabsSold { get; set; }
+        public int WinTabs { get; set; }
+        public int LoseTabs { get; set; }
+        public int PayoutCredits { get; set; }
+        public int TicketDroppedValue { get; set; }
+        public int TicketCountDropped { get; set; }
 
 
         public GameplayParams()

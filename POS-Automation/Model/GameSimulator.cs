@@ -25,6 +25,7 @@ namespace POS_Automation.Model
         public GameSimulator(ILogService logService)
         {
             gameplayParams = new GameplayParams();
+
             transactionPortalService = new TransactionPortalService(logService);
             BarcodeService = new BarcodeService(logService);
 
@@ -88,6 +89,8 @@ namespace POS_Automation.Model
 
                             gameplayParams.SequenceNumber = reader.GetInt32(8) + 1;
                             transactionPortalService.SequenceNumber = gameplayParams.SequenceNumber;
+
+                            gameplayParams.DollarsInCredits = gameplayParams.BalanceCredits;
                         }
                     }
                 }
@@ -186,6 +189,35 @@ namespace POS_Automation.Model
         }
 
 
+        private void HandleBillIn(double dollar)
+        {
+            switch (dollar)
+            {
+                case 100:
+                    gameplayParams.Count100Dollar++;
+                    break;
+                case 50:
+                    gameplayParams.Count50Dollar++;
+                    break;
+                case 20:
+                    gameplayParams.Count20Dollar++;
+                    break;
+                case 10:
+                    gameplayParams.count10Dollar++;
+                    break;
+                case 5:
+                    gameplayParams.Count5Dollar++;
+                    break;
+                case 2:
+                    gameplayParams.Count2Dollar++;
+                    break;
+                case 1:
+                    gameplayParams.Count1Dollar++;
+                    break;
+            }
+        }
+
+
         public string Play()
         {
 
@@ -209,6 +241,8 @@ namespace POS_Automation.Model
                     response = transactionPortalService.TransW(newBalance, gameplayParams.TicketNumber, gameplayParams.Denomination, gameplayParams.CoinsBet, gameplayParams.LinesBet, gameplayParams.DealNumber, barcodeString, gameplayParams.BarcodeTypeId, creditsWon);
 
                     gameplayParams.TicketNumber++;
+                    gameplayParams.WinTabs++;
+                    gameplayParams.PayoutCredits += creditsWon;
                 }
                 else
                 {
@@ -218,7 +252,11 @@ namespace POS_Automation.Model
                     response = transactionPortalService.TransL(newBalance, gameplayParams.Denomination, gameplayParams.CoinsBet, gameplayParams.LinesBet, gameplayParams.DealNumber, gameplayParams.TicketNumber, barcodeString);
 
                     gameplayParams.TicketNumber++;
+                    gameplayParams.LoseTabs++;
                 }
+                gameplayParams.TabsSold++;
+                gameplayParams.TicketDroppedValue += gameplayParams.BetAmount;
+                gameplayParams.TicketCountDropped++;
 
                 return response;
             }
@@ -253,6 +291,11 @@ namespace POS_Automation.Model
             response = transactionPortalService.TransW(newBalance, gameplayParams.TicketNumber, gameplayParams.Denomination, gameplayParams.CoinsBet, gameplayParams.LinesBet, gameplayParams.DealNumber, barcodeString, gameplayParams.BarcodeTypeId, creditsWon);
 
             gameplayParams.TicketNumber++;
+            gameplayParams.TabsSold++;
+            gameplayParams.WinTabs++;
+            gameplayParams.PayoutCredits += creditsWon;
+            gameplayParams.TicketDroppedValue += gameplayParams.BetAmount;
+            gameplayParams.TicketCountDropped++;
 
             winAmountCredits = creditsWon;
 
@@ -272,6 +315,10 @@ namespace POS_Automation.Model
             string response = transactionPortalService.TransL(newBalance, gameplayParams.Denomination, gameplayParams.CoinsBet, gameplayParams.LinesBet, gameplayParams.DealNumber, gameplayParams.TicketNumber, barcodeString);
 
             gameplayParams.TicketNumber++;
+            gameplayParams.TabsSold++;
+            gameplayParams.LoseTabs++;
+            gameplayParams.TicketDroppedValue += gameplayParams.BetAmount;
+            gameplayParams.TicketCountDropped++;
 
             return response;
         }
@@ -284,9 +331,12 @@ namespace POS_Automation.Model
             int amountAddedCredits = (int)(amount * 100) * denom;
             int newBalance = currentBalance + amountAddedCredits;
 
+            HandleBillIn(amount);
+
             string response = transactionPortalService.TransM(newBalance, amountAddedCredits, denom);
 
             gameplayParams.BalanceCredits = newBalance;
+            gameplayParams.DollarsInCredits += amountAddedCredits;
 
             return response;
         }
@@ -319,6 +369,15 @@ namespace POS_Automation.Model
         public string SetOnline()
         {
             string response = transactionPortalService.TransX(0);
+            gameplayParams.SequenceNumber++;
+
+            return response;
+        }
+
+
+        public string CashDrop()
+        {
+            string response = transactionPortalService.TransD(gameplayParams);
             gameplayParams.SequenceNumber++;
 
             return response;

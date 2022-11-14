@@ -206,7 +206,47 @@ namespace POS_Automation
             _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
             NavigationTabs.ClickDeviceTab();
 
+            GameSimulator.BillIn(1);
+          
             GameSimulator.BillIn(5);
+  
+            GameSimulator.BillIn(5);
+
+            GameSimulator.BillIn(10);
+      
+            GameSimulator.BillIn(10);
+    
+            GameSimulator.BillIn(10);
+
+            GameSimulator.BillIn(20);
+    
+            GameSimulator.BillIn(20);
+    
+            GameSimulator.BillIn(20);
+      
+            GameSimulator.BillIn(20);
+    
+            GameSimulator.BillIn(50);
+         
+            GameSimulator.BillIn(50);
+          
+            GameSimulator.BillIn(50);
+        
+            GameSimulator.BillIn(50);
+   
+            GameSimulator.BillIn(50);
+
+            GameSimulator.BillIn(100);
+
+            GameSimulator.BillIn(100);
+
+            GameSimulator.BillIn(100);
+
+            GameSimulator.BillIn(100);
+
+            GameSimulator.BillIn(100);
+
+            GameSimulator.BillIn(100);
             Thread.Sleep(6000);
             GameSimulator.Play();
             Console.WriteLine("1: " + GameSimulator.gameplayParams.Count1Dollar);

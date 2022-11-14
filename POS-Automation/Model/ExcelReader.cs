@@ -9,6 +9,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using POS_Automation.Model.Reports;
 using System.Text.RegularExpressions;
 using POS_Automation.Model.Reports.Cashier_Balance_Report;
+using POS_Automation.Model.Reports.Drop_By_Date_Report;
 
 //IMPORT THIS DLL AS REFERENCE: C:\Windows\assembly\GAC_MSIL\office\15.0.0.0__71e9bce111e9429c\OFFICE.DLL
 
@@ -484,6 +485,121 @@ namespace POS_Automation.Model
 
             return report;
         }
+
+
+        public DropByDateReport<CashDropRecord> ParseDropByDateReport()
+        {
+            var report = new DropByDateReport<CashDropRecord>();
+            var records = new List<CashDropRecord>();
+            report.Data = records;
+
+            string title = string.Empty;
+            DateTime runTime;
+            string period = string.Empty;
+            int dataRowNumStart = RowNum("Terminal");
+
+            //report is empty
+            if(dataRowNumStart == -1)
+            {
+                //get title
+                title = ((Excel.Range)xlWorksheet.Cells[6, 7]).Value.ToString();
+                report.Title = title;
+
+                //get period
+                period = ((Excel.Range)xlWorksheet.Cells[8, 5]).Value.ToString();
+                period = Regex.Replace(period, @"\t|\n|\r", "");
+                report.ReportPeriod = period;
+
+                //get run time
+                string runTimeS = ((Excel.Range)xlWorksheet.Cells[5, 10]).Value.ToString();
+                runTimeS = Regex.Replace(runTimeS, @"\t|\n|\r", "");
+                runTimeS = runTimeS.Replace("Run Date/Time", "");
+                runTime = DateTime.Parse(runTimeS);
+                report.RunDate = runTime;
+
+                //get location
+                string locationS = ((Excel.Range)xlWorksheet.Cells[2, 2]).Value.ToString();
+                report.Location = locationS;
+
+                return report;
+            }
+
+            //get title
+            title = ((Excel.Range)xlWorksheet.Cells[6,10]).Value.ToString();
+            report.Title = title;
+
+            //get period
+            period = ((Excel.Range)xlWorksheet.Cells[8, 5]).Value.ToString();
+            period = Regex.Replace(period, @"\t|\n|\r", "");
+            report.ReportPeriod = period;
+
+            //get run time
+            string runTimeString = ((Excel.Range)xlWorksheet.Cells[5, 21]).Value.ToString();
+            runTimeString = Regex.Replace(runTimeString, @"\t|\n|\r", "");
+            runTimeString = runTimeString.Replace("Run Date/Time", "");
+            runTime = DateTime.Parse(runTimeString);
+            report.RunDate = runTime;
+
+            //get location
+            string locationString = ((Excel.Range)xlWorksheet.Cells[2, 2]).Value.ToString();
+            report.Location = locationString;
+
+           
+            //loop through table and get drop data
+            int rowCount = dataRowNumStart + 1;
+            for(int i = dataRowNumStart + 1; i < xlRange.Rows.Count && ReadCell(i,3).Contains("Totals") == false; i++)
+            {
+                var drop = new CashDropRecord();
+
+                string terminalNum = ReadCell(i,3).Replace(",","");
+                string billCount1 = ReadCell(i, 5).Replace(",", "");
+                string billCount5 = ReadCell(i,6).Replace(",", "");
+                string billCount10 = ReadCell(i, 8).Replace(",", "");
+                string billCount20 = ReadCell(i, 10).Replace(",", "");
+                string billCount50 = ReadCell(i,11).Replace(",", "");
+                string billCount100 = ReadCell(i, 13).Replace(",", "");
+                string ticketAmountTotal = ReadCell(i, 14).Replace(",", "");
+                string totalTickets = ReadCell(i, 15).Replace(",", "");
+                string totalBills = ReadCell(i, 16).Replace(",", "");
+                string totalDropAmount = ReadCell(i, 18).Replace(",", "");
+                string dropDate = ReadCell(i, 19).Replace(",", "");
+                string account = ReadCell(i, 22).Replace(",", "");
+
+                drop.TerminalId = terminalNum;
+                drop.Amount1Dollar = int.Parse(billCount1);
+                drop.Amount5Dollar = int.Parse(billCount5);
+                drop.Amount10Dollar = int.Parse(billCount10);
+                drop.Amount20Dollar = int.Parse(billCount20);
+                drop.Amount50Dollar = int.Parse(billCount50);
+                drop.Amount100Dollar = int.Parse(billCount100);
+                drop.TotalTicketAmount = decimal.Parse(ticketAmountTotal,NumberStyles.Currency);
+                drop.TotalTickets = int.Parse(totalTickets);
+                drop.TotalBills = int.Parse(totalBills);
+                drop.TotalDropAmount = decimal.Parse(totalDropAmount, NumberStyles.Currency);
+                drop.DropTime = DateTime.ParseExact(dropDate, "MM/dd/yyyy hh:mm:ss", CultureInfo.InvariantCulture);
+                drop.Account = account;
+
+                records.Add(drop);
+                rowCount++;
+            }
+
+            //parse totals
+            report.Total1Dollar = int.Parse(ReadCell(rowCount, 5).Replace(",", ""));
+            report.Total5Dollar = int.Parse(ReadCell(rowCount, 6).Replace(",", ""));
+            report.Total10Dollar = int.Parse(ReadCell(rowCount, 8).Replace(",", ""));
+            report.Total20Dollar = int.Parse(ReadCell(rowCount, 10).Replace(",", ""));
+            report.Total50Dollar = int.Parse(ReadCell(rowCount, 11).Replace(",", ""));
+            report.Total100Dollar = int.Parse(ReadCell(rowCount, 13).Replace(",", ""));
+            report.TotalTicketAmount = decimal.Parse(ReadCell(rowCount, 14).Replace(",", ""));
+            report.TotalTicketCount = int.Parse(ReadCell(rowCount, 15).Replace(",", ""));
+            report.TotalBills = int.Parse(ReadCell(rowCount, 16).Replace(",", ""));
+            report.TotalDropAmount = decimal.Parse(ReadCell(rowCount, 18).Replace(",", ""));
+
+            report.Data = records;
+
+            return report;
+        }
+
 
         public void FindTotal()
         {

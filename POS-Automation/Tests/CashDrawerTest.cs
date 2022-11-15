@@ -840,6 +840,60 @@ namespace POS_Automation
             Assert.AreEqual(800, currentBalance);
         }
 
-        
+        [Test]
+        public void Test()
+        {
+            
+
+            var reader = new ExcelReader();
+            //reader.Open(@"C:\Users\Ben\Downloads\20221107083023.xlsx");
+            reader.Open(@"C:\Users\Ben\Downloads\Cashier Balance_nodrops.xlsx");
+            var report = reader.ParseCashierBalanceReport(includeVouchers: true);
+
+            Console.WriteLine("Title: " + report.Title);
+            Console.WriteLine("Runtime: " + report.RunDate);
+            Console.WriteLine("Period: " + report.ReportPeriod);
+
+            var sessions = report.Data;
+            int count = 0;
+            foreach(var session in sessions)
+            {
+                if(count > 5)
+                {
+                    break;
+                }
+
+                Console.WriteLine("==========================");
+                Console.WriteLine(session.SessionId);
+                Console.WriteLine("Start: " + session.StartDate);
+                Console.WriteLine("End: " + session.EndDate);
+                Console.WriteLine("Start Balance: " + session.StartBalance);
+                Console.WriteLine("Total Payout: " + session.TotalPayoutAmount);
+                Console.WriteLine("Added: " + session.TotalAmountAdded);
+                Console.WriteLine("Removed: " + session.TotalAmountRemoved);
+                Console.WriteLine("End Balance: " + session.EndBalance);
+
+                count++;
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("========= Totals ============");
+            Console.WriteLine("Start: " + report.TotalStartingBalance);
+            Console.WriteLine("Payout: " + report.TotalPayoutAmount);
+            Console.WriteLine("Added: " + report.TotalAmountAdded);
+            Console.WriteLine("Removed: " + report.TotalAmountRemoved);
+            Console.WriteLine("End: " + report.TotalEndBalance);
+            Console.WriteLine();
+
+            Console.WriteLine("=========== Vouchers ================");
+            var vouchers = report.UnpaidVouchers;
+            foreach(var voucher in vouchers)
+            {
+                Console.WriteLine("===================");
+                Console.WriteLine(voucher.VoucherNumber + ", " + voucher.Amount + ", " + voucher.CreatedDate);
+            }
+            Console.WriteLine("======= VOucher Totals ===========");
+            Console.WriteLine(report.TotalUnpaidVoucherAmount);
+        }
     }
 }

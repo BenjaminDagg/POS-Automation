@@ -350,6 +350,7 @@ namespace POS_Automation.Model
             var drops = new List<CashRemovedRecord>();
             report.Data = records;
             report.UnpaidVouchers = vouchers;
+            report.CashDrops = drops;
             string title = string.Empty;
             DateTime runTime;
             string period = string.Empty;

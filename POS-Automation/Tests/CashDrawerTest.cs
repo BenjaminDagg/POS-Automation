@@ -847,10 +847,10 @@ namespace POS_Automation
 
             var reader = new ExcelReader();
             //reader.Open(@"C:\Users\Ben\Downloads\20221107083023.xlsx");
-            reader.Open(@"C:\Users\Ben\Downloads\Cashier Balance_drops_and_Sessions.xlsx");
+            reader.Open(@"C:\Users\Ben\Downloads\Cashier Balance_nodrops.xlsx");
       
             
-            var report = reader.ParseCashierBalanceReport(includeVouchers: false);
+            var report = reader.ParseCashierBalanceReport(includeVouchers: true);
 
             Console.WriteLine("Title: " + report.Title);
             Console.WriteLine("Runtime: " + report.RunDate);

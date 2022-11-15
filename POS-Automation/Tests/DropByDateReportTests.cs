@@ -189,8 +189,9 @@ namespace POS_Automation
             _reportList.ClickReportByReportName("Drop by Date Range Report");
             _reportPage.ReportMenu.EnterStartDate(startDate);
             _reportPage.ReportMenu.EnterEndDate(endDate);
+            _reportPage.ReportMenu.EnterCasinoName("test");
             _reportPage.ReportMenu.RunReport();
-
+            
             string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
             string filepath = TestData.DownloadPath;
             string fullPath = filepath + @"\" + filename;
@@ -212,6 +213,7 @@ namespace POS_Automation
             Assert.AreEqual(10,drop.Amount10Dollar);
             Assert.AreEqual(6,drop.TotalTicketAmount);
             Assert.AreEqual(3, drop.TotalTickets);
+            
         }
 
         //Verify report totals are correct
@@ -341,5 +343,181 @@ namespace POS_Automation
             Assert.NotNull(latestDrop);
             Console.WriteLine("Latest: " + latestDrop.TotalDropAmount);
         }
+
+        //Verify report displays no data if the casino name doesn't exist
+        [Test]
+        public async Task InvalidCasinoName()
+        {
+            _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
+            NavigationTabs.ClickDeviceTab();
+
+            GameSimulator.BillIn(10);
+            GameSimulator.CashDrop();
+
+            Thread.Sleep(TestData.PollingIntervalSec * 1000 * 2);
+
+            //save report
+            string startDate = DateTime.Now.AddDays(-1).ToString("MM/d/yyyy");
+            string endDate = DateTime.Now.AddDays(1).ToString("MM/d/yyyy");
+
+            _payoutPage.NavigationTabs.ClickReportsTab();
+            _reportList.ClickReportByReportName("Drop by Date Range Report");
+            _reportPage.ReportMenu.EnterStartDate(startDate);
+            _reportPage.ReportMenu.EnterEndDate(endDate);
+            _reportPage.ReportMenu.EnterCasinoName("InvalidCasino");
+            _reportPage.ReportMenu.RunReport();
+
+            string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
+            string filepath = TestData.DownloadPath;
+            string fullPath = filepath + @"\" + filename;
+
+            _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
+            _reportPage.SaveFileWindow.EnterFilepath(filepath);
+            _reportPage.SaveFileWindow.EnterFileName(filename);
+            _reportPage.SaveFileWindow.Save();
+
+            Assert.True(_reportPage.SaveFileWindow.FileDownloaded(fullPath));
+
+            ExcelReader reader = new ExcelReader();
+            reader.Open(fullPath);
+            var report = reader.ParseDropByDateReport();
+
+            Assert.Zero(report.Data.Count);
+
+        }
+
+        //Verify the entered casino name gets inserted into the report
+        [Test]
+        public async Task CainoName()
+        {
+            _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
+            NavigationTabs.ClickDeviceTab();
+
+            string casino = "TestCasino";
+
+            GameSimulator.BillIn(10);
+            GameSimulator.CashDrop();
+
+            Thread.Sleep(TestData.PollingIntervalSec * 1000 * 2);
+
+            //save report
+            string startDate = DateTime.Now.AddDays(-1).ToString("MM/d/yyyy");
+            string endDate = DateTime.Now.AddDays(1).ToString("MM/d/yyyy");
+
+            _payoutPage.NavigationTabs.ClickReportsTab();
+            _reportList.ClickReportByReportName("Drop by Date Range Report");
+            _reportPage.ReportMenu.EnterStartDate(startDate);
+            _reportPage.ReportMenu.EnterEndDate(endDate);
+            _reportPage.ReportMenu.EnterCasinoName(casino);
+            _reportPage.ReportMenu.RunReport();
+
+            string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
+            string filepath = TestData.DownloadPath;
+            string fullPath = filepath + @"\" + filename;
+
+            _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
+            _reportPage.SaveFileWindow.EnterFilepath(filepath);
+            _reportPage.SaveFileWindow.EnterFileName(filename);
+            _reportPage.SaveFileWindow.Save();
+
+            Assert.True(_reportPage.SaveFileWindow.FileDownloaded(fullPath));
+
+            ExcelReader reader = new ExcelReader();
+            reader.Open(fullPath);
+            var report = reader.ParseDropByDateReport();
+
+            string expected = casino + $" ({TestData.LocationId})";
+
+            Assert.AreEqual(expected,report.Location);
+
+        }
+
+        //Verify header content
+        [Test]
+        public void VerifyHeaders()
+        {
+
+            _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
+            NavigationTabs.ClickDeviceTab();
+
+            DateTime startDate = DateTime.Now.AddDays(-1);
+            DateTime endDate = DateTime.Now.AddDays(1);
+
+            _payoutPage.NavigationTabs.ClickReportsTab();
+            _reportList.ClickReportByReportName("Drop by Date Range Report");
+            _reportPage.ReportMenu.EnterStartDate(startDate.ToString("MM/d/yyyy"));
+            _reportPage.ReportMenu.EnterEndDate(endDate.ToString("MM/d/yyyy"));
+            _reportPage.ReportMenu.RunReport();
+
+            string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
+            string filepath = TestData.DownloadPath;
+            string fullPath = filepath + @"\" + filename;
+
+            _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
+            _reportPage.SaveFileWindow.EnterFilepath(filepath);
+            _reportPage.SaveFileWindow.EnterFileName(filename);
+            _reportPage.SaveFileWindow.Save();
+
+            Assert.True(_reportPage.SaveFileWindow.FileDownloaded(fullPath));
+
+
+            ExcelReader reader = new ExcelReader();
+            reader.Open(fullPath);
+            var report = reader.ParseDropByDateReport();
+
+            string expectedLocation = TestData.DefaultLocationName + $" ({TestData.LocationId})";
+            string expectedTitle = "Drop by Date Range Report";
+            string expectedPeriod = $"For Drops Performed between {startDate.ToString("MM-dd-yyyy")} 02:00 AM and {endDate.ToString("MM-dd-yyyy")} 02:00 AM";
+
+            Assert.AreEqual(expectedTitle, report.Title);
+            Assert.AreEqual(expectedLocation, report.Location);
+            Assert.AreEqual(expectedPeriod,report.ReportPeriod);
+         
+        }
+
+        //Verify no errors are generated if report doesn't have data
+        [Test]
+        public void EmptyReport()
+        {
+
+            _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
+            NavigationTabs.ClickDeviceTab();
+
+            DateTime startDate = DateTime.Now.AddDays(3);
+            DateTime endDate = DateTime.Now.AddDays(4);
+
+            _payoutPage.NavigationTabs.ClickReportsTab();
+            _reportList.ClickReportByReportName("Drop by Date Range Report");
+            _reportPage.ReportMenu.EnterStartDate(startDate.ToString("MM/d/yyyy"));
+            _reportPage.ReportMenu.EnterEndDate(endDate.ToString("MM/d/yyyy"));
+            _reportPage.ReportMenu.RunReport();
+
+            string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
+            string filepath = TestData.DownloadPath;
+            string fullPath = filepath + @"\" + filename;
+
+            _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
+            _reportPage.SaveFileWindow.EnterFilepath(filepath);
+            _reportPage.SaveFileWindow.EnterFileName(filename);
+            _reportPage.SaveFileWindow.Save();
+
+            Assert.True(_reportPage.SaveFileWindow.FileDownloaded(fullPath));
+
+
+            ExcelReader reader = new ExcelReader();
+            reader.Open(fullPath);
+            var report = reader.ParseDropByDateReport();
+
+            string expectedLocation = TestData.DefaultLocationName + $" ({TestData.LocationId})";
+            string expectedTitle = "Drop by Date Range Report";
+            string expectedPeriod = $"For Drops Performed between {startDate.ToString("MM-dd-yyyy")} 02:00 AM and {endDate.ToString("MM-dd-yyyy")} 02:00 AM";
+
+            Assert.Zero(report.Data.Count);
+            Assert.AreEqual(expectedTitle, report.Title);
+            Assert.AreEqual(expectedLocation, report.Location);
+            Assert.True(report.ReportPeriod.Contains(startDate.ToString("MM-dd-yyyy")) && report.ReportPeriod.Contains(endDate.ToString("MM-dd-yyyy")));
+
+        }
+
     }
 }

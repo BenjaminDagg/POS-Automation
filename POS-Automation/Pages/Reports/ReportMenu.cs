@@ -36,6 +36,7 @@ namespace POS_Automation.Pages.Reports
         private ByAccessibilityId ZoomDropdownSelect;
         public ReportDropdownElement ZoomDropdown;
         private ByAccessibilityId ToggleParametersButton;
+        private By CasinoNameTextBox;
 
         //page select buttons
         private ByAccessibilityId FirstPageButton;
@@ -58,6 +59,7 @@ namespace POS_Automation.Pages.Reports
             ZoomDropdownSelect = new ByAccessibilityId("PART_comboBoxPageZoom");
             ZoomDropdown = new ReportDropdownElement(ZoomDropdownSelect, driver);
             ToggleParametersButton = new ByAccessibilityId("PART_buttonParameters");
+            CasinoNameTextBox = By.XPath("//*[@Name='CasinoName']/following-sibling::Edit[@ClassName='TextBox']");
 
             FirstPageButton = new ByAccessibilityId("PART_buttonFirst");
             PrevPageButton = new ByAccessibilityId("PART_buttonPrevious");
@@ -271,6 +273,15 @@ namespace POS_Automation.Pages.Reports
             if (!ParametersAreHidden)
             {
                 driver.FindElement(ToggleParametersButton).Click();
+            }
+        }
+
+        public void EnterCasinoName(string text)
+        {
+            if (!ParametersAreHidden)
+            {
+                driver.FindElement(CasinoNameTextBox).Clear();
+                driver.FindElement(CasinoNameTextBox).SendKeys(text);
             }
         }
     }

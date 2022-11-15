@@ -214,6 +214,8 @@ namespace POS_Automation.Pages
 
         public void ClickLastReceiptButton()
         {
+            wait.Until(d => driver.FindElement(LastReceiptButton));
+            driver.FindElement(LastReceiptButton).Click();
             driver.FindElement(LastReceiptButton).Click();
         }
 

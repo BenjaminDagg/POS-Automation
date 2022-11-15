@@ -7,6 +7,7 @@ using OpenQA.Selenium.Appium;   //Appium Options
 using System.Threading;
 using OpenQA.Selenium;
 using System.Diagnostics;
+using System.Configuration;
 
 namespace POS_Automation
 {
@@ -46,18 +47,11 @@ namespace POS_Automation
         {
             if (driver == null)
             {
-                string DriverUrl = "http://127.0.0.1:4723";         //found by starting WinAppDriver.exe
-                string AppPath = @"C:\Users\Ben\Music\20220325.5\POS.exe";
-                string appName = "POS";
+                string DriverUrl = ConfigurationManager.AppSettings["WinAppDriverUrl"];        //found by starting WinAppDriver.exe
+                string AppPath = ConfigurationManager.AppSettings["ApplicationPath"];
+                string appName = ConfigurationManager.AppSettings["ApplicationName"];
                 string AppDriverPath = @"C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe";
 
-                /*
-                var appiumOptions = new AppiumOptions();
-                appiumOptions.AddAdditionalCapability("app", AppPath);
-                appiumOptions.AddAdditionalCapability("deviceName", "WindowsPC");
-
-                driver = new WindowsDriver<WindowsElement>(new Uri(DriverUrl), appiumOptions);
-                */
 
                 //start app
                 var proc = Process.Start(AppPath);

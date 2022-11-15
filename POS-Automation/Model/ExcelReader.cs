@@ -356,6 +356,12 @@ namespace POS_Automation.Model
             int cashierSummaryTotalsRow = RowNum("Period Totals:");
             int voucherDetailsStartRow = -1;
 
+            //report has drop data which throws off column indexes to use separate meethod to parse
+            if (RowNum("Dispenser Number") != -1)
+            {
+                return ParseCashierBalanceReportWithDropData(includeVouchers: includeVouchers);
+            }
+
             //if cant find cashier summary then report is empty. Just return report with title, period, and empty values for data
             if (cashierSummaryTotalsRow == -1)
             {
@@ -374,11 +380,6 @@ namespace POS_Automation.Model
                 return report;
             }
 
-            //report has drop data which throws off column indexes to use separate meethod to parse
-            if(RowNum("Dispenser Number") != -1)
-            {
-                return ParseCashierBalanceReportWithDropData(includeVouchers: includeVouchers);
-            }
 
             //get title
             title = ((Excel.Range)xlWorksheet.Cells[3, 5]).Value.ToString();
@@ -493,6 +494,7 @@ namespace POS_Automation.Model
         }
 
 
+        
 
         private CashierBalanceReport<CashierSessionSummaryRecord> ParseCashierBalanceReportWithDropData(bool includeVouchers)
         {
@@ -506,19 +508,18 @@ namespace POS_Automation.Model
             string period = string.Empty;
             int cashierSessionSummaryStartRow = RowNum("Cashier Session Summary") + 2;
             int cashierSummaryTotalsRow = RowNum("Period Totals:");
-            Console.WriteLine("totals start on row " + cashierSummaryTotalsRow);
             int voucherDetailsStartRow = -1;
 
             //if cant find cashier summary then report is empty. Just return report with title, period, and empty values for data
             if (cashierSummaryTotalsRow == -1)
             {
-                report.Title = ((Excel.Range)xlWorksheet.Cells[3, 4]).Value.ToString();
+                report.Title = ((Excel.Range)xlWorksheet.Cells[3, 5]).Value.ToString();
 
-                period = ((Excel.Range)xlWorksheet.Cells[6, 3]).Value.ToString();
+                period = ((Excel.Range)xlWorksheet.Cells[6, 4]).Value.ToString();
                 period = Regex.Replace(period, @"\t|\n|\r", "");
                 report.ReportPeriod = period;
 
-                string runTimeS = ((Excel.Range)xlWorksheet.Cells[2, 8]).Value.ToString();
+                string runTimeS = ((Excel.Range)xlWorksheet.Cells[2, 10]).Value.ToString();
                 runTimeS = Regex.Replace(runTimeS, @"\t|\n|\r", "");
                 runTimeS = runTimeS.Replace("Run Date/Time", "");
                 runTime = DateTime.Parse(runTimeS);

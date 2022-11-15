@@ -1,18 +1,36 @@
 Title: Cashier Balance Report
-Runtime: 11/15/2022 9:59:00 AM
-Period: 4064 - American Eagle2Reporting Period: 11/12/2022 2:00:00 AM To: 11/13/2022 2:00:00 AM
+Runtime: 11/15/2022 10:29:00 AM
+Period: 4064 - American Eagle2Reporting Period: 11/14/2022 2:00:00 AM To: 11/15/2022 2:00:00 AM
 ==========================
-bdagg_220512_0705_13
-Start: 11/12/2022 7:05:11 PM
+bdagg_220014_0200_11
+Start: 11/14/2022 2:00:13 PM
 End: 1/1/0001 12:00:00 AM
-Start Balance: 2000
+Start Balance: 1000
 Total Payout: 0
 Added: 0
 Removed: 0
-End Balance: 2000
+End Balance: 1000
 ==========================
-bdagg_220612_0406_53
-Start: 11/12/2022 4:06:53 AM
+bdagg_220214_1002_49
+Start: 11/14/2022 10:02:48 AM
+End: 1/1/0001 12:00:00 AM
+Start Balance: 1000
+Total Payout: 0
+Added: 0
+Removed: 0
+End Balance: 1000
+==========================
+bdagg_220314_1103_43
+Start: 11/14/2022 11:03:42 PM
+End: 1/1/0001 12:00:00 AM
+Start Balance: 1000
+Total Payout: 10
+Added: 0
+Removed: 0
+End Balance: 990
+==========================
+bdagg_220414_1104_47
+Start: 11/14/2022 11:04:46 PM
 End: 1/1/0001 12:00:00 AM
 Start Balance: 1000
 Total Payout: 30
@@ -20,8 +38,8 @@ Added: 0
 Removed: 0
 End Balance: 970
 ==========================
-bdagg_220712_0407_58
-Start: 11/12/2022 4:07:58 AM
+bdagg_220614_1106_00
+Start: 11/14/2022 11:06:00 PM
 End: 1/1/0001 12:00:00 AM
 Start Balance: 1000
 Total Payout: 5
@@ -29,26 +47,8 @@ Added: 0
 Removed: 0
 End Balance: 995
 ==========================
-bdagg_220812_0408_59
-Start: 11/12/2022 4:09:00 AM
-End: 1/1/0001 12:00:00 AM
-Start Balance: 1000
-Total Payout: 5
-Added: 0
-Removed: 0
-End Balance: 995
-==========================
-bdagg_221012_0410_04
-Start: 11/12/2022 4:10:04 AM
-End: 1/1/0001 12:00:00 AM
-Start Balance: 1000
-Total Payout: 5
-Added: 0
-Removed: 0
-End Balance: 995
-==========================
-bdagg_221112_0411_10
-Start: 11/12/2022 4:11:10 AM
+bdagg_220714_1107_08
+Start: 11/14/2022 11:07:08 PM
 End: 1/1/0001 12:00:00 AM
 Start Balance: 1000
 Total Payout: 5
@@ -57,11 +57,11 @@ Removed: 0
 End Balance: 995
 
 ========= Totals ============
-Start: 478346
-Payout: 1714
-Added: 11301
-Removed: 6602
-End: 481331
+Start: 421418
+Payout: 1135
+Added: 5401
+Removed: 3253
+End: 422431
 
 =========== Vouchers ================
 ===================

@@ -848,12 +848,14 @@ namespace POS_Automation
             var reader = new ExcelReader();
             //reader.Open(@"C:\Users\Ben\Downloads\20221107083023.xlsx");
             reader.Open(@"C:\Users\Ben\Downloads\Cashier Balance_drops_and_Sessions.xlsx");
-            var report = reader.ParseCashierBalanceReport(includeVouchers: true);
+      
+            
+            var report = reader.ParseCashierBalanceReport(includeVouchers: false);
 
             Console.WriteLine("Title: " + report.Title);
             Console.WriteLine("Runtime: " + report.RunDate);
             Console.WriteLine("Period: " + report.ReportPeriod);
-
+            
             var sessions = report.Data;
             int count = 0;
             foreach(var session in sessions)
@@ -885,6 +887,15 @@ namespace POS_Automation
             Console.WriteLine("End: " + report.TotalEndBalance);
             Console.WriteLine();
 
+            Console.WriteLine("============= DROPS ==========");
+            foreach(var drop in report.CashDrops)
+            {
+                Console.WriteLine("===================");
+                Console.WriteLine(drop.MachineNumber + ", " + drop.MachineDescription + ", " + drop.CashRemoved + ", " + drop.TImestamp);
+            }
+            Console.WriteLine();
+            Console.WriteLine("Drop Total: " + report.TotalDropAmount);
+
             Console.WriteLine("=========== Vouchers ================");
             var vouchers = report.UnpaidVouchers;
             foreach(var voucher in vouchers)
@@ -894,6 +905,7 @@ namespace POS_Automation
             }
             Console.WriteLine("======= VOucher Totals ===========");
             Console.WriteLine(report.TotalUnpaidVoucherAmount);
+            
         }
     }
 }

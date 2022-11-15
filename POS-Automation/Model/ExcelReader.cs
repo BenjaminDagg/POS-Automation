@@ -347,122 +347,157 @@ namespace POS_Automation.Model
             var report = new CashierBalanceReport<CashierSessionSummaryRecord>();
             var records = new List<CashierSessionSummaryRecord>();
             var vouchers = new List<VoucherDetailRecord>();
+            var drops = new List<CashRemovedRecord>();
             report.Data = records;
             report.UnpaidVouchers = vouchers;
             string title = string.Empty;
             DateTime runTime;
             string period = string.Empty;
-            int cashierSessionSummaryStartRow = RowNum("Cashier Session Summary") + 2;
+            int cashierSessionSummaryStartRow = RowNum("Cashier Session Summary");
             int cashierSummaryTotalsRow = RowNum("Period Totals:");
             int voucherDetailsStartRow = -1;
+            int DropRecordsStartingRow = RowNum("Dispenser Number");
+            int titleColNum = ColNum("Cashier Balance Report");
+            int runTimeCol = ColNum("Run Date/Time");
+            int periodColNum = ColNum("Reporting Period");
 
-            //report has drop data which throws off column indexes to use separate meethod to parse
-            if (RowNum("Dispenser Number") != -1)
-            {
-                return ParseCashierBalanceReportWithDropData(includeVouchers: includeVouchers);
-            }
-
-            //if cant find cashier summary then report is empty. Just return report with title, period, and empty values for data
-            if (cashierSummaryTotalsRow == -1)
-            {
-                report.Title = ((Excel.Range)xlWorksheet.Cells[3, 4]).Value.ToString();
-
-                period = ((Excel.Range)xlWorksheet.Cells[6, 3]).Value.ToString();
-                period = Regex.Replace(period, @"\t|\n|\r", "");
-                report.ReportPeriod = period;
-
-                string runTimeS = ((Excel.Range)xlWorksheet.Cells[2, 8]).Value.ToString();
-                runTimeS = Regex.Replace(runTimeS, @"\t|\n|\r", "");
-                runTimeS = runTimeS.Replace("Run Date/Time", "");
-                runTime = DateTime.Parse(runTimeS);
-                report.RunDate = runTime;
-
-                return report;
-            }
-
+            
 
             //get title
-            title = ((Excel.Range)xlWorksheet.Cells[3, 5]).Value.ToString();
+            title = ReadCell(3,titleColNum);
             report.Title = title;
 
             //get period
-            period = ((Excel.Range)xlWorksheet.Cells[6, 3]).Value.ToString();
+            period = ReadCell(6,periodColNum);
             period = Regex.Replace(period, @"\t|\n|\r", "");
             report.ReportPeriod = period;
 
             //get run time
-            string runTimeString = ((Excel.Range)xlWorksheet.Cells[2, 13]).Value.ToString();
+            string runTimeString = ReadCell(2, runTimeCol);
             runTimeString = Regex.Replace(runTimeString, @"\t|\n|\r", "");
             runTimeString = runTimeString.Replace("Run Date/Time", "");
             runTime = DateTime.Parse(runTimeString);
             report.RunDate = runTime;
 
-
-            //loop over cashier summary and get data
-            for (int i = cashierSessionSummaryStartRow; i < xlRange.Rows.Count && ReadCell(i, 1) != "Period Totals:"; i++)
+            //if cant find cashier summary then report is empty. Just return report with title, period, and empty values for data
+            if (cashierSummaryTotalsRow == -1 && DropRecordsStartingRow == -1)
             {
-
-                var session = new CashierSessionSummaryRecord();
-
-                //parse session id
-                string sessionIdText = ReadCell(i, 1);
-                int firstNewLine = sessionIdText.IndexOf('\n');
-                string sessionId = sessionIdText.Substring(0, firstNewLine - 1);
-                session.SessionId = sessionId;
-
-                //parse start date
-                int startDateStartIndex = sessionIdText.IndexOf(':');
-                int startDateEndIndex = sessionIdText.IndexOf("End Date:");
-                int startDateLength = startDateEndIndex - startDateStartIndex - 1;
-                string startDate = sessionIdText.Substring(startDateStartIndex + 1, startDateLength).Replace("\n", "");
-                startDate = Regex.Replace(startDate, @"\t|\n|\r", "").Trim();
-                try
-                {
-                    session.StartDate = DateTime.ParseExact(startDate, "M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
-                }
-                catch (Exception ex)
-                {
-                    session.StartDate = default(DateTime);
-                }
-
-                //parse end date
-                int endDateStartIndex = sessionIdText.LastIndexOf("e:");
-                int endDateEndIndex = sessionIdText.Length - 1;
-                int endDateLength = endDateEndIndex - endDateStartIndex - 1;
-                string endDate = sessionIdText.Substring(endDateStartIndex + 2, endDateLength).Trim();
-                if (endDate == "Session Not Ended")
-                {
-                    session.EndDate = default(DateTime);
-                }
-                else
-                {
-                    session.EndDate = DateTime.ParseExact(endDate, "M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
-                }
-
-                string startBalance = ReadCell(i, 3);
-                string totalPayouit = ReadCell(i, 5);
-                string totalAdded = ReadCell(i, 6);
-                string totalRemoved = ReadCell(i, 7);
-                string endBalance = ReadCell(i, 10);
-                string periodVariance = ReadCell(i, 7);
-
-                session.SessionId = sessionId;
-                session.StartBalance = decimal.Parse(startBalance);
-                session.TotalPayoutAmount = decimal.Parse(totalPayouit);
-                session.TotalAmountAdded = decimal.Parse(totalAdded);
-                session.TotalAmountRemoved = decimal.Parse(totalRemoved);
-                session.EndBalance = decimal.Parse(endBalance);
-
-                report.Data.Add(session);
+                return report;
             }
 
-            //get totals for session summary
-            report.TotalStartingBalance = decimal.Parse(((Excel.Range)xlWorksheet.Cells[cashierSummaryTotalsRow, 4]).Value2.ToString());
-            report.TotalPayoutAmount = decimal.Parse(((Excel.Range)xlWorksheet.Cells[cashierSummaryTotalsRow, 6]).Value2.ToString());
-            report.TotalAmountAdded = decimal.Parse(((Excel.Range)xlWorksheet.Cells[cashierSummaryTotalsRow, 7]).Value2.ToString());
-            report.TotalAmountRemoved = decimal.Parse(((Excel.Range)xlWorksheet.Cells[cashierSummaryTotalsRow, 8]).Value2.ToString());
-            report.TotalEndBalance = decimal.Parse(((Excel.Range)xlWorksheet.Cells[cashierSummaryTotalsRow, 11]).Value2.ToString());
 
+            //loop over cashier summary and get data
+            if (cashierSessionSummaryStartRow != -1)
+            {
+                
+                int sessionIdCol = ColNum("Session ID");
+                int startBalanceCol = ColNum("Starting Balance");
+                int payoutCol = ColNum("Total Payout");
+                int addedCol = ColNum("Total Amount Added");
+                int removedCol = ColNum("Total Amount Removed");
+                int endBalanceCol = ColNum("Ending Balance");
+                int varianceCol = ColNum("Period Variance");
+
+                for (int i = cashierSessionSummaryStartRow + 2; i < xlRange.Rows.Count && ReadCell(i, 1) != "Period Totals:" && cashierSessionSummaryStartRow != -1; i++)
+                {
+
+                    var session = new CashierSessionSummaryRecord();
+
+                    //parse session id
+                    string sessionIdText = ReadCell(i, sessionIdCol);
+                    int firstNewLine = sessionIdText.IndexOf('\n');
+                    string sessionId = sessionIdText.Substring(0, firstNewLine - 1);
+                    session.SessionId = sessionId;
+
+                    //parse start date
+                    int startDateStartIndex = sessionIdText.IndexOf(':');
+                    int startDateEndIndex = sessionIdText.IndexOf("End Date:");
+                    int startDateLength = startDateEndIndex - startDateStartIndex - 1;
+                    string startDate = sessionIdText.Substring(startDateStartIndex + 1, startDateLength).Replace("\n", "");
+                    startDate = Regex.Replace(startDate, @"\t|\n|\r", "").Trim();
+                    try
+                    {
+                        session.StartDate = DateTime.ParseExact(startDate, "M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
+                    }
+                    catch (Exception ex)
+                    {
+                        session.StartDate = default(DateTime);
+                    }
+
+                    //parse end date
+                    int endDateStartIndex = sessionIdText.LastIndexOf("e:");
+                    int endDateEndIndex = sessionIdText.Length - 1;
+                    int endDateLength = endDateEndIndex - endDateStartIndex - 1;
+                    string endDate = sessionIdText.Substring(endDateStartIndex + 2, endDateLength).Trim();
+                    if (endDate == "Session Not Ended")
+                    {
+                        session.EndDate = default(DateTime);
+                    }
+                    else
+                    {
+                        session.EndDate = DateTime.ParseExact(endDate, "M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
+                    }
+
+                    string startBalance = ReadCell(i, startBalanceCol);
+                    string totalPayouit = ReadCell(i, payoutCol);
+                    string totalAdded = ReadCell(i, addedCol);
+                    string totalRemoved = ReadCell(i, removedCol);
+                    string endBalance = ReadCell(i, endBalanceCol);
+                    string periodVariance = ReadCell(i, varianceCol);
+
+                    session.SessionId = sessionId;
+                    session.StartBalance = decimal.Parse(startBalance);
+                    session.TotalPayoutAmount = decimal.Parse(totalPayouit);
+                    session.TotalAmountAdded = decimal.Parse(totalAdded);
+                    session.TotalAmountRemoved = decimal.Parse(totalRemoved);
+                    session.EndBalance = decimal.Parse(endBalance);
+
+                    report.Data.Add(session);
+                }
+
+                //get totals for session summary
+                report.TotalStartingBalance = decimal.Parse(ReadCell(cashierSummaryTotalsRow, startBalanceCol));
+                report.TotalPayoutAmount = decimal.Parse(ReadCell(cashierSummaryTotalsRow, payoutCol));
+                report.TotalAmountAdded = decimal.Parse(ReadCell(cashierSummaryTotalsRow, addedCol));
+                report.TotalAmountRemoved = decimal.Parse(ReadCell(cashierSummaryTotalsRow, removedCol));
+                report.TotalEndBalance = decimal.Parse(ReadCell(cashierSummaryTotalsRow, endBalanceCol));
+            }
+
+            //Read drop data if exists
+            if(DropRecordsStartingRow != -1)
+            {
+                int machNoCol = ColNum("Dispenser Number");
+                int descriptionCol = ColNum("Dispenser Description");
+                int cashRemovedCol = ColNum("Cash Removed",DropRecordsStartingRow);
+                int timestampCol = ColNum("Date Time");
+
+                int dropRowCount = DropRecordsStartingRow + 1;
+                for(int i = DropRecordsStartingRow + 1; i < xlRange.Rows.Count && ReadCell(i,1) != "Period Total:"; i++)
+                {
+                    string machNo = ReadCell(i,machNoCol);
+                    string description = ReadCell(i,descriptionCol);
+                    string removed = ReadCell(i,cashRemovedCol);
+                    string timeStamp = ReadCell(i,timestampCol);
+
+                    var newDrop = new CashRemovedRecord();
+                    newDrop.MachineNumber = machNo;
+                    newDrop.MachineDescription = description;
+                    newDrop.CashRemoved = decimal.Parse(removed, NumberStyles.Currency);
+                    newDrop.TImestamp = DateTime.ParseExact(timeStamp,"MM/dd/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
+
+                    drops.Add(newDrop);
+
+                    dropRowCount++;
+                }
+
+                //get drop totals
+                string totalCashRemoved = ReadCell(dropRowCount, cashRemovedCol);
+                report.TotalDropAmount = decimal.Parse(totalCashRemoved, NumberStyles.Currency);
+
+                report.CashDrops = drops;
+            }
+
+            
             //switch sheets
             xlWorksheet = (Excel.Worksheet)xlWorkbook.Sheets[2];
             xlWorksheet.Select();
@@ -489,7 +524,7 @@ namespace POS_Automation.Model
 
             //Get unpaid vouchers totals
             report.TotalUnpaidVoucherAmount = includeVouchers ? decimal.Parse(((Excel.Range)xlWorksheet.Cells[rowCount, 3]).Value2.ToString()) : 0;
-
+            
             return report;
         }
 
@@ -817,7 +852,27 @@ namespace POS_Automation.Model
                 {
                     if (xlRange.Cells[i, j] != null && ((Excel.Range)xlRange.Cells[i, j]).Value2 != null)
                     {
-                        if (((Excel.Range)xlRange.Cells[i, j]).Value2.ToString().ToLower() == searchText.ToLower())
+                        if (((Excel.Range)xlRange.Cells[i, j]).Value2.ToString().ToLower().Contains(searchText.ToLower()))
+                        {
+                            return j;
+                        }
+                    }
+
+                }
+            }
+
+            return -1;
+        }
+
+        public int ColNum(string searchText, int startRow)
+        {
+            for (int i = startRow; i < xlRange.Rows.Count; i++)
+            {
+                for (int j = 1; j < xlRange.Columns.Count; j++)
+                {
+                    if (xlRange.Cells[i, j] != null && ((Excel.Range)xlRange.Cells[i, j]).Value2 != null)
+                    {
+                        if (((Excel.Range)xlRange.Cells[i, j]).Value2.ToString().ToLower().Contains(searchText.ToLower()))
                         {
                             return j;
                         }

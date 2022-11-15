@@ -22,6 +22,8 @@ namespace POS_Automation.Model.Reports
         public decimal TotalAmountRemoved { get; set; }
         public decimal TotalEndBalance { get; set; }
         public decimal TotalUnpaidVoucherAmount { get; set; }
+        public decimal TotalDropAmount { get; set; }
+        public List<CashRemovedRecord> CashDrops { get; set; }
 
         public CashierBalanceReport()
         {

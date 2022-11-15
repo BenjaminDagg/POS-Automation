@@ -25,6 +25,7 @@ namespace POS_Automation
         private TransactionPortalService TpService;
         private DatabaseManager _databaseManager;
         private VoucherTransactionRepository _transRepo;
+        private GameSimulator GameSimulator;
 
         private decimal StartingAmountDollar = 1000.00m;
         private int StartingAmountCredits = 100000;
@@ -54,6 +55,8 @@ namespace POS_Automation
 
             TpService = new TransactionPortalService(_logService);
             TpService.Connect();
+
+            GameSimulator = new GameSimulator(_logService);
 
             string filepath = TestData.DownloadPath + @"\" + ReportFileName;
             bool exists = File.Exists(filepath);
@@ -91,6 +94,7 @@ namespace POS_Automation
 
             StartingAmountDollar = 1000.00m;
             StartingAmountCredits = 100000;
+
         }
 
         
@@ -119,6 +123,16 @@ namespace POS_Automation
 
             var barcode4 = TpService.GetVoucher(StartingAmountCredits, 1500);
             UnpaidBarcode = barcode4;
+
+            var param = GameSimulator.gameplayParams;
+            param.Count1Dollar = 1;
+            param.Count5Dollar = 1;
+            param.count10Dollar = 1;
+            param.Count20Dollar = 1;
+            param.Count50Dollar = 1;
+            param.Count100Dollar = 2;
+            param.DollarsInCredits = 28600;
+            TpService.TransD(GameSimulator.gameplayParams);
 
             var vouchers = new List<string>() { barcode1, barcode2, barcode3 };
             TestVouchers = vouchers;
@@ -548,7 +562,43 @@ namespace POS_Automation
             }
         }
 
-        
 
+        [Test]
+        public void CashierBalance_CashRemoved_Drop()
+        {
+
+            string filepath = TestData.DownloadPath + @"\" + ReportFileName;
+            bool exists = File.Exists(filepath);
+
+            if (!exists)
+            {
+                Assert.Fail();
+            }
+
+            var reader = new ExcelReader();
+            //reader.Open(@"C:\Users\Ben\Downloads\20221107083023.xlsx");
+            reader.Open(filepath);
+            var report = reader.ParseCashierBalanceReport(includeVouchers: false);
+
+            var drops = report.CashDrops;
+            Assert.Greater(drops.Count, 0);
+
+            decimal expectedTotal = 286;
+            var targetDrop = drops.LastOrDefault(d => d.MachineNumber == TestData.DefaultMachineNumber && d.CashRemoved == expectedTotal);
+            
+
+            Assert.NotNull(targetDrop);
+            Assert.AreEqual(TestData.DefaultMachineNumber, targetDrop.MachineNumber);
+            Assert.AreEqual(expectedTotal, targetDrop.CashRemoved);
+
+            //verify total cashdrop value
+            decimal dropCount = 0;
+            foreach(var d in drops)
+            {
+                dropCount += d.CashRemoved;
+            }
+
+            Assert.AreEqual(dropCount,report.TotalDropAmount);
+        }
     }
 }

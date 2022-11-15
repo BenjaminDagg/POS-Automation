@@ -840,7 +840,7 @@ namespace POS_Automation
             Assert.AreEqual(800, currentBalance);
         }
 
-        [Test]
+        [Test, Ignore("Test method for ParseCashierBalance")]
         public void Test()
         {
             

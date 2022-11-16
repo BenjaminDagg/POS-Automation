@@ -190,5 +190,25 @@ namespace POS_Automation
 
             Assert.AreEqual(0, value.Length);
         }
+
+        //Verify error is displayed if barcode is not correct length
+        [Test]
+        public void InvalidBarcodeLength()
+        {
+          
+            _loginPage.Login("bdagg", "Diamond4!");
+            NavigationTabs.ClickPayoutTab();
+
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput("100");
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+            Thread.Sleep(2000);
+
+            string barcode = new string('1', 17);
+            _numPad.EnterBarcode(barcode);
+            _numPad.PressEnter();
+
+            Assert.AreEqual(17, _numPad.GetBarcode().Length);
+            Assert.AreEqual(0,_payoutPage.CurrentTransactionList.VoucherCount);
+        }
     }
 }

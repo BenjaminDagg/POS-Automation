@@ -79,6 +79,8 @@ namespace POS_Automation
             _settingsPage.SaveDeviceSettings();
         }
 
+
+
         [Test]
         public async Task SetAllOnlinePrompt()
         {

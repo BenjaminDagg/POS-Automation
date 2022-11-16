@@ -147,20 +147,6 @@ namespace POS_Automation
             Assert.AreEqual(enabledBefore, enabledAfter);
         }
 
-        [Test]
-        public async Task GetAllMachines()
-        {
-            _loginPage.Login(TestData.AdminUsername, TestData.AdminPassword);
-            NavigationTabs.ClickDeviceTab();
-
-            string res = PosClient.Execute($"3,Z,{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")},GetAllMachines");
-            
-
-            Assert.True(res.Contains("GetAllMachines"));
-            Assert.True(res.Contains(TestData.DefaultMachineNumber));
-            Assert.True(res.Contains(TestData.DefaultIPAddress));
-        }
-
         
         //Response sent to game after disabling promo
         [Test]

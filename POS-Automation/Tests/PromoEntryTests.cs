@@ -179,6 +179,7 @@ namespace POS_Automation
             NavigationTabs.ClickDeviceTab();
 
             var response = PosClient.Execute($"3,Z,{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")},EntryTicketOn");
+            Console.WriteLine(response);
             Assert.True(response.Contains(",0,,0,EntryTicketOn"));
         }
 
@@ -213,6 +214,7 @@ namespace POS_Automation
             NavigationTabs.ClickDeviceTab();
 
             var response = PosClient.Execute($"3,Z,{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")},EntryTicketOff");
+            Console.WriteLine(response);
             Assert.True(response.Contains(",0,,0,EntryTicketOff"));
         }
     }

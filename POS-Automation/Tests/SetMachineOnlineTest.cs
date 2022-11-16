@@ -153,6 +153,7 @@ namespace POS_Automation
             Assert.True(machineAfter.Status);
         }
 
+        //Verify response sent back to TPC after set online
         [Test]
         public void TpMessageRequest()
         {
@@ -169,6 +170,7 @@ namespace POS_Automation
             Assert.True(response.Contains(",0,,0,StartupMachine"));
         }
 
+        //Verify the response sent back to the machine after setting online
         [Test]
         public void TpMessageResponseGame()
         {

@@ -151,6 +151,7 @@ namespace POS_Automation
             Assert.False(machineAfter.Status);
         }
 
+        //Verify response sent back to TPC after setting offline
         [Test]
         public void TpMessageResponse()
         {
@@ -168,7 +169,7 @@ namespace POS_Automation
         }
 
 
-
+        //Verify response sent back to the machine after settings offline in POS
         [Test]
         public void TpMessageResponseGame()
         {
@@ -179,11 +180,6 @@ namespace POS_Automation
 
             Thread.Sleep(TestData.PollingIntervalSec * 1000 * 2);
             _devicePage.SetMachineOffline(TestData.DefaultMachineNumber);
-            /*
-            string dateString = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            var request = $"4,Z,{dateString},StartupMachine,{TestData.DefaultIPAddress}";
-            PosClient.Execute(request);
-            */
 
             Thread.Sleep(TestData.PollingIntervalSec * 1000 * 2);
 

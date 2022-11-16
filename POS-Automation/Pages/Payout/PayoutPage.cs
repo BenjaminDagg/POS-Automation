@@ -119,5 +119,18 @@ namespace POS_Automation.Pages.Payout
                 return true;
             }
         }
+
+        public bool CancelIsHidden()
+        {
+            try
+            {
+                wait.Until(d => driver.FindElement(CancelTransactionButton));
+                return false;
+            }
+            catch (Exception)
+            {
+                return true;
+            }
+        }
     }
 }

@@ -283,6 +283,27 @@ namespace POS_Automation
             Assert.False(_payoutPage.PayoutConfirmationAlert.IsOpen);
         }
 
+        //Verify error is shown in the scanned voucher amount is greater than the cash drawer balance
+        [Test]
+        public void PayoutTest_InsufficientCashDrawerBalance_SingleVoucher()
+        {
+
+            var barcode1 = TpService.GetVoucher(StartingAmountCredits, 1500);
+            StartingAmountCredits -= 1500;
+
+            _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
+            NavigationTabs.ClickPayoutTab();
+
+            int startingBalance = 10;
+
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            _payoutPage.NumPad.EnterBarcode(barcode1);
+
+            Assert.True(_payoutPage.PayoutError.IsOpen);
+        }
+
         [Test]
         public void PayoutTest_VoucherAlreadyRedeemed()
         {
@@ -315,6 +336,30 @@ namespace POS_Automation
 
             _payoutPage.ClickPayout();
 
+            Assert.True(_payoutPage.PayoutError.IsOpen);
+        }
+
+        //Verify an error is displayhed if the scanned voucher has already been redeemed in a previous transaction
+        [Test]
+        public void PayoutTest_VoucherAlreadyRedeemed_Error()
+        {
+
+            var barcode1 = TpService.GetVoucher(StartingAmountCredits, 500);
+            StartingAmountCredits -= 500;
+
+            _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
+            NavigationTabs.ClickPayoutTab();
+
+            int startingBalance = 15;
+
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            _payoutPage.NumPad.EnterBarcode(barcode1);
+            _payoutPage.Payout();
+
+            //try to scan again
+            _payoutPage.NumPad.EnterBarcode(barcode1);
             Assert.True(_payoutPage.PayoutError.IsOpen);
         }
 
@@ -373,6 +418,43 @@ namespace POS_Automation
 
             Assert.Zero(countAfter);
             Assert.Zero(payoutAfter);
+
+            //Verify Payout and Cancel buttons are hidden
+            Assert.True(_payoutPage.PayoutIsHidden());
+            Assert.True(_payoutPage.CancelIsHidden());
+        }
+
+        //Verify if user clicks 'No' on Cancel Trnasaction the transaction is not cancelled
+        [Test]
+        public void PayoutTest_CancelTransaction_Cancel()
+        {
+
+            var barcode = TpService.GetVoucher(StartingAmountCredits, 500);
+
+            _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
+            NavigationTabs.ClickPayoutTab();
+
+            int startingBalance = 1000;
+
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            _payoutPage.NumPad.EnterBarcode(barcode);
+
+            int countBefore = _payoutPage.CurrentTransactionList.VoucherCount;
+            decimal payoutBefore = _payoutPage.CurrentTransactionList.TotalPayout;
+
+            Assert.AreEqual(1, countBefore);
+            Assert.AreEqual(5, payoutBefore);
+
+            _payoutPage.ClickCancelTransaction();
+            _payoutPage.CancelTransactionPrompt.Cancel();
+
+            int countAfter = _payoutPage.CurrentTransactionList.VoucherCount;
+            decimal payoutAfter = _payoutPage.CurrentTransactionList.TotalPayout;
+
+            Assert.AreEqual(countAfter, countBefore);
+            Assert.AreEqual(payoutAfter, payoutBefore);
         }
 
         [Test]
@@ -416,6 +498,59 @@ namespace POS_Automation
 
             Assert.Zero(countAfter);
             Assert.Zero(payoutAfter);
+        }
+
+        [Test]
+        public void PayoutTest_PayoutSuccessful()
+        {
+
+            var barcode1 = TpService.GetVoucher(StartingAmountCredits, 500);
+            StartingAmountCredits -= 500;
+
+            var barcode2 = TpService.GetVoucher(StartingAmountCredits, 1000);
+            StartingAmountCredits -= 1000;
+
+            var barcode3 = TpService.GetVoucher(StartingAmountCredits, 1000);
+            StartingAmountCredits -= 1000;
+
+            var barcodes = new List<String>() { barcode1, barcode2, barcode3 };
+
+            _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
+            NavigationTabs.ClickPayoutTab();
+
+            int startingBalance = 1000;
+
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            foreach (var barcode in barcodes)
+            {
+                _payoutPage.NumPad.EnterBarcode(barcode);
+            }
+
+            int countBefore = _payoutPage.CurrentTransactionList.VoucherCount;
+            decimal payoutBefore = _payoutPage.CurrentTransactionList.TotalPayout;
+            decimal cashBalanceBefore = _payoutPage.CashDrawer.CurrentBalance;
+
+            Assert.AreEqual(3, countBefore);
+            Assert.AreEqual(25, payoutBefore);
+            Assert.AreEqual(startingBalance, cashBalanceBefore);
+
+            _payoutPage.ClickPayout();
+            Assert.True(_payoutPage.PayoutConfirmationAlert.IsOpen);
+
+            string exctedAlertText = $"Payout of amount $25.00 was Successful";
+            string alertText = _payoutPage.PayoutConfirmationAlert.AlertText.Trim();
+            Assert.AreEqual(exctedAlertText,alertText);
+
+            _payoutPage.PayoutConfirmationAlert.Confirm();
+            Thread.Sleep(3000);
+
+            int countAfter = _payoutPage.CurrentTransactionList.VoucherCount;
+            decimal cashBalanceAfter = _payoutPage.CashDrawer.CurrentBalance;
+
+            Assert.Zero(countAfter);
+            Assert.AreEqual(cashBalanceBefore - 25, cashBalanceAfter);
         }
     }
 }

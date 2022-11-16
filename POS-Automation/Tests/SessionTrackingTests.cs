@@ -62,7 +62,7 @@ namespace POS_Automation
         [Test]
         public void SessionTracking_BeginSession()
         {
-            _loginPage.Login("user1", "Diamond1#");
+            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
             NavigationTabs.ClickPayoutTab();
 
             int startingBalance = 1000;
@@ -78,7 +78,7 @@ namespace POS_Automation
         [Test]
         public void SessionTracking_ReportBeginSession()
         {
-            _loginPage.Login("user1", "Diamond1#");
+            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
             NavigationTabs.ClickPayoutTab();
 
             int startingBalance = 1000;
@@ -86,7 +86,7 @@ namespace POS_Automation
             _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
             _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
 
-            var sessionId = _transRepo.GetCurrentUserSession("user1");
+            var sessionId = _transRepo.GetCurrentUserSession(TestData.SuperUserUsername);
             _payoutPage.NavigationTabs.ClickDeviceTab();
             _payoutPage.NavigationTabs.ClickReportsTab();
 
@@ -123,7 +123,7 @@ namespace POS_Automation
         [Test]
         public void SessionTracking_EndSession_NavigateAway()
         {
-            _loginPage.Login("user1", "Diamond1#");
+            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
             NavigationTabs.ClickPayoutTab();
 
             int startingBalance = 1000;
@@ -131,7 +131,7 @@ namespace POS_Automation
             _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
             _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
 
-            var sessionId = _transRepo.GetCurrentUserSession("user1");
+            var sessionId = _transRepo.GetCurrentUserSession(TestData.SuperUserUsername);
 
             //navigate away to end session
             _payoutPage.NavigationTabs.ClickDeviceTab();
@@ -186,7 +186,7 @@ namespace POS_Automation
 
             _payoutPage.Logout();
 
-            _loginPage.Login("user1", "Diamond1#");
+            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
             _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
             _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
             _payoutPage.NavigationTabs.ClickReportsTab();
@@ -227,7 +227,7 @@ namespace POS_Automation
         [Test]
         public void SessionTracking_AddCash()
         {
-            _loginPage.Login("user1", "Diamond1#");
+            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
             NavigationTabs.ClickPayoutTab();
 
             int startingBalance = 1000;
@@ -235,9 +235,9 @@ namespace POS_Automation
             _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
             _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
 
-            var sessionId = _transRepo.GetCurrentUserSession("user1");
+            var sessionId = _transRepo.GetCurrentUserSession(TestData.SuperUserUsername);
 
-            _payoutPage.CashDrawer.AddCash("500", "Diamond1#");
+            _payoutPage.CashDrawer.AddCash("500", TestData.SuperUserPassword);
 
             _payoutPage.NavigationTabs.ClickReportsTab();
 
@@ -275,7 +275,7 @@ namespace POS_Automation
         [Test]
         public void SessionTracking_RemoveCash()
         {
-            _loginPage.Login("user1", "Diamond1#");
+            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
             NavigationTabs.ClickPayoutTab();
 
             int startingBalance = 1000;
@@ -283,9 +283,9 @@ namespace POS_Automation
             _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
             _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
 
-            var sessionId = _transRepo.GetCurrentUserSession("user1");
+            var sessionId = _transRepo.GetCurrentUserSession(TestData.SuperUserUsername);
 
-            _payoutPage.CashDrawer.RemoveCash("500", "Diamond1#");
+            _payoutPage.CashDrawer.RemoveCash("500", TestData.SuperUserPassword);
 
             _payoutPage.NavigationTabs.ClickReportsTab();
 
@@ -325,7 +325,7 @@ namespace POS_Automation
         {
             var barcode = TpService.GetVoucher(StartingAmountCredits, 500);
 
-            _loginPage.Login("user1", "Diamond1#");
+            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
             NavigationTabs.ClickPayoutTab();
 
             int startingBalance = 1000;
@@ -333,7 +333,7 @@ namespace POS_Automation
             _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
             _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
 
-            var sessionId = _transRepo.GetCurrentUserSession("user1");
+            var sessionId = _transRepo.GetCurrentUserSession(TestData.SuperUserUsername);
 
             _payoutPage.NumPad.EnterBarcode(barcode);
             _payoutPage.Payout();

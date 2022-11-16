@@ -223,6 +223,64 @@ namespace POS_Automation
             Assert.AreEqual(startingBalance, session.TotalMoney);
         }
 
+        //Session start and end are recorded in report
+        [Test]
+        public void SessionTracking_Report()
+        {
+            _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
+            NavigationTabs.ClickPayoutTab();
+
+            int startingBalance = 1000;
+
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            var sessionId = _transRepo.GetCurrentUserSession(TestData.CashierUsername);
+
+            _payoutPage.Logout();
+
+            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+            _payoutPage.NavigationTabs.ClickReportsTab();
+
+            string startDate = DateTime.Now.AddDays(-1).ToString("MM/d/yyyy");
+            string endDate = DateTime.Now.AddDays(1).ToString("MM/d/yyyy");
+
+            _reportList.ClickReportByReportName("Cash Bank Activity");
+            _reportPage.ReportMenu.EnterStartDate(startDate);
+            _reportPage.ReportMenu.EnterEndDate(endDate);
+            _reportPage.ReportMenu.RunReport();
+
+            string filename = DateTime.Now.ToString("HHmmssfff") + ".xlsx";
+            string filepath = TestData.DownloadPath;
+            string fullPath = filepath + @"\" + filename;
+
+            _reportPage.ReportMenu.ExportDropdown.SelectByIndex(1);
+            _reportPage.SaveFileWindow.EnterFilepath(filepath);
+            _reportPage.SaveFileWindow.EnterFileName(filename);
+            _reportPage.SaveFileWindow.Save();
+
+            ExcelReader reader = new ExcelReader();
+            reader.Open(fullPath);
+            var report = reader.ParseCashBankActivityReport();
+
+            var session = report.GetSession(sessionId);
+
+            Assert.AreEqual(session.SessionId, sessionId);
+
+            //verify starting balance and start session are recorded
+            var startSession = session.Transactions.FirstOrDefault(t => t.TransType == "Start");
+            Assert.NotNull(startSession);
+            Assert.AreEqual(startingBalance, startSession.Money);
+
+            var endSessionTrans = session.Transactions.FirstOrDefault(t => t.TransType == "End");
+            Assert.NotNull(endSessionTrans);
+
+            Assert.AreEqual(startingBalance, endSessionTrans.Money);
+            Assert.AreEqual(startingBalance, session.TotalMoney);
+        }
+
         //Add cash event should be recorded for the session
         [Test]
         public void SessionTracking_AddCash()
@@ -368,6 +426,38 @@ namespace POS_Automation
             var payout = session.Transactions.FirstOrDefault(t => t.TransType == "Payout");
             Assert.AreEqual(5, payout.Payout);
             Assert.AreEqual(995, session.TotalMoney);
+        }
+
+        //Current transaction is voided if user ends session
+        [Test]
+        public void SessionTracking_EndSession_VoidTransaction()
+        {
+            var barcode = TpService.GetVoucher(StartingAmountCredits, 500);
+
+            _loginPage.Login(TestData.CashierUsername2, TestData.CashierPassword2);
+            NavigationTabs.ClickPayoutTab();
+
+            int startingBalance = 1000;
+
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            var sessionId = _transRepo.GetCurrentUserSession(TestData.CashierUsername2);
+
+            _payoutPage.NumPad.EnterBarcode(barcode);
+
+            //end session
+            _payoutPage.Logout();
+
+            //login with new user
+            _loginPage.Login(TestData.SuperUserUsername, TestData.SuperUserPassword);
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            _payoutPage.NumPad.EnterBarcode(barcode);
+            _payoutPage.ClickPayout();
+
+            Assert.True(_payoutPage.PayoutConfirmationAlert.IsOpen);
         }
     }
 }

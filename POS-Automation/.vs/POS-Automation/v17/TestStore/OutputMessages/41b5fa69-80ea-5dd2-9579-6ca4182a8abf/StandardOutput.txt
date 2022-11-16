@@ -1,0 +1,51 @@
+8
+Title: Drop by Date Range Report
+Location: American Eagle2 (339577)
+Period: For Drops Peformed Between 11-14-2022 02:00 AM  and 11-16-2022 02:00 AM
+Run time: 11/15/2022 8:08:12 PM
+00001, $1: 0, $5: 5, $100, $20: 0, $50: 0, $100: 0, $Ticket: 0, #Tickets: 0, #Bills: 1, $Drop: 10, Date: 11/14/2022 12:47:48 AM, Account: DGE00177777OpKey
+00001, $1: 0, $5: 5, $100, $20: 0, $50: 0, $100: 0, $Ticket: 0, #Tickets: 0, #Bills: 1, $Drop: 10, Date: 11/14/2022 12:50:15 AM, Account: DGE00177777OpKey
+00001, $1: 0, $5: 5, $100, $20: 0, $50: 0, $100: 0, $Ticket: 2, #Tickets: 1, #Bills: 1, $Drop: 10, Date: 11/14/2022 12:54:39 AM, Account: DGE00177777OpKey
+00001, $1: 1, $5: 10, $1030, $20: 80, $50: 250, $100: 600, $Ticket: 2, #Tickets: 1, #Bills: 21, $Drop: 976, Date: 11/14/2022 1:59:42 AM, Account: DGE00177777OpKey
+00001, $1: 6, $5: 25, $1040, $20: 60, $50: 100, $100: 200, $Ticket: 0, #Tickets: 0, #Bills: 22, $Drop: 436, Date: 11/14/2022 3:01:46 AM, Account: DGE00177777OpKey
+00001, $1: 6, $5: 25, $1040, $20: 60, $50: 100, $100: 100, $Ticket: 0, #Tickets: 0, #Bills: 21, $Drop: 336, Date: 11/14/2022 3:03:27 AM, Account: DGE00177777OpKey
+00001, $1: 6, $5: 25, $1040, $20: 60, $50: 100, $100: 100, $Ticket: 0, #Tickets: 0, #Bills: 21, $Drop: 336, Date: 11/14/2022 3:06:09 AM, Account: DGE00177777OpKey
+00001, $1: 0, $5: 0, $1010, $20: 0, $50: 0, $100: 0, $Ticket: 6, #Tickets: 3, #Bills: 1, $Drop: 15, Date: 11/14/2022 3:12:16 AM, Account: DGE00177777OpKey
+00001, $1: 0, $5: 0, $1010, $20: 0, $50: 0, $100: 0, $Ticket: 0, #Tickets: 0, #Bills: 1, $Drop: 15, Date: 11/14/2022 3:22:17 AM, Account: DGE00177777OpKey
+00001, $1: 0, $5: 0, $1010, $20: 0, $50: 0, $100: 0, $Ticket: 6, #Tickets: 3, #Bills: 1, $Drop: 15, Date: 11/14/2022 3:38:24 AM, Account: DGE00177777OpKey
+00001, $1: 0, $5: 0, $1010, $20: 0, $50: 0, $100: 0, $Ticket: 6, #Tickets: 3, #Bills: 1, $Drop: 15, Date: 11/14/2022 3:39:22 AM, Account: DGE00177777OpKey
+00001, $1: 0, $5: 0, $1010, $20: 0, $50: 0, $100: 0, $Ticket: 0, #Tickets: 0, #Bills: 1, $Drop: 15, Date: 11/14/2022 3:41:42 AM, Account: DGE00177777OpKey
+00001, $1: 0, $5: 0, $1010, $20: 0, $50: 0, $100: 0, $Ticket: 0, #Tickets: 0, #Bills: 1, $Drop: 15, Date: 11/14/2022 3:44:45 AM, Account: DGE00177777OpKey
+00001, $1: 0, $5: 0, $1010, $20: 0, $50: 0, $100: 0, $Ticket: 0, #Tickets: 0, #Bills: 1, $Drop: 15, Date: 11/14/2022 3:47:17 AM, Account: DGE00177777OpKey
+00001, $1: 0, $5: 0, $1010, $20: 0, $50: 0, $100: 0, $Ticket: 0, #Tickets: 0, #Bills: 1, $Drop: 15, Date: 11/14/2022 11:38:58 AM, Account: DGE00177777OpKey
+00001, $1: 0, $5: 0, $1010, $20: 0, $50: 0, $100: 0, $Ticket: 0, #Tickets: 0, #Bills: 1, $Drop: 15, Date: 11/14/2022 11:41:11 AM, Account: DGE00177777OpKey
+00001, $1: 6, $5: 25, $1040, $20: 60, $50: 100, $100: 100, $Ticket: 0, #Tickets: 0, #Bills: 21, $Drop: 336, Date: 11/14/2022 11:43:24 AM, Account: DGE00177777OpKey
+00001, $1: 0, $5: 0, $1010, $20: 0, $50: 0, $100: 0, $Ticket: 6, #Tickets: 3, #Bills: 1, $Drop: 15, Date: 11/14/2022 11:45:33 AM, Account: DGE00177777OpKey
+00001, $1: 0, $5: 0, $1010, $20: 0, $50: 0, $100: 0, $Ticket: 0, #Tickets: 0, #Bills: 1, $Drop: 15, Date: 11/14/2022 11:46:46 AM, Account: DGE00177777OpKey
+00001, $1: 1, $5: 10, $1030, $20: 80, $50: 250, $100: 600, $Ticket: 2, #Tickets: 1, #Bills: 21, $Drop: 976, Date: 11/14/2022 11:52:37 AM, Account: DGE00177777OpKey
+00001, $1: 1, $5: 10, $1030, $20: 80, $50: 250, $100: 600, $Ticket: 2, #Tickets: 1, #Bills: 21, $Drop: 976, Date: 11/15/2022 10:04:51 AM, Account: DGE00177777OpKey
+00001, $1: 0, $5: 0, $100, $20: 0, $50: 0, $100: 0, $Ticket: 0, #Tickets: 0, #Bills: 0, $Drop: 0, Date: 11/15/2022 3:18:23 AM, Account: DGE00177777OpKey
+00001, $1: 0, $5: 0, $100, $20: 0, $50: 0, $100: 0, $Ticket: 0, #Tickets: 0, #Bills: 0, $Drop: 0, Date: 11/15/2022 3:19:17 AM, Account: DGE00177777OpKey
+00001, $1: 1, $5: 5, $1010, $20: 20, $50: 50, $100: 100, $Ticket: 0, #Tickets: 0, #Bills: 6, $Drop: 186, Date: 11/15/2022 3:27:27 AM, Account: DGE00177777OpKey
+00001, $1: 1, $5: 5, $1010, $20: 20, $50: 50, $100: 100, $Ticket: 0, #Tickets: 0, #Bills: 6, $Drop: 186, Date: 11/15/2022 3:31:21 AM, Account: DGE00177777OpKey
+00001, $1: 1, $5: 5, $1010, $20: 20, $50: 50, $100: 200, $Ticket: 0, #Tickets: 0, #Bills: 7, $Drop: 286, Date: 11/15/2022 3:37:20 AM, Account: DGE00177777OpKey
+00001, $1: 1, $5: 5, $1010, $20: 20, $50: 50, $100: 200, $Ticket: 0, #Tickets: 0, #Bills: 7, $Drop: 286, Date: 11/15/2022 3:43:44 AM, Account: DGE00177777OpKey
+00001, $1: 1, $5: 5, $1010, $20: 20, $50: 50, $100: 200, $Ticket: 0, #Tickets: 0, #Bills: 7, $Drop: 286, Date: 11/15/2022 4:50:28 AM, Account: DGE00177777OpKey
+00001, $1: 0, $5: 0, $1010, $20: 0, $50: 0, $100: 0, $Ticket: 0, #Tickets: 0, #Bills: 1, $Drop: 15, Date: 11/15/2022 5:31:53 AM, Account: DGE00177777OpKey
+00001, $1: 0, $5: 0, $1010, $20: 0, $50: 0, $100: 0, $Ticket: 0, #Tickets: 0, #Bills: 1, $Drop: 15, Date: 11/15/2022 5:34:26 AM, Account: DGE00177777OpKey
+00001, $1: 6, $5: 25, $1040, $20: 60, $50: 100, $100: 100, $Ticket: 0, #Tickets: 0, #Bills: 21, $Drop: 336, Date: 11/15/2022 5:36:44 AM, Account: DGE00177777OpKey
+00001, $1: 0, $5: 0, $1010, $20: 0, $50: 0, $100: 0, $Ticket: 6, #Tickets: 3, #Bills: 1, $Drop: 15, Date: 11/15/2022 5:38:57 AM, Account: DGE00177777OpKey
+00001, $1: 0, $5: 0, $1010, $20: 0, $50: 0, $100: 0, $Ticket: 0, #Tickets: 0, #Bills: 1, $Drop: 15, Date: 11/15/2022 5:40:14 AM, Account: DGE00177777OpKey
+00001, $1: 1, $5: 10, $1030, $20: 80, $50: 250, $100: 600, $Ticket: 2, #Tickets: 1, #Bills: 21, $Drop: 976, Date: 11/15/2022 5:46:05 AM, Account: DGE00177777OpKey
+00001, $1: 0, $5: 0, $1010, $20: 0, $50: 0, $100: 0, $Ticket: 6, #Tickets: 3, #Bills: 1, $Drop: 15, Date: 11/15/2022 7:44:53 AM, Account: DGE00177777OpKey
+00001, $1: 0, $5: 0, $1010, $20: 0, $50: 0, $100: 0, $Ticket: 6, #Tickets: 3, #Bills: 1, $Drop: 15, Date: 11/15/2022 7:46:34 AM, Account: DGE00177777OpKey
+00001, $1: 0, $5: 0, $1010, $20: 0, $50: 0, $100: 0, $Ticket: 6, #Tickets: 3, #Bills: 1, $Drop: 15, Date: 11/15/2022 7:49:59 AM, Account: DGE00177777OpKey
+00001, $1: 0, $5: 0, $1010, $20: 0, $50: 0, $100: 0, $Ticket: 6, #Tickets: 3, #Bills: 1, $Drop: 15, Date: 11/15/2022 7:51:43 AM, Account: DGE00177777OpKey
+00001, $1: 0, $5: 0, $1010, $20: 0, $50: 0, $100: 0, $Ticket: 6, #Tickets: 3, #Bills: 1, $Drop: 15, Date: 11/15/2022 7:55:37 AM, Account: DGE00177777OpKey
+00001, $1: 0, $5: 0, $1010, $20: 0, $50: 0, $100: 0, $Ticket: 6, #Tickets: 3, #Bills: 1, $Drop: 15, Date: 11/15/2022 7:58:43 AM, Account: DGE00177777OpKey
+00001, $1: 0, $5: 0, $1010, $20: 0, $50: 0, $100: 0, $Ticket: 6, #Tickets: 3, #Bills: 1, $Drop: 15, Date: 11/15/2022 8:02:53 AM, Account: DGE00177777OpKey
+00001, $1: 6, $5: 25, $1040, $20: 60, $50: 100, $100: 100, $Ticket: 0, #Tickets: 0, #Bills: 21, $Drop: 336, Date: 11/15/2022 8:05:16 AM, Account: DGE00177777OpKey
+00001, $1: 0, $5: 0, $1010, $20: 0, $50: 0, $100: 0, $Ticket: 6, #Tickets: 3, #Bills: 1, $Drop: 15, Date: 11/15/2022 8:06:25 AM, Account: DGE00177777OpKey
+Totals - $1: 45, $5: 230, $10: 640, $20: 780, $50: 1850, $100: 3900, $Tickets: 88, #Tickets: 44, Bills: 270, Drop: 7625
+Latest: 15
+closing

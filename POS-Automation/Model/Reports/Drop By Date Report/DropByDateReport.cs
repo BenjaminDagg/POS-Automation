@@ -23,9 +23,8 @@ namespace POS_Automation.Model.Reports.Drop_By_Date_Report
 
         public CashDropRecord GetLatestDrop(string terminal)
         {
-            var sortedRecords = Data.OrderByDescending(r => r.DropTime);
 
-            return sortedRecords.FirstOrDefault(r => r.TerminalId == terminal);
+            return Data.LastOrDefault(r => r.TerminalId == terminal);
         }
     }
 }

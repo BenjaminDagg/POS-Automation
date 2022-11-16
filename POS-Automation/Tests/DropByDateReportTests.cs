@@ -210,6 +210,8 @@ namespace POS_Automation
             var drop = report.GetLatestDrop(TestData.DefaultMachineNumber);
             Assert.NotNull(drop);
 
+            Console.WriteLine(drop.DropTime);
+
             Assert.AreEqual(10,drop.Amount10Dollar);
             Assert.AreEqual(6,drop.TotalTicketAmount);
             Assert.AreEqual(3, drop.TotalTickets);

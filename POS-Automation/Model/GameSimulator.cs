@@ -380,8 +380,28 @@ namespace POS_Automation.Model
             string response = transactionPortalService.TransD(gameplayParams);
             gameplayParams.SequenceNumber++;
 
+            ResetDrop();
+
             return response;
         }
 
+
+        private void ResetDrop()
+        {
+            //reset
+            gameplayParams.Count1Dollar = 0;
+            gameplayParams.Count2Dollar = 0;
+            gameplayParams.Count5Dollar = 0;
+            gameplayParams.count10Dollar = 0;
+            gameplayParams.Count50Dollar = 0;
+            gameplayParams.count10Dollar = 0;
+            gameplayParams.DollarsInCredits = gameplayParams.BalanceCredits;
+            gameplayParams.WinTabs = 0;
+            gameplayParams.LoseTabs = 0;
+            gameplayParams.TabsSold = 0;
+            gameplayParams.PayoutCredits = 0;
+            gameplayParams.TicketDroppedValue = 0;
+            gameplayParams.TicketCountDropped = 0;
+        }
     }
 }

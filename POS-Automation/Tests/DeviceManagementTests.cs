@@ -52,7 +52,7 @@ namespace POS_Automation
             NavigationTabs.ClickDeviceTab();
 
             GameSimulator.ShutDown();
-            Thread.Sleep(10000);
+            Thread.Sleep(TestData.PollingIntervalSec * 1000 * 2);
 
             Assert.True(_devicePage.IsReadOnly(_devicePage.SetAllOnlineButton));
             Assert.True(_devicePage.IsReadOnly(_devicePage.SetAllOfflineButton));
@@ -88,10 +88,15 @@ namespace POS_Automation
             NavigationTabs.ClickDeviceTab();
 
             GameSimulator.SetOffline();
-            Thread.Sleep(15000);
+            Thread.Sleep(TestData.PollingIntervalSec * 1000 * 2);
 
             driver.FindElement(_devicePage.SetAllOnlineButton).Click();
             Assert.True(_devicePage.ChangeStatusAlert.IsOpen);
+
+            string expectedAlertText = "Are you sure you would like to set all machines online?";
+            string actualText = _devicePage.ChangeStatusAlert.AlertText;
+
+            Assert.AreEqual(expectedAlertText,actualText);
         }
 
         [Test]
@@ -494,6 +499,11 @@ namespace POS_Automation
 
             driver.FindElement(_devicePage.SetAllOfflineButton).Click();
             Assert.True(_devicePage.ChangeStatusAlert.IsOpen);
+
+            string expectedText = "Are you sure you would like to set all machines offline?";
+            string actualText = _devicePage.ChangeStatusAlert.AlertText;
+
+            Assert.AreEqual(expectedText, actualText);
         }
 
     }

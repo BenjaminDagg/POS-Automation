@@ -498,8 +498,9 @@ namespace POS_Automation
             }
 
             _payoutPage.CurrentTransactionList.RemoveVoucherByBarcode(barcode1);
-
             _payoutPage.Payout();
+
+            Thread.Sleep(3000);
 
             var balanceAfter = _payoutPage.CashDrawer.CurrentBalance;
             var expectedBalance = startingBalance - 25;

@@ -167,7 +167,19 @@ namespace POS_Automation.Pages
 
         public void RemoveVoucherByBarcode(string voucherBarcode)
         {
-            var rows = driver.FindElement(DataGrid).FindElements(RowSelector);
+
+            //wait for table to become populated
+            try
+            {
+                wait.Until(d => driver.FindElements(RowSelector).Count > 0);
+            }
+            catch(Exception ex)
+            {
+                return;
+            }
+
+            var rows = driver.FindElements(RowSelector);
+
             foreach (var row in rows)
             {
                 var barcode = row.FindElement(By.XPath("(.//*[@ClassName='DataGridCell'])[1]")).Text;

@@ -82,5 +82,15 @@ namespace POS_Automation.Custom_Elements.Alerts
             }
         }
 
+        public string GetAmount()
+        {
+            if (!IsOpen)
+            {
+                return string.Empty;
+            }
+
+            wait.Until(d => driver.FindElement(AmountTextbox));
+            return driver.FindElement(AmountTextbox).Text;
+        }
     }
 }

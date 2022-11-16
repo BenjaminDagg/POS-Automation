@@ -294,13 +294,6 @@ namespace POS_Automation
             //create a voucher for $100
             var barcode1 = TpService.GetVoucher(StartingAmountCredits, 10000);
             StartingAmountCredits -= 10000;
-
-            var barcode2= TpService.GetVoucher(StartingAmountCredits, 10000);
-            StartingAmountCredits -= 10000;
-
-            var barcode3 = TpService.GetVoucher(StartingAmountCredits, 10000);
-
-            var barcodes = new List<string>() { barcode1, barcode2, barcode3 };
        
             _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
             NavigationTabs.ClickPayoutTab();
@@ -310,15 +303,11 @@ namespace POS_Automation
             _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
             _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
 
-            foreach(var barcode in barcodes)
-            {
-                _payoutPage.NumPad.EnterBarcode(barcode);
-                
-            }
+            _payoutPage.NumPad.EnterBarcode(barcode1);
             _payoutPage.Payout();
 
-            int expectedBalance = startingBalance - 300;
-            int expectedPayout = 300;
+            int expectedBalance = startingBalance - 100;
+            int expectedPayout = 100;
 
             var balance = _payoutPage.CashDrawer.CurrentBalance;
             var totalPayout = _payoutPage.CashDrawer.TotalPayout;
@@ -437,6 +426,77 @@ namespace POS_Automation
             _payoutPage.CashDrawer.AddCashPrompt.Confirm();
 
             Assert.True(_payoutPage.ErrorIsDisplayed(_payoutPage.CashDrawer.AddCashPrompt.PasswordTextbox));
+        }
+
+        //Verify an error is displayed if the amount field is left on the Add Cash prompt
+        [Test]
+        public void CashDrawerPrompt_AddCash_AmountEmpty()
+        {
+
+            _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
+            NavigationTabs.ClickPayoutTab();
+
+            int startingBalance = 1000;
+
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            _payoutPage.CashDrawer.ClickAddCash();
+
+            Assert.False(_payoutPage.ErrorIsDisplayed(_payoutPage.CashDrawer.AddCashPrompt.PasswordTextbox));
+
+            _payoutPage.CashDrawer.AddCashPrompt.EnterAmount("");
+            _payoutPage.CashDrawer.AddCashPrompt.EnterPassword(TestData.CashierPassword);
+            _payoutPage.CashDrawer.AddCashPrompt.Confirm();
+
+            Assert.True(_payoutPage.CashDrawer.AddCashPrompt.IsOpen);
+        }
+
+        //Verify error is displayed if an invalid amount is entered in Add Cash prompt
+        [Test]
+        public void CashDrawerPrompt_AddCash_InvalidAmount()
+        {
+
+            _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
+            NavigationTabs.ClickPayoutTab();
+
+            int startingBalance = 1000;
+
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            _payoutPage.CashDrawer.ClickAddCash();
+
+            Assert.False(_payoutPage.ErrorIsDisplayed(_payoutPage.CashDrawer.AddCashPrompt.PasswordTextbox));
+
+            _payoutPage.CashDrawer.AddCashPrompt.EnterAmount("0");
+            _payoutPage.CashDrawer.AddCashPrompt.EnterPassword(TestData.CashierPassword);
+            _payoutPage.CashDrawer.AddCashPrompt.Confirm();
+
+            Assert.True(_payoutPage.CashDrawer.AddCashPrompt.IsOpen);
+        }
+
+        //Verify amount field on Add Cash prompt cant have more than 2 decimal places
+        [Test]
+        public void CashDrawerPrompt_AddCash_VerifyDecimals()
+        {
+
+            _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
+            NavigationTabs.ClickPayoutTab();
+
+            int startingBalance = 1000;
+
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            _payoutPage.CashDrawer.ClickAddCash();
+
+            Assert.False(_payoutPage.ErrorIsDisplayed(_payoutPage.CashDrawer.AddCashPrompt.PasswordTextbox));
+
+            _payoutPage.CashDrawer.AddCashPrompt.EnterAmount("2.556");
+            string result = _payoutPage.CashDrawer.AddCashPrompt.GetAmount();
+
+            Assert.AreEqual("2.55", result);
         }
 
         //Verify error is displayed if cash drawer has insufficient funds to payout the voucher
@@ -567,6 +627,77 @@ namespace POS_Automation
             Assert.True(_payoutPage.ErrorIsDisplayed(_payoutPage.CashDrawer.RemoveCashPrompt.PasswordTextbox));
         }
 
+        //Verify an error is displayed if the amount field is left on the Remove Cash prompt
+        [Test]
+        public void CashDrawerPrompt_RemoveCash_AmountEmpty()
+        {
+
+            _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
+            NavigationTabs.ClickPayoutTab();
+
+            int startingBalance = 1000;
+
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            _payoutPage.CashDrawer.ClickRemoveCash();
+
+            Assert.False(_payoutPage.ErrorIsDisplayed(_payoutPage.CashDrawer.RemoveCashPrompt.PasswordTextbox));
+
+            _payoutPage.CashDrawer.RemoveCashPrompt.EnterAmount("");
+            _payoutPage.CashDrawer.RemoveCashPrompt.EnterPassword(TestData.CashierPassword);
+            _payoutPage.CashDrawer.RemoveCashPrompt.Confirm();
+
+            Assert.True(_payoutPage.CashDrawer.RemoveCashPrompt.IsOpen);
+        }
+
+        //Verify error is displayed if an invalid amount is entered in Remove Cash prompt
+        [Test]
+        public void CashDrawerPrompt_RemoveCash_InvalidAmount()
+        {
+
+            _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
+            NavigationTabs.ClickPayoutTab();
+
+            int startingBalance = 1000;
+
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            _payoutPage.CashDrawer.ClickRemoveCash();
+
+            Assert.False(_payoutPage.ErrorIsDisplayed(_payoutPage.CashDrawer.RemoveCashPrompt.PasswordTextbox));
+
+            _payoutPage.CashDrawer.RemoveCashPrompt.EnterAmount("0");
+            _payoutPage.CashDrawer.RemoveCashPrompt.EnterPassword(TestData.CashierPassword);
+            _payoutPage.CashDrawer.RemoveCashPrompt.Confirm();
+
+            Assert.True(_payoutPage.CashDrawer.RemoveCashPrompt.IsOpen);
+        }
+
+        //Verify amount field on Remove Cash prompt cant have more than 2 decimal places
+        [Test]
+        public void CashDrawerPrompt_RemoveCash_VerifyDecimals()
+        {
+
+            _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
+            NavigationTabs.ClickPayoutTab();
+
+            int startingBalance = 1000;
+
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            _payoutPage.CashDrawer.ClickRemoveCash();
+
+            Assert.False(_payoutPage.ErrorIsDisplayed(_payoutPage.CashDrawer.RemoveCashPrompt.PasswordTextbox));
+
+            _payoutPage.CashDrawer.RemoveCashPrompt.EnterAmount("2.556");
+            string result = _payoutPage.CashDrawer.RemoveCashPrompt.GetAmount();
+
+            Assert.AreEqual("2.55", result);
+        }
+
         //Verify an error is displayed if the removed amount is greater than the current balance
         [Test]
         public void CashDrawerPrompt_RemoveCash_GreaterThanBalance()
@@ -656,9 +787,6 @@ namespace POS_Automation
         [Test]
         public void CashDrawerPrompt_StartingBalance_Max()
         {
-
-            //create a voucher for $100
-            var barcode = TpService.GetVoucher(StartingAmountCredits, 500);
 
             _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
             NavigationTabs.ClickPayoutTab();

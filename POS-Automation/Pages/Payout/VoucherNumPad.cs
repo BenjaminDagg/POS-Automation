@@ -48,9 +48,24 @@ namespace POS_Automation.Pages.Payout
             //which misses the actual button. Click on the left side of the button
             if (num == 0)
             {
+                
+
+                int lengthBefore = driver.FindElement(NumPadTextBox).Text.Length;
+
                 WindowsElement zeroBtn = driver.FindElement(By.XPath(btnXpath));
                 driver.Mouse.MouseMove(zeroBtn.Coordinates, 24, 24);
                 driver.Mouse.Click(null);
+                Thread.Sleep(1000);
+
+                int lengthAfter = driver.FindElement(NumPadTextBox).Text.Length;
+
+                //If 1st click didnt send the expected text click again
+                if (lengthBefore == lengthAfter)
+                {
+                    driver.Mouse.MouseMove(zeroBtn.Coordinates, 24, 24);
+                    driver.Mouse.Click(null);
+                }
+
 
                 return;
             }
@@ -59,10 +74,22 @@ namespace POS_Automation.Pages.Payout
                 try
                 {
                     wait.Until(d => driver.FindElement(By.XPath(btnXpath)));
+
+                    int lengthBefore = driver.FindElement(NumPadTextBox).Text.Length;
+
                     driver.FindElement(By.XPath(btnXpath)).Click();
+                    Thread.Sleep(1000);
+
+                    int lengthAfter = driver.FindElement(NumPadTextBox).Text.Length;
+
+                    //Click again if 1st click didnt work
+                    if(lengthBefore == lengthAfter)
+                    {
+                        driver.FindElement(By.XPath(btnXpath)).Click();
+                    }
 
                     //wait for text to be entered
-                    wait.Until(d => d.FindElement(NumPadTextBox).Text.Length > 0);
+                    wait.Until(d => driver.FindElement(NumPadTextBox).Text.Length > lengthBefore);
                 }
                 catch (Exception ex)
                 {

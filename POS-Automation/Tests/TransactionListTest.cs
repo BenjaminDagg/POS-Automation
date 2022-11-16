@@ -532,5 +532,27 @@ namespace POS_Automation
             Assert.AreEqual(5,targetVoucher.Amount);
             Assert.AreEqual(TestData.DefaultMachineNumber, targetVoucher.Location);
         }
+
+        [Test]
+        public void VoucherList_SupervisorApproval()
+        {
+
+            var barcode1 = TpService.GetVoucher(StartingAmountCredits, 49900, true);
+            StartingAmountCredits -= 49900;
+
+            _loginPage.Login(TestData.CashierUsername, TestData.CashierPassword);
+            NavigationTabs.ClickPayoutTab();
+
+            int startingBalance = 10001;
+
+            _payoutPage.CashDrawer.StartingBalancePrompt.EnterInput(startingBalance.ToString());
+            _payoutPage.CashDrawer.StartingBalancePrompt.Confirm();
+
+            _payoutPage.NumPad.EnterBarcode(barcode1);
+
+            var barcodes = _payoutPage.CurrentTransactionList.GetVouchers();
+
+            Assert.True(barcodes[0].NeedsApproval);
+        }
     }
 }

@@ -84,7 +84,7 @@ namespace POS_Automation.Pages.Payout
                 return records;
             }
 
-            var rows = driver.FindElement(HistoryTable).FindElements(RowSelector);
+            var rows = driver.FindElements(RowSelector);
             foreach (var row in rows)
             {
                 var newRecord = new CashDrawerHistoryRecord();
